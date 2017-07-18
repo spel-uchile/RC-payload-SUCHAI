@@ -14,6 +14,7 @@ Resumen:
 | matlab/parser | Archivos de tipo Matlab (.mat) con structs que guardan la data dentro de los .txt que calzan con el formato usado en el directorio  *preprocesor*| 
 | matlab/Builders | Scripts (.m) que construyen las series de tiempo, *vectores de tipo [voltage, tiempo]*, utilizadas en procesamientos posteriores. | 
 | matlab/mat/ts | Time series generaada con la funcion **timeSeriesFactory**. Cada directorio interno contiene cuatro Mat-files asociados a un tipo de serie de tiempo. |
+| matlab/img | Plots generados con los diferentes scripts. |
 
 ### matlab
 
