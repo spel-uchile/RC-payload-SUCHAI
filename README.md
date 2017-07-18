@@ -17,8 +17,6 @@ Resumen:
 
 ### matlab
 
-*payloadLinearFit* regresion lineal dTSignal = m*adcPeriod + n
-
 ### matlab/cutecom
 Log de la consola serial del software del SUCHAI 1 donde se ejecutan los comandos **pay_print_seed (0x602C)** y **pay_testFreq_expFis(0x602D)** para las frecuencias que se quieren analizar.
 
@@ -58,6 +56,8 @@ Tipos de series de tiempo:
     - `varargin{2}:`struct `Parameters`que contiene parámetros para construir las series de tiempo (frecuencia de la señal de entrada, tamaño (puntos) de la señal, niveles de voltaje, coeficiente de sobremuestreo y bits de conversion para el ADC/DAC).
     - `varargin{3}:`ninguno.
 
+### payloadLinearFit 
+Regresion lineal que calcula las constantes `(m,n)` asociadas al tiempo que dura un valor digital escrito por el DAC en segundos `(dTSignal = m*adcPeriod + n)`. La linealización utiliza las medidas que se encuentran en **payloadCSV.csv** las cuales fueron sacadas a mano en el laboratorio.
 
 # Lista de archivos y directorios
 - barwitherr.m
@@ -117,4 +117,5 @@ Tipos de series de tiempo:
 - testSDsimulation.m
 - testTimeSeriesFactory.m
 - timeSeriesFactory.m
+
 
