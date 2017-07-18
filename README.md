@@ -20,7 +20,7 @@ Resumen:
 ### matlab/cutecom
 Log de la consola serial del software del SUCHAI 1 donde se ejecutan los comandos **pay_print_seed (0x602C)** y **pay_testFreq_expFis(0x602D)** para las frecuencias que se quieren analizar.
 
-  - ``parserTestFixture.log`` son las ejecuciones para adcPeriod={4,7,13,21,36,61,104, 175,295,498,840, 1417, 2389, 4029, 6793}. La version del firmware del experimento en ese momento contempla señales de un largo de 10.000 puntos.
+  - ``parserTestFixture.log`` son las ejecuciones para `adcPeriod = { 4, 7, 13, 21, 36, 61, 104, 175, 295, 498, 840, 1417, 2389, 4029, 6793}`. La version del firmware del experimento en ese momento contempla señales de un largo de 10.000 puntos.
   - El directorio `cutecom/2016_18_05` es la descomposicion en archivos logs independientes para cada comando (cada archivo contiene el print de la consola para un solo comando).
 
 ### matlab/Builder
