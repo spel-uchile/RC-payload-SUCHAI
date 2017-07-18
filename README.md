@@ -1,6 +1,7 @@
 # README
-This repository contains the Latex files of the documentation associated with the RC experiement on board of SUCHAI satellites. Separate files for SUCHAI 1 and SUCHAI 2/3 experiments.
+En este repositorio se encuentra la documentación asociada a los experimentos RC a bordo de los satélites SUCHAI, así como los códigos utilizados para procesar y/o validar los datos que se reciban en forma de telemetría. 
 
+**El experimento RC para SUCHAI 2 y 3 aún está en desarrollo, por lo que aún no contiene documentación**
 
 # Suchai1: experimento RC
 Resumen:
