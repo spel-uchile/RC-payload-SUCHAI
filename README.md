@@ -1,6 +1,7 @@
 # README
 This repository contains the Latex files of the documentation associated with the RC experiement on board of SUCHAI satellites. Separate files for SUCHAI 1 and SUCHAI 2/3 experiments.
 
+
 # Suchai1: experimento RC
 Resumen:
 
@@ -55,3 +56,64 @@ Tipos de series de tiempo:
   - **theoretical** Genera un series de tiempo 100% sintéticas, tanto para la entrada como la salida. La evolución temporal de las señales no considera que el almacenamiento de las muestras es instantáneo, por lo que no hay *delay's* asociados al traspaso buffer -> memoria SD.
     - `varargin{2}:`struct `Parameters`que contiene parámetros para construir las series de tiempo (frecuencia de la señal de entrada, tamaño (puntos) de la señal, niveles de voltaje, coeficiente de sobremuestreo y bits de conversion para el ADC/DAC).
     - `varargin{3}:`ninguno.
+
+
+# Lista de archivos y directorios
+- barwitherr.m
+- Builders (directorio)
+- computeFreqSignalHz.m
+- computeHist.m
+- count2voltage.m
+- createVin.m
+- createVout.m
+- crossing.m
+- cummean.m
+- cutecom (directorio)
+- doParser.m
+- doPreProcessor.m
+- doTimeSeriesFactory.m
+- edgeGenerator.m
+- filterCollection.m
+- filterMemSDSimulation.m
+- filterPayloadTimeSeries.m
+- filterTimeSerie.m
+- findSState.m
+- findSStateSimple.m
+- freqarray.m
+- img (directorio)
+- interpolateDataFromCounts.m
+- kldiv.m
+- linearFitValidation.m
+- logPreProcessor.m
+- makeExperimentalSeries.m
+- makeSimulationSeries.m
+- mat (directorio)
+- nanReplace.m
+- normalize.m
+- parser (directorio)
+- parserInput.m
+- parserOutput.m
+- payloadCommandValue.m
+- payloadCSV.csv
+- payloadLinearFit.m
+- payloadModel.slx
+- pdfEstimator.m
+- Plotting (directorio)
+- preprocessor (directorio)
+- printBufferToFile.m
+- processOneOutput.m
+- randomNumberGenerator.m
+- reconstructBufferedSignal.m
+- repairZeros.m
+- simulateSDtransfer.m
+- simulateVout.m
+- simulationFactory.m
+- sortn.m
+- testFilter.m
+- testParser.m
+- testPdfEstimator.m
+- testPreProcessor.m
+- testSDsimulation.m
+- testTimeSeriesFactory.m
+- timeSeriesFactory.m
+
