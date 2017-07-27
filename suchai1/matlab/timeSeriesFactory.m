@@ -1,0 +1,88 @@
+function createdTimeSeries = timeSeriesFactory(freqSignalHz, varargin)
+
+if nargin < 2
+    error('Second argument missing');
+end
+
+freqCircuitHz = 92;
+R = 1210;
+C = 1 / (freqCircuitHz * 2 * pi * R);
+dampingRate = 1/ (R*C);
+
+switch varargin{1}
+    case 'raw'
+        S = load(varargin{2});
+        Input = S.InputCounts;
+        S = load(varargin{3});
+        Output = S.OutputCounts;
+        
+        oversamplingCoeff = varargin{4};
+        tsCollection = makeExperimentalSeries(Input, Output, freqSignalHz, ...
+            oversamplingCoeff, dampingRate);
+        dacBits = Input.nbits;
+        adcBits = Output.nbits;
+        maxVin = Input.maxVoltage;
+        maxVout = Output.maxVoltage;
+        
+        tsCollection.Name = strcat( 'raw_', num2str(freqSignalHz),'Hz');
+        
+    case 'filtered'
+        S = load(varargin{2});
+        Input = S.InputCounts;
+        S = load(varargin{3});
+        Output = S.OutputCounts;
+        dacBits = Input.nbits;
+        adcBits = Output.nbits;
+        
+        oversamplingCoeff = varargin{4};
+        rawCollection = makeExperimentalSeries(Input, Output, freqSignalHz, ...
+            oversamplingCoeff, dampingRate);
+        buffLen = 200;
+        [indexes, ~, ~] = findSState('buffered', rawCollection.Vout.Data, buffLen);
+        tsCollection = filterCollection(rawCollection, indexes, buffLen);
+        tsCollection.Name = strcat('filtered_', num2str(freqSignalHz),'Hz');
+        
+    case 'simulink'
+        S = load(varargin{2});
+        Input = S.InputCounts;
+        dacBits = Input.nbits;
+        adcBits = 10;
+        maxVin = Input.maxVoltage;
+        maxVout = Input.maxVoltage;
+        
+        oversamplingCoeff = varargin{3};
+        rawCollection = makeSimulationSeries(Input, freqSignalHz, oversamplingCoeff, dampingRate);
+        buffLen = length(rawCollection.Vin.Data);
+        [indexes, ~, ~] = findSState('simple', rawCollection.Vout.Data);
+        tsCollection = filterCollection(rawCollection, indexes, buffLen);
+        tsCollection.Name = strcat( 'simulink_', num2str(freqSignalHz),'Hz');
+        
+    case 'theoretical'
+        Parameters = varargin{2};
+        % 'option2' set as default in simualtionSD function
+        simResult = simulationFactory(freqSignalHz, 'theoretical', Parameters); % returns a normalized serie
+        tsCollection = simResult.tsc;
+        tsCollection.Name = strcat( 'theoretical_', num2str(freqSignalHz),'Hz');
+        maxVin = simResult.maxVin;
+        maxVout = simResult.maxVout;
+        dacBits = Parameters.dacBits;
+        adcBits = Parameters.adcBits;
+        
+    otherwise
+        error(['The argument' ' "' varargin{1} '" ' 'is not recognized.'])
+end
+createdTimeSeries.fsignal = freqSignalHz;
+createdTimeSeries.tsc = tsCollection;
+createdTimeSeries.Name = tsCollection.Name;
+createdTimeSeries.maxVin = max(tsCollection.Vin.Data);
+createdTimeSeries.minVin = min(tsCollection.Vin.Data);
+createdTimeSeries.maxVout = max(tsCollection.Vout.Data);
+createdTimeSeries.minVout = min(tsCollection.Vout.Data);
+createdTimeSeries.maxPower = max(tsCollection.injectedPower.Data);
+createdTimeSeries.minPower = min(tsCollection.injectedPower.Data);
+createdTimeSeries.dacBits = dacBits;
+createdTimeSeries.adcBits = adcBits;
+createdTimeSeries.dampingRate = dampingRate;
+createdTimeSeries.dateOfCreation = datestr(datetime('now','Format',...
+    'yyyy/mm/dd-HH:mm:ss'));
+end
