@@ -7,8 +7,8 @@ clear all;
 close all;
 
 prefix = '2016_18_05';
-rawLogsFolder = strcat('./cutecom','/',prefix);
-inputVoltagesFile = strcat(prefix,'_','input_voltages.log');  %vin file
+rawLogsFolder = strcat('./cutecom','/', prefix);
+inputVoltagesFile = strcat(prefix, '_', 'input_voltages.log');  %vin file
 logPath = strcat(rawLogsFolder, '/', inputVoltagesFile);
 preprocessorFolder = './preprocessor';
 
