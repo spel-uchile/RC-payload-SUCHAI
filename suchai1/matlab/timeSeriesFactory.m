@@ -84,5 +84,5 @@ createdTimeSeries.dacBits = dacBits;
 createdTimeSeries.adcBits = adcBits;
 createdTimeSeries.dampingRate = dampingRate;
 createdTimeSeries.dateOfCreation = datestr(datetime('now','Format',...
-    'yyyy/mm/dd-HH:mm:ss'));
+    'yyyy/MM/dd-HH:mm:ss'));
 end

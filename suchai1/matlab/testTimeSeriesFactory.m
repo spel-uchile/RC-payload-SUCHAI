@@ -27,9 +27,9 @@ simulation = timeSeriesFactory(fsignal, 'simulink', inputFixture, sampCoeff);
 save(strcat(saveFolder, '/', simulation.Name,'.mat'),'simulation','-v7.3');
 
 Parameters.numberOfRandomValues = 1e6;
-Parameters.dacBits = 15;
-Parameters.adcBits = 9;
-Parameters.dacMaxVoltage = 1.6;
+Parameters.dacBits = 16;
+Parameters.adcBits = 10;
+Parameters.dacMaxVoltage = 3.3;
 Parameters.dacMinvoltage = 0;
 Parameters.oversamplingCoeff = 4;
 theoretical = timeSeriesFactory(fsignal, 'theoretical', Parameters);

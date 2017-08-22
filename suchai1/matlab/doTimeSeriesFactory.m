@@ -15,10 +15,11 @@ fixtureIndexForInputParserFiles = find(~cellfun(@isempty, charIndexForInputFixtu
 inputFixture = strcat(fixtureFolder,'/', parserFiles{fixtureIndexForInputParserFiles});
 outputFixture = cell(1, length(parserFiles) - 1);
 fixtureIndexForOutputFiles = 0;
-for i = 1 : 1%length(parserFiles)
+for i = 1 : length(parserFiles)
     saveFolder = strcat('./mat/ts/', prefix);
+    fixtureIndexForOutputFiles = fixtureIndexForOutputFiles + 1;
+
     if i ~= fixtureIndexForInputParserFiles
-        fixtureIndexForOutputFiles = fixtureIndexForOutputFiles + 1;
         outputFixture{fixtureIndexForOutputFiles} = strcat(fixtureFolder,'/',...
             parserFiles{fixtureIndexForOutputFiles});
         S = load(outputFixture{fixtureIndexForOutputFiles});
@@ -56,4 +57,5 @@ for i = 1 : 1%length(parserFiles)
         theoretical = timeSeriesFactory(fsignal, 'theoretical', Parameters);
         save(strcat(saveFolder, '/', theoretical.Name,'.mat'),'theoretical','-v7.3');
     end
+    
 end
