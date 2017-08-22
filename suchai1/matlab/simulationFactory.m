@@ -34,6 +34,9 @@ switch option
         [indexes, ~, ~] = findSState('simple', rawCollection.Vout.Data, buffLen);
         tsCollection = filterCollection(rawCollection, indexes, buffLen);
         tsCollection.Name = strcat( 'tscTheoretical_', num2str(freqSignalHz),'Hz');
+        sampledValuesPerRound = Parameters.sampledValuesPerRound;
+        nonSampledValuesPerRound = Parameters.nonSampledValuesPerRound;
+        nWaitingUnits = Parameters.nWaitingUnits;
         
     case 'option1'
         Parameters = varargin{2};
@@ -63,6 +66,7 @@ switch option
     case'option2'
         Parameters = varargin{2};
         sampledValuesPerRound = Parameters.sampledValuesPerRound;
+        nonSampledValuesPerRound = 0;
         rounds = Parameters.rounds;
         numberOfValues = rounds * sampledValuesPerRound;
         dacBits = Parameters.dacBits;
@@ -87,6 +91,7 @@ switch option
     case'option3'
         Parameters = varargin{2};
         sampledValuesPerRound = Parameters.sampledValuesPerRound;
+        nonSampledValuesPerRound = 0;
         rounds = Parameters.rounds;
         numberOfValues = rounds *  sampledValuesPerRound;
         dacBits = Parameters.dacBits;
@@ -135,37 +140,13 @@ switch option
         tsCollection = tscollection({tsInput, tsOutput, tsInjPower});
         tsCollection.Name = strcat( 'tscOption1+3Full_', num2str(freqSignalHz),'Hz');
         
-        [tsSampledVin, tsSampledVout] = filterMemSDSimulation(tsInput, tsOutput, ...
-            sampledValuesPerRound, nonSampledValuesPerRound, nWaitingUnits);
-        tsSampledPower = timeseries((dampingRate.* (tsSampledVin.Data .* ...
-            tsSampledVout.Data)), tsSampledVout.Time);
-        tsSampledPower.Name = tsInjPower.Name;
-        tsSampledPower.DataInfo.Units = tsInjPower.DataInfo.Units;
-        tsSampledCollection = tscollection({tsSampledVin, tsSampledVout, tsSampledPower});
-        tsSampledCollection.Name = strcat( 'tscOption1+3Sampled_', num2str(freqSignalHz),'Hz');
-        
-        if nargout < 2
-            error('Function invocation returns two outputs');
-        end
-        
-        maxVin = Input.maxVoltage;
-        maxVout = Input.maxVoltage;
-        varargout{2}.fsignal = freqSignalHz;
-        varargout{2}.tsc = tsSampledCollection;
-        varargout{2}.Name = tsSampledCollection.Name;
-        varargout{2}.maxVin = max(tsCollection.Vin.Data);
-        varargout{2}.minVin = min(tsCollection.Vin.Data);
-        varargout{2}.maxVout = max(tsCollection.Vout.Data);
-        varargout{2}.minVout = min(tsCollection.Vout.Data);
-        varargout{2}.minPower = min(tsSampledCollection.injectedPower.Data);
-        varargout{2}.maxPower = max(tsSampledCollection.injectedPower.Data);
     otherwise
         error(['The argument' ' "' option '" ' 'is not recognized.']);
 end
 
+%% physical signals
 maxVin = Input.maxVoltage;
 maxVout = Input.maxVoltage;
-
 varargout{1}.Name = tsCollection.Name;
 varargout{1}.maxVin = max(tsCollection.Vin.Data);
 varargout{1}.minVin = min(tsCollection.Vin.Data);
@@ -175,4 +156,24 @@ varargout{1}.minPower = min(tsCollection.injectedPower.Data);
 varargout{1}.maxPower = max(tsCollection.injectedPower.Data);
 varargout{1}.fsignal = freqSignalHz;
 varargout{1}.tsc = tsCollection;
+
+%% filtered/sampled signals
+[tsSampledVin, tsSampledVout] = filterMemSDSimulation(tsInput, tsOutput, ...
+    sampledValuesPerRound, nonSampledValuesPerRound, nWaitingUnits);
+tsSampledPower = timeseries((dampingRate.* (tsSampledVin.Data .* ...
+    tsSampledVout.Data)), tsSampledVout.Time);
+tsSampledPower.Name = tsInjPower.Name;
+tsSampledPower.DataInfo.Units = tsInjPower.DataInfo.Units;
+tsSampledCollection = tscollection({tsSampledVin, tsSampledVout, tsSampledPower});
+tsSampledCollection.Name = strcat( 'tscOption1+3Sampled_', num2str(freqSignalHz),'Hz');
+varargout{2}.fsignal = freqSignalHz;
+varargout{2}.tsc = tsSampledCollection;
+varargout{2}.Name = tsSampledCollection.Name;
+varargout{2}.maxVin = max(tsCollection.Vin.Data);
+varargout{2}.minVin = min(tsCollection.Vin.Data);
+varargout{2}.maxVout = max(tsCollection.Vout.Data);
+varargout{2}.minVout = min(tsCollection.Vout.Data);
+varargout{2}.minPower = min(tsSampledCollection.injectedPower.Data);
+varargout{2}.maxPower = max(tsSampledCollection.injectedPower.Data);
+
 end
