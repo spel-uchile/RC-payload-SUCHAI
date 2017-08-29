@@ -27,9 +27,8 @@ power = tsCollection.injectedPower.Data;
 
 ptsVin = linspace(tSeries.minVin, tSeries.maxVin, npoints);
 ptsVout = ptsVin;
-% ptsPower = linspace(tSeries.minPower, tSeries.maxPower, npoints);
 dampingRate = tSeries.dampingRate;
-ptsPower = linspace(-0.15*dampingRate, 0.15*dampingRate, npoints);
+ptsPower = linspace(-0.2*dampingRate, 0.2*dampingRate, npoints);
 
 if ~isempty(bw)
     [fVin, ~, bw(1)] = ksdensity(vin, ptsVin,'kernel',kernel,...
