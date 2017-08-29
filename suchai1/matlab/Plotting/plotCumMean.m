@@ -3,8 +3,8 @@ clear all;
 %% Load variables
 date = '2016_18_05';
 prefix = strcat(date, '_');
-folder = './img/dataEfficiency/';
-matfilename = strcat(prefix, 'ExpFisTimeSeries.mat');
+folder = './img/dataEfficiency/';	%change this line
+matfilename = strcat(prefix, 'ExpFisTimeSeries.mat');	%change this line
 load(matfilename);
 
 tolerance = 5e-3;
@@ -13,9 +13,9 @@ buffLen = 200;
 
 names = fieldnames(ExpFisTimeSeries);
 for i = 1 : length(names)
-    TSeries = ExpFisTimeSeries.(names{i});
-    dataTSC = TSeries.tscData;
-    freqSignalHz  = TSeries.freqSignalHz;
+    TSeries = ExpFisTimeSeries.(names{i});	%change this line
+    dataTSC = TSeries.tscData;	%change this line
+    freqSignalHz  = TSeries.freqSignalHz;	%change this line
     vout = dataTSC.vout;
     
     [indexes, cumMeanSignal, ~] = findSState('buffered', vout.Data, tolerance, span , buffLen);
