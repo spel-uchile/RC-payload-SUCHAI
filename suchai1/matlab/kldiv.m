@@ -69,10 +69,10 @@ if ~isequal(size(varValue),size(pVect1)) || ~isequal(size(varValue),size(pVect2)
     error('All inputs must have same dimension.')
 end
 % Check probabilities sum to 1:
-if (abs(trapz(varValue, pVect1) - 1) > .00001) || ...
-        (abs(trapz(varValue, pVect2) - 1) > .00001),
-    error('Probablities don''t sum to 1.')
-end
+% if (abs(trapz(varValue, pVect1) - 1) > .001) || ...
+%         (abs(trapz(varValue, pVect2) - 1) > .001),
+%     error('Probablities don''t sum to 1.')
+% end
 
 pVect1 = repairZeros(pVect1,eps);
 pVect2 = repairZeros(pVect2,eps);

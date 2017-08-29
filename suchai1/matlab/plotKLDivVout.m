@@ -1,9 +1,9 @@
 clear all;
 close all;
-plotFolder = strcat('./img/kldivFinal/');
+plotFolder = strcat('./img/suchai-vs-lab/');
 
-prefixMenos = '2016_17_05_';
-loadname = strcat(prefixMenos,'Errors_KLDiv.mat');
+prefixMenos = '2017_08_17_';    %suchai
+loadname = [pwd, '/mat/kldiv'];
 load(loadname);
 KLDivMenos = KLDiv;
 
