@@ -1,5 +1,5 @@
-S21 = load('/home/jose/Documents/UNIVERSIDAD/SUCHAI/RC-payload-SUCHAI/suchai1/matlab/mat/pdf/2017_08_24/2937.9922/pdfEstimator_2937.9922Hz.mat'); %carpeta de lab
-S61 = load('/home/jose/Documents/UNIVERSIDAD/SUCHAI/RC-payload-SUCHAI/suchai1/matlab/mat/pdf/2017_08_29/1020.0011/pdfEstimator_1020.0011Hz.mat'); %carpeta de lab
+S21 = load('/home/jose/Documents/UNIVERSIDAD/SUCHAI/Proyectos GitHub/RC-payload-SUCHAI/suchai1/matlab/mat/pdf/2017_08_24/2937.9922/pdfEstimator_2937.9922Hz.mat'); %carpeta de lab
+S61 = load('/home/jose/Documents/UNIVERSIDAD/SUCHAI/Proyectos GitHub/RC-payload-SUCHAI/suchai1/matlab/mat/pdf/2017_08_29/1020.0011/pdfEstimator_1020.0011Hz.mat'); %carpeta de lab
 prefix = '20170824-vs-20170829';
 
 %% Plots

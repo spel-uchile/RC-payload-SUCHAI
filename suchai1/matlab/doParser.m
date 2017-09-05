@@ -1,10 +1,10 @@
-prefix = '2016_18_05';  %date and foldername of cutecom logs
+prefix = '2017_09_01_135700';  %date and foldername of cutecom logs
 parserFolder = './parser';
 preprocessorFolder = './preprocessor';
 fixtureFolder = strcat(preprocessorFolder, '/', prefix);
 preprocessedFiles = dir(fixtureFolder);
 preprocessedFiles = {preprocessedFiles.name};
-preprocessedFiles = preprocessedFiles(4:end)';
+preprocessedFiles = preprocessedFiles(3:end)';
 preprocessedFiles = sortn(preprocessedFiles);
 
 saveFolder = strcat(parserFolder,'/', prefix);

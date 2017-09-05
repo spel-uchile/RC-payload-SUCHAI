@@ -1,4 +1,4 @@
-prefix = '2017_08_29';
+prefix = '2017_09_01_135700';
 
 seedFolder = ['./mat/ts/', prefix ];
 freqs = dir(seedFolder);

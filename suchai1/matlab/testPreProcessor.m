@@ -1,7 +1,7 @@
 clear all;
 close all;
 
-prefix = '2016_18_05';
+prefix = 'test';
 rawLogsFolder = strcat('./cutecom','/',prefix);
 inputVoltagesFile = strcat(prefix,'_','input_voltages.log');  %vin file
 logPath = strcat(rawLogsFolder, '/', inputVoltagesFile);
@@ -14,7 +14,7 @@ end
 
 inFile = logPreProcessor(logPath, saveFolder, 'input');
 
-for i = 1 :4
+for i = 1 :1
     voutFile = strcat(prefix,'_freq',num2str(i-1),'.log');  %vout files
     logPath = strcat(rawLogsFolder, '/', voutFile);
     outFiles{i} = logPreProcessor(logPath, saveFolder, 'output', i);

@@ -1,4 +1,4 @@
-function fileDir = logPreProcessor(rawLogFilePath, saveFolder, varargin)
+function [fileDir, varargout] = logPreProcessor(rawLogFilePath, saveFolder, varargin)
 switch varargin{1}
     case 'input'
         reglInput = 'rand() = ';
@@ -40,25 +40,50 @@ switch varargin{1}
         
         fclose(fid);
         
-    case 'input2'
+    case 'telemetry-output'
         fid = fopen(rawLogFilePath);
-        disp(['preprocessing file ',rawLogFilePath, 'as input']);
-        N = varargin{2};
-        mode = varargin{3};
+        disp(['preprocessing file ',rawLogFilePath, 'as output']);
         fileDir = {};
         
-        hasExec = true;
         index = 1;
-        while hasExec && (index <= N)
-            [buffer, hasExec] = processOneInput(fid, mode);
-            disp(strcat('file ',num2str(index), ' processed to a buffer'));
-            fileDir{index} = printBufferToFile(buffer, saveFolder ,'input2', index, mode);
-            disp(strcat('buffer ',num2str(index), ' printed to a file'));
-            
-            index = index + 1;
-            
+        adcPeriod = varargin{2};
+        [buffer, tmParams] = processOneTelemetry(fid, adcPeriod);
+        disp(strcat('file ',rawLogFilePath, ' processed to a buffer'));
+        fileDir{index} = printBufferToFile(buffer, saveFolder ,'output', index);
+        disp(strcat('buffer ',num2str(index), ' printed to file ', fileDir{index}));
+        
+        fclose(fid);
+        varargout{1} = tmParams;
+        
+    case 'telemetry-input'
+        reglInput = 'rand() = ';
+        regrInput = ' ';
+        regEOF = 'pay_print_seed ... finished';
+        
+        values = [];
+        fid = fopen(rawLogFilePath);
+        disp(['preprocessing file ',rawLogFilePath, 'as input']);
+        tline = fgets(fid);
+        
+        while ischar(tline)
+            if  ~isempty(  strfind( tline, regEOF ) )
+                break
+            elseif  ~isempty(  strfind( tline, reglInput ) )
+                indexl = strfind( tline, reglInput );
+                indexl = indexl + length( reglInput );
+                tmp = tline ( indexl : end );
+                indexr = strfind( tmp, regrInput );
+                nextValue = str2double( tmp( 1 : indexr - 1 ) );
+                values = [values; nextValue];
+            end
+            tline = fgets(fid);
         end
         fclose(fid);
+        
+        values = values(1:1000);
+        tmParams = varargin{2};
+        frames = tmParams.frames;
+        fileDir{1} = printBufferToFile(values, saveFolder, 'input');
         
     otherwise
         error(['The argument' ' "' varargin{1} '" ' 'is not recognized']);
