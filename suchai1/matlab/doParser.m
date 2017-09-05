@@ -1,4 +1,4 @@
-prefix = '2017_09_01_135700';  %date and foldername of cutecom logs
+prefix = '2017_09_01_135700';  %date and foldername of logs
 parserFolder = './parser';
 preprocessorFolder = './preprocessor';
 fixtureFolder = strcat(preprocessorFolder, '/', prefix);

@@ -4,8 +4,8 @@ Resumen:
 | Directorio | Descripción |
 | ------ | ------ |
 | matlab | Directorio raiz. |
-| matlab/cutecom | Log de la consola serial del software del SUCHAI 1 donde se ejecutan los comandos **pay_print_seed (0x602C)** y **pay_testFreq_expFis(0x602D)** para las frecuencias que se quieren analizar.| 
-| matlab/preprocessor | Archivos de texto plano (.txt) que contienen un parseo de los logs en el directorio *cutecom*.  |
+| matlab/logs | Log de la consola serial del software del SUCHAI 1 donde se ejecutan los comandos **pay_print_seed (0x602C)** y **pay_testFreq_expFis(0x602D)** para las frecuencias que se quieren analizar.| 
+| matlab/preprocessor | Archivos de texto plano (.txt) que contienen un parseo de los logs en el directorio *logs*.  |
 | matlab/parser | Archivos de tipo Matlab (.mat) con structs que guardan la data dentro de los .txt que calzan con el formato usado en el directorio  *preprocesor*| 
 | matlab/Builders | Scripts (.m) que construyen las series de tiempo, *vectores de tipo [voltage, tiempo]*, utilizadas en procesamientos posteriores. | 
 | matlab/mat/ts | Time series generaada con la funcion **timeSeriesFactory**. Cada directorio interno contiene cuatro Mat-files asociados a un tipo de serie de tiempo. |
@@ -13,11 +13,11 @@ Resumen:
 
 ### matlab
 
-### matlab/cutecom
+### matlab/logs
 Log de la consola serial del software del SUCHAI 1 donde se ejecutan los comandos **pay_print_seed (0x602C)** y **pay_testFreq_expFis(0x602D)** para las frecuencias que se quieren analizar.
 
   - ``parserTestFixture.log`` son las ejecuciones para `adcPeriod = { 4, 7, 13, 21, 36, 61, 104, 175, 295, 498, 840, 1417, 2389, 4029, 6793}`. La version del firmware del experimento en ese momento contempla señales de un largo de 10.000 puntos.
-  - El directorio `cutecom/2016_18_05` es la descomposicion en archivos logs independientes para cada comando (cada archivo contiene el print de la consola para un solo comando).
+  - El directorio `logs/2016_18_05` es la descomposicion en archivos logs independientes para cada comando (cada archivo contiene el print de la consola para un solo comando).
 
 ### matlab/Builder
 
@@ -65,7 +65,7 @@ Regresion lineal que calcula las constantes `(m,n)` asociadas al tiempo que dura
 - createVout.m
 - crossing.m
 - cummean.m
-- cutecom (directorio)
+- logs (directorio)
 - doParser.m
 - doPreProcessor.m
 - doTimeSeriesFactory.m

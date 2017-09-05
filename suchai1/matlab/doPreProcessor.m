@@ -1,4 +1,4 @@
-% This script takes cutecom files with vin and vout values in separted
+% This script takes logs files with vin and vout values in separted
 % files and modifies to a format that the parserInput() and parserOutput()
 % function can handle. The vin/vout files aren't in the same file (as shown
 % in testPreProcessor.m), so there is a for loop that preprocess each file
@@ -7,7 +7,7 @@ clear all;
 close all;
 
 prefix = '2016_18_05';
-rawLogsFolder = strcat('./cutecom','/', prefix);
+rawLogsFolder = strcat('./logs','/', prefix);
 inputVoltagesFile = strcat(prefix, '_', 'input_voltages.log');  %vin file
 logPath = strcat(rawLogsFolder, '/', inputVoltagesFile);
 preprocessorFolder = './preprocessor';

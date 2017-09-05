@@ -2,7 +2,7 @@ clear all;
 close all;
 
 prefix = 'test';
-rawLogsFolder = strcat('./cutecom','/',prefix);
+rawLogsFolder = strcat('./logs','/',prefix);
 inputVoltagesFile = strcat(prefix,'_','input_voltages.log');  %vin file
 logPath = strcat(rawLogsFolder, '/', inputVoltagesFile);
 preprocessorFolder = './preprocessor';
