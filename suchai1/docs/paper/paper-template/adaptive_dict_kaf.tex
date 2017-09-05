@@ -1,0 +1,114 @@
+\documentclass[conference]{IEEEtran}
+\ifCLASSINFOpdf
+\else
+\fi
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[hyphens]{url} 
+\usepackage{epstopdf}
+\usepackage{subfig}
+\usepackage[font=small,labelfont=bf]{caption}
+
+
+
+
+
+\usepackage[utf8]{inputenc}
+\usepackage{color}
+\providecommand{\red}[1]{\textcolor{red}{#1}}
+\providecommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\myR}[2]{\mathcal{R}[#1,#2]}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\x}{\mathbf{x}}
+\newcommand{\balpha}{{\boldsymbol{\alpha}}}
+\newcommand{\s}{\mathbf{s}}
+\newcommand{\innerp}[2]{\langle #1,#2 \rangle}
+\newcommand\inner[2]{\langle #1, #2 \rangle}
+
+\IEEEoverridecommandlockouts
+
+\begin{document}
+\title{Analysis of experimental data from a dissipative system driven out-of-equilibirum onboard a CubeSat}
+
+
+% author names and affiliations
+% use a multiple column layout for up to three different
+% affiliations
+\author{\IEEEauthorblockN{José Ogalde
+\IEEEauthorblockA{Department of Electrical Engineering\\
+Universidad de Chile\\
+\texttt{jose.ogalde@ing.uchile.cl}}
+\and
+\IEEEauthorblockN{Claudio Falcón}
+\IEEEauthorblockA{Physics Department\\
+Universidad de Chile\\
+\texttt{cfalcon@cec.uchile.cl }}
+}
+
+\maketitle
+
+
+
+\IEEEpeerreviewmaketitle
+
+\input{abstract}
+
+\input{intro}
+\input{background}
+\input{proposal}
+\input{experiments}
+\input{conclusions}
+
+
+%\appendix
+
+\section*{Acknowledgments}
+We thank to SPEL team for helping with SUCHAI ground station operation to download the experiment telemetry and their constant support.
+\bibliographystyle{IEEEtran}
+%\bibliographystyle{ieeetr}
+\bibliography{library}
+
+% that's all folks
+\end{document}
+
+
+%Jacobian
+%
+%% A
+%\subsubsection{A}
+%\begin{equation}
+%\frac{\partial{J}}{\partial{A}} = \frac{1}{\sigma_e^2} e_t k(D_t,X_t) \in \mathbb{R}^N
+%\end{equation}
+%
+%% sigma
+%\subsubsection{$\sigma$}
+%\begin{equation}
+%\frac{\partial{J}}{\partial{\sigma}} = \frac{1}{\sigma_e^2} e_t A_t \frac{\partial{K_\sigma(D_t,X_t)}}{\partial{\sigma}}
+%\end{equation}
+%
+%% sigma (parte 2)
+%\begin{equation}
+%\begin{split}
+%\frac{\partial{K_\sigma(D_t,X_t)}}{\partial{\sigma}} = K_\sigma(D_t,X_t)\frac{1}{\sigma^3} \Delta (D_t, X_t) \\
+%- \frac{1}{l^2}\sum_{ij} k_\sigma (D_t^i, D_t^j)\cdot k_\sigma (D_t^i, D_t^j) \frac{\Delta(D_t^i,D_t^j)}{\sigma^3} \\
+%= K_\sigma(D_t,X_t)\frac{1}{\sigma^3} \Delta (D_t, X_t) \\ - \frac{1}{l^2\sigma^3}\sum_{ij} k_\sigma^2(D_t^i, D_t^j)\Delta(D_t^i,D_t^j)
+%\end{split}
+%\end{equation}
+%
+%\subsubsection{$D_t$}
+%\begin{equation}
+%\begin{split}
+%\frac{\partial{J}}{\partial{D_t\in \mathbb{R}^N}} = \frac{1}{\sigma_t^2}e_t A_t k_\sigma(D_t, X_t) \frac{-1}{2\sigma^2} 2(D_t - X_t) \\ 
+%-\frac{1}{l^2} \sum_{ij} k_\sigma (D_t^i, D_t^j) \frac{-1}{2\sigma^2}(D_t^i, D_t^j)
+%\end{split}
+%\end{equation}
+%
+%\subsubsection{$l$ y $\sigma_e$}
+%Trivial\textsuperscript{TM}.

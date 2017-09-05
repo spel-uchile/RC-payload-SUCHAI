@@ -1,0 +1,28 @@
+%!TEX root = adaptive_dict_kaf.tex
+
+\section{Kernel Adaptive Filters and Probabilistic Inference}
+
+\subsection{Kernel adaptive filters}
+
+A kernel adaptive filter (KAF) is a nonlinear autoregressive model for time series, whose parameters are updated in an online manner as new data arrive. In detail, for a discrete-time signal given by $\{y_i\}_{i\in\N}$, a KAF aims to predict $y_i$ using past values $y_{i-d:i-1}=[y_{i-d},\ldots, y_{i-1}]$ by first embedding the trajectory $y_{i-d:i-1}$ onto an infinite-dimensional feature space $\cH$ (an RKHS) to then perform a linear estimation. Denoting the input trajectory as $\x_i = y_{i-d:i-1}$, the KAF estimate is then expressed by
+\begin{equation}
+	\hat{y}_i = \langle {\phi_{\x_i}, W }\rangle
+\end{equation}
+where $\phi_{\x_i}$ is the element of the RKHS $\cH$ associated to the input sample $\x_i$, $W\in\cH$ is the weight of the defined estimator, and $\langle{\cdot, \cdot}\rangle$ is the inner product in $\cH$.
+The above model requires finding an appropriate $W\in\cH$; this is challenging, since $\cH$ is an infinite-dimensional space and it is computationally impossible to implement optimisation routines on this space. Fortunately, the Representer Theorem \cite{scholkopf01} gives a sidestep to this issue, since it states that the optimal $W$ has the form of a sum of evaluations of the map $\phi$ on the observed data. However, this is impractical in online applications where the observations grow unbounded, thus KAFs surmount this issue by choosing a subset of these observations in order to reduce computational complexity and therefore allowing for online operation. The functional form of the weight at time instant $i$, $W_i$ is then given by 
+\begin{equation} 
+	W_i = \sum_{j=1} ^{N_i} \alpha_{j}\phi_{\s_j}
+	\label{eq:weights}
+\end{equation}
+where $\s_j$ is the $j^\text{th}$ centre, the set $\cD_i = \{\s_j\}_{j=1:N_i}$ is known as dictionary up to time instant $i$, and $\{\alpha_{j}\}_{j=1:N_i}$ are new finite-dimensional weights---we have omitted the explicit dependence of the weights  $\alpha_j$ on time for notational simplicity. Due to the properties of the RKHS \cite{scholkopf01}, the estimator becomes
+\begin{equation}
+\hat{y}_i = \sum_{j=1}^{N_i} \alpha_j K(x_i, s_j).
+\end{equation}
+Online training of KAFs then consists in a recursive update of the weights $\{\alpha_{j}\}_{j=1:N_i}$ and the dictionary $\cD_i$. The weights update is usually based on standard linear filters (since the model is still linear in the parameters $\{\alpha_{j}\}_{j=1:N_i}$), such as least mean square \cite{liu08,richard09}, recursive least squares \cite{engel04}, state-space models \cite{tobar15a}. The dictionary learning is referred to the sparsification criteria \cite{honeine15} and addresses the trade off between the magnitude of the prediction error and the relative distance between input samples and dictionary centres. Popular sparsification criteria for KAFs include the coherence \cite{richard09} and novelty \cite{platt91} criterion. 
+
+For Gaussian kernels, dictionary selection is closely related to the kernel lengthscale, since changing the lengthscale completely varies the sparsity and similarity of the dictionary. Both dictionary learning and lengthscale setting are rarely addressed as a whole, but they are usually approached independently. Current sparsification methods only address the dictionary construction, even though it is clear that the kernel parameter impacts whether or not data and dictionary ``look alike''. Other approaches to define the best fit rely on cross-validation and hand-picked parameters such as Silverman's Rule \cite{silverman1986density}.
+
+\subsection{Probabilistic inference} % (fold)
+\label{sub:inference}
+Probabilistic inference allows for representing uncertainty, in this context, a model is expressed as $p(y|x,\theta)$, where $y$ is the output, $x$ the input and $\theta$ the model parameters. To find the parameters given observed input-output pairs we can use Bayes theorem, which requires to define a \textit{prior} distribution on the parameter $\theta$, where then the \textit{posterior} distribution can be either maximised or calculated (approximated) to perform predictions. The probabilistic standpoint provides a principled approach for finding model parameters and has not been used in the KAF context, our hypothesis is that combining these concepts opens new avenues to train KAFs as we will see in the remaining of the paper.
+% subsection subsection_name (end)

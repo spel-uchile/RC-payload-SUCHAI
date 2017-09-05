@@ -1,0 +1,6 @@
+%!TEX root = adaptive_dict_kaf.tex
+\section{Discussion and conclusions}
+We have presented a probabilistic framework for pre-training kernel adaptive filters and performing fully-adaptive estimation of time series, this has been achieved by enforcing desired properties of such models via the design of meaningful prior distributions. Our pre-training approach for KAFs improves current methods both in terms of MSE and sparsity of the dictionary, thus proving that the combination of (i) the probabilistic formulation, (ii) the design of a sparsity-inducing prior, and (iii) the sample approximation of the log-posterior (MCMC) results in better prediction on both early implementation of the algorithm and future predictions. This is even clearer for patterns that were seen by the model during pre-training.
+
+We have also showed that the proposed method can be used for fully-adaptive estimation reaching a superior
+performance when compared against standard and pre-trained KAFs, and, most importantly, without hand-picking any hyperparameter, as the algorithm can effectively sample the closest combination of optimal parameters using MCMC methods. However, the complexity of the model is still an issue for online operation and alternative approaches are being developed to consolidate these promising results.  

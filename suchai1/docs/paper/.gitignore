@@ -1,0 +1,11 @@
+# ignore all files
+*
+
+# except this files/directories
+!.gitignore
+!*.tex
+!*.pdf
+!.eps
+
+# ... even if they are in subdirectories
+!*/
