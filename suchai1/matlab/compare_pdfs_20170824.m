@@ -1,5 +1,5 @@
-Slab = load('/home/jose/Documents/UNIVERSIDAD/SUCHAI/RC-payload-SUCHAI/suchai1/matlab/mat/pdf/2016_18_05/2937.9922/pdfEstimator_2937.9922Hz.mat'); %carpeta de lab
-Ssuchai = load('/home/jose/Documents/UNIVERSIDAD/SUCHAI/RC-payload-SUCHAI/suchai1/matlab/mat/pdf/2017_08_24/2937.9922/pdfEstimator_2937.9922Hz.mat');
+Slab = load('./mat/pdf/2016_18_05/2937.9922/pdfEstimator_2937.9922Hz.mat'); %carpeta de lab
+Ssuchai = load('./mat/pdf/2017_08_24/2937.9922/pdfEstimator_2937.9922Hz.mat');
 prefix = '20170824semilogy';
 
 %% Plots
