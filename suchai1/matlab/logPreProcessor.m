@@ -61,6 +61,7 @@ switch varargin{1}
         regEOF = 'pay_print_seed ... finished';
         tmParams = varargin{2};
         lostPointsIndex = tmParams.pairedLostPoints;
+        lostPointsIndex = lostPointsIndex + 1; %index begins with 1
         
         values = [];
         fid = fopen(rawLogFilePath);
