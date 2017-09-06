@@ -5,7 +5,6 @@ pointsrcv = floor(samplesrcv./oversamplingcoeff);
 pointsThatGenerateSamples = unique(pointsrcv);
 pointRepetition = [pointsThatGenerateSamples; histc(pointsrcv(:)',pointsThatGenerateSamples)]';
 pointsNotFullyRepeatedIdx = pointRepetition(:,2) < oversamplingcoeff;
-
 pointValues = pointRepetition(pointsNotFullyRepeatedIdx,1);
 [~, discardIdx] = intersect(pointsrcv, pointValues);
 
