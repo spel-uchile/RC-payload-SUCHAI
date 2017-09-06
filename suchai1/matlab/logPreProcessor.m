@@ -59,12 +59,13 @@ switch varargin{1}
         reglInput = 'rand() = ';
         regrInput = ' ';
         regEOF = 'pay_print_seed ... finished';
+        tmParams = varargin{2};
+        lostPointsIndex = tmParams.pairedLostPoints;
         
         values = [];
         fid = fopen(rawLogFilePath);
         disp(['preprocessing file ',rawLogFilePath, 'as input']);
         tline = fgets(fid);
-        
         while ischar(tline)
             if  ~isempty(  strfind( tline, regEOF ) )
                 break
@@ -79,10 +80,8 @@ switch varargin{1}
             tline = fgets(fid);
         end
         fclose(fid);
-        
-        values = values(1:1000);
-        tmParams = varargin{2};
-        frames = tmParams.frames;
+
+        values(lostPointsIndex) = [];
         fileDir{1} = printBufferToFile(values, saveFolder, 'input');
         
     otherwise

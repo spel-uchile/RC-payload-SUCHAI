@@ -5,16 +5,18 @@ regexEndCmd = '0x0200';
 framesReceived = [];
 dataLost = [];
 dataReceived = [];
-dataParsed = [];
 frameCounter = 0;
 uintsPerFrame = 30;
 uintsFirstFrame = uintsPerFrame-3;
+uintsLastFrame = 13;
 lastframe = -1;
 lastdatareceived = [];
 sizeTMSended = 4000;
 payloadStatus = 0;
 values = [];
 seed = 0;   %fijo
+oversamplingcoeff = 4; %fijo
+oldline = '';
 
 tline = fgets(FID);
 while ischar(tline)
@@ -22,8 +24,8 @@ while ischar(tline)
         indexl = strfind( tline, regexBeginCmd);
         indexl = indexl + length(regexBeginCmd);
         tmp = sscanf(tline(indexl: end), '%x,');
-        values = [values; dataParsed];
         dataParsed = tmp(3 : end);
+        values = [values; dataParsed];
         framesReceived = 0;
         currframe = 0;
         frameCounter = 1;
@@ -44,13 +46,11 @@ while ischar(tline)
         frameCounter = frameCounter + 1;
         if (lastframe == -1)
             dataLost = 0 : uintsFirstFrame-1;
-               dataLost(end)
             if currframe >=2
                 howMany = currframe - 1;
                 tmp = dataLost(end)+ linspace(1, ...
                     howMany*uintsPerFrame, howMany*uintsPerFrame);
                 dataLost = [dataLost tmp];
-                   dataLost(end)
                 lastdatareceived = 0;
                 tmp = dataLost(end) + linspace(1, uintsPerFrame, uintsPerFrame);
                 dataReceived = [dataReceived, tmp];
@@ -64,7 +64,6 @@ while ischar(tline)
             tmp = lastdatareceived + linspace(1, ...
                 howMany*uintsPerFrame, howMany*uintsPerFrame);
             dataLost = [dataLost tmp];
-               dataLost(end)
             tmp = dataLost(end) + linspace(1, uintsPerFrame, uintsPerFrame);
             dataReceived = [dataReceived, tmp];
         else
@@ -83,7 +82,7 @@ while ischar(tline)
         currframe(3:4) = '00';
         currframe = sscanf(currframe, '%x');
         dataParsed = sscanf(tline(indexfr + 2: end), '%x,');
-        values = [values; dataParsed];
+        values = [values; dataParsed(1:uintsLastFrame)];
         framesReceived = [framesReceived, currframe];
         frameCounter = frameCounter + 1;
         if (lastframe == -1)
@@ -93,7 +92,6 @@ while ischar(tline)
                 tmp = dataLost(end)+ linspace(1, ...
                     howMany*uintsPerFrame, howMany*uintsPerFrame);
                 dataLost = [dataLost tmp];
-                dataLost(end)
                 lastdatareceived = 0;
                 tmp = dataLost(end) + linspace(1, 13, 1);
                 dataReceived = [dataReceived, tmp];
@@ -101,36 +99,60 @@ while ischar(tline)
                 lastdatareceived = 0;
                 tmp = dataLost(end) + linspace(1, uintsPerFrame, uintsPerFrame);
                 dataReceived = [dataReceived, tmp];
-                   dataLost(end)
             end
         elseif (lastframe >= 0) && (currframe - lastframe) > 1
             howMany = currframe - lastframe - 1;
             tmp = lastdatareceived + linspace(1, ...
-                howMany*13, howMany*13);
+                howMany*uintsPerFrame, howMany*uintsPerFrame);
             dataLost = [dataLost tmp];
-               dataLost(end)
-            tmp = dataLost(end) + linspace(1, 13, 13);
+            tmp = dataLost(end) + linspace(1, uintsLastFrame, uintsLastFrame);
             dataReceived = [dataReceived, tmp];
         else
-            tmp = lastdatareceived + linspace(1, 13, 13);
+            tmp = lastdatareceived + linspace(1, uintsLastFrame, uintsLastFrame);
             dataReceived = [dataReceived, tmp];
             
         end
         lastframe = currframe;
         lastdatareceived = dataReceived(end);
     end
+    oldline = tline;
     tline = fgets(FID);
 end
 
 if length(values) > sizeTMSended
     values = values(1: sizeTMSended);
 end
+
+%% frames
+maxFramesReceived = ((sizeTMSended - uintsFirstFrame - uintsLastFrame)...
+    /uintsPerFrame)+2;
+totalFrames = 0:maxFramesReceived-1;
+framesrxIndex = arrayfun(@(x)find(totalFrames==x,1),framesReceived);%lost frames
+framesLost = totalFrames;
+framesLost(framesrxIndex) = [];
 tmParameters.framesReceived = framesReceived;
-tmParameters.sizeTelemetrySended = sizeTMSended;
-tmParameters.sizeTelemetryReceived = length(values);
-tmParameters.payloadStatus = payloadStatus;
-tmParameters.dataReceived = dataReceived;
-tmParameters.dataLost = dataLost;
+tmParameters.framesLost = framesLost;
 tmParameters.totalFrames = frameCounter;
-buffer = [adcPeriod; seed; values];
+
+%% Pairing samples & points
+[pairedValues, Samples, Points] = pairSamplesWithPoints(values, dataReceived,...
+    sizeTMSended, oversamplingcoeff);
+tmParameters.rawReceivedSamples = dataReceived;
+tmParameters.rawLostSamples = dataLost;
+tmParameters.pairedReceivedSamples = Samples.received;
+tmParameters.pairedLostSamples = Samples.lost;
+tmParameters.pairedReceivedPoints = Points.received;
+tmParameters.pairedLostPoints = Points.lost;
+
+%% Values
+tmParameters.rawValues = values;
+tmParameters.pairedValues = pairedValues;
+buffer = [adcPeriod; seed; pairedValues];
+
+%% Status
+tmParameters.sizeTelemetrySended = sizeTMSended;
+tmParameters.sizeTelemetryReceivedPaired = length(pairedValues);
+tmParameters.sizeTelemetryReceivedRaw = length(values);
+tmParameters.payloadStatus = payloadStatus;
+
 end
