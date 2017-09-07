@@ -93,12 +93,12 @@ while ischar(tline)
                     howMany*uintsPerFrame, howMany*uintsPerFrame);
                 dataLost = [dataLost tmp];
                 lastdatareceived = 0;
-                tmp = dataLost(end) + linspace(1, 13, 1);
+                tmp = dataLost(end) + linspace(1, uintsLastFrame, uintsLastFrame);
                 dataReceived = [dataReceived, tmp];
             else
-                lastdatareceived = 0;
-                tmp = dataLost(end) + linspace(1, uintsPerFrame, uintsPerFrame);
-                dataReceived = [dataReceived, tmp];
+            lastdatareceived = 0;
+            tmp = dataLost(end) + linspace(1, uintsPerFrame, uintsPerFrame);
+            dataReceived = [dataReceived, tmp];
             end
         elseif (lastframe >= 0) && (currframe - lastframe) > 1
             howMany = currframe - lastframe - 1;

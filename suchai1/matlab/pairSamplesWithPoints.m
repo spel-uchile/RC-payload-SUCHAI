@@ -1,32 +1,42 @@
-function [pairedValues, Samples, Points] = pairSamplesWithPoints(values, dataReceived, sizeTM, oversamplingcoeff)
+function [pairedValues, Samples, Points] = pairSamplesWithPoints(values,...
+    dataReceived, sizeTM, oversamplingcoeff)
+%size of values and dataReceived MUST BE EQUAL
 
-samplesrcv = dataReceived;
-pointsrcv = floor(samplesrcv./oversamplingcoeff);
-pointsThatGenerateSamples = unique(pointsrcv);
-pointRepetition = [pointsThatGenerateSamples; histc(pointsrcv(:)',pointsThatGenerateSamples)]';
-pointsNotFullyRepeatedIdx = pointRepetition(:,2) < oversamplingcoeff;
-pointValues = pointRepetition(pointsNotFullyRepeatedIdx,1);
-[~, discardIdx] = intersect(pointsrcv, pointValues);
+%% Detect samples not received 4 times
+samplesRcv = dataReceived;
+ideallyTotalPoints = (0:(floor(sizeTM/oversamplingcoeff)-1))';
+pointsRcv = floor(samplesRcv./oversamplingcoeff)';
+pointRepetition = [ideallyTotalPoints, histc(pointsRcv, ideallyTotalPoints)];
+discardPointsIdx = pointRepetition(:,2) < oversamplingcoeff;
 
-%% Samples & Values
-pairedReceivedSamples = dataReceived;
-pairedReceivedSamples(discardIdx) = [];  %remove incomplete samples
-pairedValues = values;
-pairedValues(discardIdx) = [];
-pairedLostSamples = 0: sizeTM-1;
-[~, receivedSampIdx] = intersect(pairedLostSamples, pairedReceivedSamples);
-pairedLostSamples(receivedSampIdx) = [];
+%% Point struct
+pairedReceivedPoints = ideallyTotalPoints;
+pairedReceivedPoints(discardPointsIdx) = [];
+pairedLostPoints = ideallyTotalPoints;
+pairedLostPoints(~discardPointsIdx) = [];
+
+Points.received = pairedReceivedPoints';
+Points.lost = pairedLostPoints';
+
+%% Samples struct
+pairedReceivedSamples = pairedReceivedPoints.*oversamplingcoeff;
+for i = 1:oversamplingcoeff-1
+   pairedReceivedSamples =  [pairedReceivedSamples, pairedReceivedSamples(:,end)+1];
+end
+pairedReceivedSamples = pairedReceivedSamples';
+pairedReceivedSamples = pairedReceivedSamples(:);
+ideallyTotalSamples = (0:(sizeTM-1))';
+[~, idx]= intersect(ideallyTotalSamples, pairedReceivedSamples);
+pairedLostSamples = ideallyTotalSamples;
+pairedLostSamples(idx) = [];
+
 Samples.received = pairedReceivedSamples;
 Samples.lost = pairedLostSamples;
 
-%% Points
-pairedReceivedPoints = pointsrcv;
-pairedReceivedPoints(discardIdx) = [];
-pairedReceivedPoints = unique(pairedReceivedPoints);
-pairedLostPoints = 0: ((sizeTM/oversamplingcoeff)-1);
-[~, receivedPointsIndex] = intersect(pairedLostPoints, pairedReceivedPoints);
-pairedLostPoints(receivedPointsIndex) = [];
-Points.received = pairedReceivedPoints;
-Points.lost = pairedLostPoints;
-
+%% Pair Values
+pairedValues = values;
+[~, pairedValueIndex] = intersect(dataReceived, pairedReceivedSamples);
+booleanIndex = ones(size(dataReceived));
+booleanIndex(pairedValueIndex) = 0;
+pairedValues(logical(booleanIndex)) = [];
 end
