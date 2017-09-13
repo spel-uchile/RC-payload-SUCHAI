@@ -1,17 +1,18 @@
-prefix = '2017_09_01_135700';
+seedFolder = './mat/ts/suchai';
+freqsDir = dir(seedFolder);
+freqsDir = {freqsDir.name};
+freqsDir = freqsDir(3:end);
+freqsDir = sortn(freqsDir);
+freqsDir = lower(freqsDir);
 
-seedFolder = ['./mat/ts/', prefix ];
-freqs = dir(seedFolder);
-freqs = {freqs.name};
-freqs = freqs(3:end);
-freqs = sortn(freqs);
-freqsFolder = strcat(seedFolder, '/', freqs);
-freqs = lower(freqs);
-
-for i = 1 : length(freqs)
+for i = 1 : length(freqsDir)
     
-    saveFolder = ['./mat/pdf/',prefix,'/',freqs{i}];
-    currFreqFolder = freqsFolder{i};
+    freq = freqsDir{i};
+    saveFolder = ['./mat/pdf/suchai/',freq];
+    if ~isdir(saveFolder)
+        mkdir(saveFolder)
+    end
+    currFreqFolder = strcat(seedFolder, '/', freq);
     
     freqCircuitHz = 92;
     R = 1210;
@@ -24,60 +25,32 @@ for i = 1 : length(freqs)
     matfiles = matfiles(3:end);
     matfiles = sortn(matfiles);
     
+    foo = strsplit(matfiles{1},'_');
+    splittedStrings = cell(numel(matfiles), length(foo));
     for k = 1 : numel(matfiles)
-        file = [currFreqFolder,'/', matfiles{k}];
-        S = load(file);
-        name = fieldnames(S);
-        name = name{1};
-        ts = S.(name);
-        [pdfResult.(name), xbins.(name),Parameters.(name)]= pdfEstimator(ts, [], npoints );
+        splittedStrings(k,:) = strsplit(matfiles{k}, '_');
     end
-    if ~isdir(saveFolder)
-        mkdir(saveFolder)
+    
+    dates = unique(strcat(splittedStrings(:,1),'_',splittedStrings(:,2)));
+    for k = 1: length(dates)
+        currentDataDate = dates{k};
+        dateIndexes = strfind(matfiles, currentDataDate);
+        emptyCells = cellfun ('isempty', dateIndexes);
+        dateIndexes(emptyCells) = {0};
+        dateIndexes = logical(cell2mat(dateIndexes));
+        filesWithDate = strcat(currFreqFolder,'/', matfiles(dateIndexes));
+        for j = 1 : length(filesWithDate)
+            loadMyFile = filesWithDate{j};
+            S = load(loadMyFile);
+            name = fieldnames(S);
+            name = name{1};
+            if strfind(name, 'filtered')
+                continue
+            end
+            ts = S.(name);
+            [pdfResult.(name), xbins.(name),Parameters.(name)]= pdfEstimator(ts, [], npoints );
+        end
+        save(strcat(saveFolder,'/', currentDataDate,'_pdfEstimator_',...
+            freq,'Hz.mat'),'pdfResult','xbins','Parameters','-v7.3');
     end
-    save(strcat(saveFolder, '/pdfEstimator_',freqs{i},'Hz.mat'),'pdfResult','xbins','Parameters','-v7.3');
-    
-    %% Plots
-    figure('units','normalized','outerposition',[0 0 1 1]);
-    pause(0.001);
-    nPlots = 3;
-    
-    subplot(nPlots,1,1);
-    plot(xbins.theoretical.Vin, pdfResult.theoretical.Vin);
-    hold on;
-    plot(xbins.raw.Vin, pdfResult.raw.Vin);
-    plot(xbins.filtered.Vin, pdfResult.filtered.Vin);
-    plot(xbins.simulation.Vin, pdfResult.simulation.Vin);
-    title(['Vin PDF at ', num2str(Parameters.raw.fsignal), ' Hz']);
-    xlabel(ts.tsc.Vin.DataInfo.Units);
-    legend('theoretical', 'raw','filtered', 'simulation');
-    
-    subplot(nPlots,1,2);
-    plot(xbins.theoretical.Vout, pdfResult.theoretical.Vout);
-    hold on;
-    plot(xbins.raw.Vout, pdfResult.raw.Vout);
-    plot(xbins.filtered.Vout, pdfResult.filtered.Vout);
-    plot(xbins.simulation.Vout, pdfResult.simulation.Vout);
-    title(['Vout PDF at ', num2str(Parameters.raw.fsignal), ' Hz']);
-    xlabel(ts.tsc.Vout.DataInfo.Units);
-    legend('theoretical', 'raw','filtered', 'simulation');
-    
-    subplot(nPlots,1,3);
-    plot(xbins.theoretical.injectedPower, pdfResult.theoretical.injectedPower);
-    hold on;
-    plot(xbins.raw.injectedPower, pdfResult.raw.injectedPower);
-    plot(xbins.filtered.injectedPower, pdfResult.filtered.injectedPower);
-    plot(xbins.simulation.injectedPower, pdfResult.simulation.injectedPower);
-    title(['injectedPower PDF at ', num2str(Parameters.raw.fsignal), ' Hz']);
-    xlabel(ts.tsc.injectedPower.DataInfo.Units);
-    legend('theoretical', 'raw','filtered', 'simulation');
-    
-    saveFolder = ['img/',prefix,'_pdfEstimator/'];
-    if ~isdir(saveFolder)
-        mkdir(saveFolder)
-    end
-    saveAsPngFile = [date,'_doEstimator'];
-    saveas(gcf,[saveFolder,saveAsPngFile,'_',freqs{i},'Hz.png'])
-    pause(1);
-    close all;
 end

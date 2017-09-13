@@ -1,6 +1,6 @@
-prefix = '2017_09_01_135700';  %date and foldername of logs
-parserFolder = './parser';
-preprocessorFolder = './preprocessor';
+prefix = '2017_09_08_132000';  %date and foldername of logs
+parserFolder = './parser/suchai';
+preprocessorFolder = './preprocessor/suchai';
 fixtureFolder = strcat(preprocessorFolder, '/', prefix);
 preprocessedFiles = dir(fixtureFolder);
 preprocessedFiles = {preprocessedFiles.name};

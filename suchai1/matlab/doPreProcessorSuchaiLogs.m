@@ -1,15 +1,22 @@
-prefix = '2017_08_30';
-suffix = '022511-frames';
+prefix = '2017_09_08_132000';
+j = strfind(prefix,'_');
+suffix = prefix(j(3)+1:end);
+suffixFrames = [suffix '-frames'];
+suffixAdc = [suffix '_adcPeriod'];
 prefixjoin = [prefix(1:4), prefix(6:7), prefix(9:10)];
 
-preprocessorFolder = './preprocessor';
+preprocessorFolder = './preprocessor/suchai';
 saveFolder = strcat(preprocessorFolder, '/', prefix);
 if ~isdir(saveFolder)
     mkdir(saveFolder)
 end
 
-telemetryFile = ['./logs/', prefix, '/SUCHAI_',prefixjoin,'_', suffix,'.txt'];
-adcPeriod = 175;
+telemetryFile = ['./logs/suchai/', prefix, '/SUCHAI_', prefixjoin,'_', suffixFrames,'.txt'];
+adcFile = ['./logs/suchai/', prefix, '/SUCHAI_', prefixjoin,'_', suffixAdc,'.txt'];
+fid = fopen(adcFile);
+tline = fgets(fid);
+adcPeriod = sscanf(tline, 'adcPeriod %d');
+fclose(fid);
 [outFiles{1}, tmParams] = logPreProcessor(telemetryFile, saveFolder, 'telemetry-output', adcPeriod);
 % 
 inputVoltagesFile = './logs/input_seed0.txt';

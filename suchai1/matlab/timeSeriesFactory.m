@@ -38,7 +38,7 @@ switch varargin{1}
         rawCollection = makeExperimentalSeries(Input, Output, freqSignalHz, ...
             oversamplingCoeff, dampingRate);
         buffLen = 200;
-        [indexes, ~, ~] = findSState('buffered', rawCollection.Vout.Data, buffLen);
+        [indexes, ~, ~] = findSState('simple', rawCollection.Vout.Data, buffLen);
         tsCollection = filterCollection(rawCollection, indexes, buffLen);
         tsCollection.Name = strcat('filtered_', num2str(freqSignalHz),'Hz');
         
