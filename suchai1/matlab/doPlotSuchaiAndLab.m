@@ -6,7 +6,6 @@ if ~isdir(saveFolder)
     mkdir(saveFolder);
 end
 
-
 labRootFolder = [rootDir,'/','lab'];
 suchaiRootFolder =  [rootDir,'/','suchai'];
 suchaiFolders = dir(suchaiRootFolder);
