@@ -1,4 +1,4 @@
-seedFolder = './mat/ts/suchai';
+seedFolder = './mat/ts/lab';
 freqsDir = dir(seedFolder);
 freqsDir = {freqsDir.name};
 freqsDir = freqsDir(3:end);
@@ -8,7 +8,7 @@ freqsDir = lower(freqsDir);
 for i = 1 : length(freqsDir)
     
     freq = freqsDir{i};
-    saveFolder = ['./mat/pdf/suchai/',freq];
+    saveFolder = ['./mat/pdf/lab/',freq];
     if ~isdir(saveFolder)
         mkdir(saveFolder)
     end
@@ -18,7 +18,7 @@ for i = 1 : length(freqsDir)
     R = 1210;
     C = 1 / (freqCircuitHz * 2 * pi * R);
     dampingRate = 1/ (R*C);
-    npoints = 200;
+    npoints = 100;
     
     matfiles = dir(currFreqFolder);
     matfiles = {matfiles.name};
