@@ -73,7 +73,7 @@ for i = 1 : length(pathMatLab)
     pdfResult = matfileLab{i}.pdfResult;
     Parameters = matfileLab{i}.Parameters;
     hold on;
-    plot(xbins.raw.Vin, log10(pdfResult.raw.Vin),'^','MarkerSize', mkrsize);
+    plot(xbins.raw.Vin, log10(pdfResult.raw.Vin),'o','MarkerSize', mkrsize);
     hold off;
 end
 grid on;
@@ -107,7 +107,7 @@ for i = 1 : length(pathMatLab)
     pdfResult = matfileLab{i}.pdfResult;
     Parameters = matfileLab{i}.Parameters;
     hold on;
-    plot(xbins.raw.Vout, log10(pdfResult.raw.Vout),'^','MarkerSize', mkrsize);
+    plot(xbins.raw.Vout, log10(pdfResult.raw.Vout),'o','MarkerSize', mkrsize);
     hold off;
 end
 grid on;
@@ -140,7 +140,7 @@ for i = 1 : length(pathMatLab)
     pdfResult = matfileLab{i}.pdfResult;
     Parameters = matfileLab{i}.Parameters;
     hold on;
-    plot(xbins.raw.injectedPower, log10(pdfResult.raw.injectedPower),'^','MarkerSize', mkrsize);
+    plot(xbins.raw.injectedPower, log10(pdfResult.raw.injectedPower),'o','MarkerSize', mkrsize);
     hold off;
 end
 grid on;
