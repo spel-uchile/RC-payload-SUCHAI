@@ -1,4 +1,5 @@
-seedFolder = './mat/ts/lab';
+database = 'suchai';
+seedFolder = ['./mat/ts/',database];
 freqsDir = dir(seedFolder);
 freqsDir = {freqsDir.name};
 freqsDir = freqsDir(3:end);
@@ -8,7 +9,7 @@ freqsDir = lower(freqsDir);
 for i = 1 : length(freqsDir)
     
     freq = freqsDir{i};
-    saveFolder = ['./mat/pdf/lab/',freq];
+    saveFolder = ['./mat/pdf/',database,'/',freq];
     if ~isdir(saveFolder)
         mkdir(saveFolder)
     end
@@ -27,13 +28,20 @@ for i = 1 : length(freqsDir)
     
     foo = strsplit(matfiles{1},'_');
     splittedStrings = cell(numel(matfiles), length(foo));
-    for k = 1 : numel(matfiles)
-        splittedStrings(k,:) = strsplit(matfiles{k}, '_');
+    for ki = 1 : numel(matfiles)
+        splittedStrings(ki,:) = strsplit(matfiles{ki}, '_');
     end
     
     dates = unique(strcat(splittedStrings(:,1),'_',splittedStrings(:,2)));
-    for k = 1: length(dates)
-        currentDataDate = dates{k};
+    for kl = 1: length(dates)
+        currentDataDate = dates{kl};
+        newMatFileName = strcat(saveFolder,'/', currentDataDate,...
+            '_pdfEstimator_',freq,'Hz.mat');
+        if exist(fullfile(newMatFileName))
+            disp([newMatFileName,' already exists']);
+            continue
+        end
+        disp([newMatFileName,' is being created']);
         dateIndexes = strfind(matfiles, currentDataDate);
         emptyCells = cellfun ('isempty', dateIndexes);
         dateIndexes(emptyCells) = {0};
@@ -50,7 +58,7 @@ for i = 1 : length(freqsDir)
             ts = S.(name);
             [pdfResult.(name), xbins.(name),Parameters.(name)]= pdfEstimator(ts, [], npoints );
         end
-        save(strcat(saveFolder,'/', currentDataDate,'_pdfEstimator_',...
-            freq,'Hz.mat'),'pdfResult','xbins','Parameters','-v7.3');
+        save(newMatFileName,'pdfResult','xbins','Parameters','-v7.3');
+        disp([newMatFileName,' saved sucessfully']);
     end
 end
