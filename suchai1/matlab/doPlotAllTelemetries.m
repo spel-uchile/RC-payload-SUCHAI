@@ -29,11 +29,16 @@ for i = 1 : numel(suchaiFolders)
     end
 end
 
-saveFolder ='./img/suchaiPDFs';
+saveFolder =['./img/suchaiPDFs/AllFrequencies/',date];
 if ~isdir(saveFolder)
     mkdir(saveFolder);
 end
 
+%% Vin
+saveFolderFig = [saveFolder,'/vin'];
+if ~isdir(saveFolderFig)
+    mkdir(saveFolderFig);
+end
 figure('units','normalized','outerposition',[0 0 1 1]);
 for i = 1 : length(pathMatTelemetry)
     xbins = matfileTM{i}.xbins;
@@ -52,11 +57,15 @@ set(gca,'YTickLabel', myylabels);
 set(gca, 'YMinorTick','on', 'YMinorGrid','on');
 title(['SUCHAI Vin PDF']);
 xlabel('V');
-legend(freqsLegend,'Location','south','Orientation','vertical');
+legend(freqsLegend,'Location','eastoutside','Orientation','vertical');
+figSaveName = [saveFolderFig,'/','compareAllTelemetries_','vin_',date,'.png'];
+saveas(gcf,figSaveName);
 
-saveas(gcf,[saveFolder,'/','compareAllTelemetries_','vin_',date,'.png']);
-saveas(gcf,[saveFolder,'/','compareAllTelemetries_','vin_',date,'.eps'],'epsc');
-
+%% Vout
+saveFolderFig = [saveFolder,'/vout'];
+if ~isdir(saveFolderFig)
+    mkdir(saveFolderFig);
+end
 figure('units','normalized','outerposition',[0 0 1 1]);
 for i = 1 : length(pathMatTelemetry)
 
@@ -77,11 +86,15 @@ set(gca,'YTickLabel', myylabels);
 set(gca, 'YMinorTick','on', 'YMinorGrid','on');
 title(['SUCHAI Vout PDFs']);
 xlabel('V');
-legend(freqsLegend,'Location','south','Orientation','vertical');
+legend(freqsLegend,'Location','eastoutside','Orientation','vertical');
+figSaveName = [saveFolderFig,'/','compareAllTelemetries_','vout_',date,'.png'];
+saveas(gcf,figSaveName);
 
-saveas(gcf,[saveFolder,'/','compareAllTelemetries_','vout_',date,'.png']);
-saveas(gcf,[saveFolder,'/','compareAllTelemetries_','vout_',date,'.eps'],'epsc');
-
+%% injectedPower
+saveFolderFig = [saveFolder,'/injectedPower'];
+if ~isdir(saveFolderFig)
+    mkdir(saveFolderFig);
+end
 figure('units','normalized','outerposition',[0 0 1 1]);
 for i = 1 : numel(matfileTM)
     xbins = matfileTM{i}.xbins;
@@ -101,7 +114,6 @@ set(gca,'YTickLabel', myylabels);
 set(gca, 'YMinorTick','on', 'YMinorGrid','on');
 title(['SUCHAI injected Power PDFs']);
 xlabel('V^2 \cdot Hz');
-legend(freqsLegend,'Location','south','Orientation','vertical');
-
-saveas(gcf,[saveFolder,'/','compareAllTelemetries_','power_',date,'.png']);
-saveas(gcf,[saveFolder,'/','compareAllTelemetries_','power_',date,'.eps'],'epsc');
+legend(freqsLegend,'Location','eastoutside','Orientation','vertical');
+figSaveName = [saveFolderFig,'/','compareAllTelemetries_','power_',date,'.png'];
+saveas(gcf,figSaveName);
