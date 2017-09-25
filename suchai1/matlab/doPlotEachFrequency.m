@@ -1,5 +1,8 @@
+clear all;
+close all;
+
 rootDir= './mat/pdf';
-saveFolder ='./img/radiation-test';
+saveFolder =['./img/suchaiPDFs/SeparatedByFrequency/',date];
 mkrsize = 6;
 myLegendFontSize = 10;
 if ~isdir(saveFolder)
@@ -64,6 +67,11 @@ plotLegendCell = [freqsLegendTM, freqsLegendLab]';
 %% Vin Plot
 ks = 1;
 kl = 1;
+subFolderName = 'vin';
+saveFolderFig = [saveFolder , '/', subFolderName];
+if ~isdir(saveFolderFig)
+    mkdir(saveFolderFig);
+end
 for i = 1 : numel(suchaiFolders)
     hfig = figure('units','normalized','outerposition',[0 0 1 1]);
     currLegendSuchai = freqsLegendTM(ks:ks+tmPerFreqSuchai(i)-1);
@@ -96,14 +104,19 @@ for i = 1 : numel(suchaiFolders)
     xlabel('V');
     currLegend = [currLegendSuchai, currLegendLab]';
     hleg = legend(currLegend,'Location','eastoutside','Orientation','vertical');
-    saveas(gcf,[saveFolder,'/',suchaiFolders{i},'_vin_',date,'.png']);
-    saveas(gcf,[saveFolder,'/',suchaiFolders{i},'_vin_',date,'.eps'],'epsc');
+    figSaveName = [saveFolderFig, '/',suchaiFolders{i},'_vin_',date,'.png'];
+    saveas(gcf, figSaveName);
 end
 close all;
 
 %% Vout Plot
 ks = 1;
 kl = 1;
+subFolderName = 'vout';
+saveFolderFig = [saveFolder , '/', subFolderName];
+if ~isdir(saveFolderFig)
+    mkdir(saveFolderFig);
+end
 for i = 1 : numel(suchaiFolders)
     hfig = figure('units','normalized','outerposition',[0 0 1 1]);
     currLegendSuchai = freqsLegendTM(ks:ks+tmPerFreqSuchai(i)-1);
@@ -136,14 +149,19 @@ for i = 1 : numel(suchaiFolders)
     xlabel('V');
     currLegend = [currLegendSuchai, currLegendLab]';
     hleg = legend(currLegend,'Location','eastoutside','Orientation','vertical');
-    saveas(gcf,[saveFolder,'/',suchaiFolders{i},'_vout_',date,'.png']);
-    saveas(gcf,[saveFolder,'/',suchaiFolders{i},'_vout',date,'.eps'],'epsc');
+    figSaveName = [saveFolderFig, '/',suchaiFolders{i},'_vout_',date,'.png'];
+    saveas(gcf, figSaveName);
 end
 close all;
 
 %% Power Plot
 ks = 1;
 kl = 1;
+subFolderName = 'injectedPower';
+saveFolderFig = [saveFolder , '/', subFolderName];
+if ~isdir(saveFolderFig)
+    mkdir(saveFolderFig);
+end
 for i = 1 : numel(suchaiFolders)
     hfig = figure('units','normalized','outerposition',[0 0 1 1]);
     currLegendSuchai = freqsLegendTM(ks:ks+tmPerFreqSuchai(i)-1);
@@ -176,7 +194,7 @@ for i = 1 : numel(suchaiFolders)
     xlabel('V^2 \cdot Hz');
     currLegend = [currLegendSuchai, currLegendLab]';
     hleg = legend(currLegend,'Location','eastoutside','Orientation','vertical');
-    saveas(gcf,[saveFolder,'/',suchaiFolders{i},'_power_',date,'.png']);
-    saveas(gcf,[saveFolder,'/',suchaiFolders{i},'_power',date,'.eps'],'epsc');
+    figSaveName = [saveFolderFig, '/',suchaiFolders{i},'_power_',date,'.png'];
+    saveas(gcf, figSaveName);
 end
 close all;
