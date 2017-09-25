@@ -2,9 +2,12 @@
 % files and modifies and saves them in MAT-files for further time series
 % creation.
 
-for prefixx = {'2017_08_24_132346','2017_08_29_131900','2017_08_30_022511', ...
-        '2017_08_31_124200','2017_09_01_135700', '2017_09_05_020600',...
-        '2017_09_08_132000' };
+% for prefixx = {'2017_08_24_132346','2017_08_29_131900','2017_08_30_022511', ...
+%         '2017_08_31_124200','2017_09_01_135700', '2017_09_05_020600',...
+%         '2017_09_08_132000','2017_09_15_020900', '2017_09_16_032505',...
+%         '2017_09_18_024708','2017_09_18_132118', '2017_09_22_030600',...
+%         '2017_09_22_133600'};
+for prefixx = {'2017_09_24_130307'};
     prefix = prefixx{1};
     prefixjoin = [prefix(1:4), prefix(6:7), prefix(9:end)];
     parserFolder = './parser/suchai';
@@ -35,20 +38,24 @@ for prefixx = {'2017_08_24_132346','2017_08_29_131900','2017_08_30_022511', ...
             if ~isdir(saveFolder)
                 mkdir(saveFolder)
             end
+            
             %raw timeserie
             raw = timeSeriesFactory(fsignal, 'raw', inputFixture, ...
                 outputFixture{fixtureIndexForOutputFiles}, sampCoeff);
-            save(strcat(saveFolder, '/',prefixjoin,'_', raw.Name,'_','.mat'),'raw','-v7.3');
+            newRawFile = strcat(saveFolder, '/',prefixjoin,'_', raw.Name,'.mat');
+            save(newRawFile,'raw','-v7.3');
             
             %filtered timeserie
             filtered = timeSeriesFactory(fsignal, 'filtered', inputFixture,...
                 outputFixture{fixtureIndexForOutputFiles}, sampCoeff);
-            save(strcat(saveFolder, '/',prefixjoin,'_', filtered.Name,'.mat'),'filtered','-v7.3');
-
+            newFilteredFile = strcat(saveFolder, '/',prefixjoin,'_', filtered.Name,'.mat');
+            save(newFilteredFile,'filtered','-v7.3');
+            
             %simulation timeserie
             simulation = timeSeriesFactory(fsignal, 'simulink', inputFixture, ...
                 sampCoeff);
-            save(strcat(saveFolder, '/',prefixjoin,'_', simulation.Name,'.mat'),'simulation','-v7.3');
+            newSimFile = strcat(saveFolder, '/',prefixjoin,'_', simulation.Name,'.mat');
+            save(newSimFile,'simulation','-v7.3');
             
             %theoretical timeserie
             Parameters.numberOfRandomValues = 1e6;
@@ -63,7 +70,8 @@ for prefixx = {'2017_08_24_132346','2017_08_29_131900','2017_08_30_022511', ...
             Parameters.nWaitingUnits = 350; %NOT USED REALLY
             Parameters.nonSampledValuesPerRound = 500;%NOT USED REALLY
             theoretical = timeSeriesFactory(fsignal, 'theoretical', Parameters);
-            save(strcat(saveFolder, '/',prefixjoin,'_', theoretical.Name,'.mat'),'theoretical','-v7.3');
+            newTheoreticalFile = strcat(saveFolder, '/',prefixjoin,'_', theoretical.Name,'.mat');
+            save(newTheoreticalFile,'theoretical','-v7.3');
         end
         
     end
