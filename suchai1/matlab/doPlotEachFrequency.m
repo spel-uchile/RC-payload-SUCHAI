@@ -1,5 +1,5 @@
 rootDir= './mat/pdf';
-saveFolder ='./img/suchai-vs-lab';
+saveFolder ='./img/radiation-test';
 mkrsize = 6;
 myLegendFontSize = 10;
 if ~isdir(saveFolder)
