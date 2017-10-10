@@ -34,7 +34,10 @@ Parameters.adcBits = 10;
 Parameters.dacMaxVoltage = 3.3;
 Parameters.dacMinvoltage = 0;
 Parameters.oversamplingCoeff = 4;
-Parameters.sampledValuesPerRound = 
+Parameters.buffLen = 200;
+Parameters.sampledValuesPerRound = floor(Parameters.buffLen / Parameters.oversamplingCoeff);
+Parameters.nonSampledValuesPerRound = 0;
+Parameters.nWaitingUnits = 0; 
 
 theoretical = timeSeriesFactory(fsignal, 'theoretical', Parameters);
 save(strcat(saveFolder, '/', theoretical.Name,'.mat'),'theoretical','-v7.3');
