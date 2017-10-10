@@ -67,7 +67,7 @@ To plot a specific PDF inside `suchai1/matlab/mat/pdf` folder use `doPlotOnePDF.
 
 To plot a specific PDF inside `suchai1/matlab/mat/ts` folder use `doPlotOneTimeSeries.m`
 
-
+Every graph generated should be stored in `suchai1/matlab/img/` folder.
 
 
 
