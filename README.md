@@ -20,14 +20,14 @@ Not needed! Just open your Matlab IDE and run the scripts (see *Running the test
 
 ## Running the tests
 The folder `matlab/logs/test/` contains test fixtures (emulating lab and satellite logs). These logs files are expected to be used with the scripts `test*.m` and the output generated are stored in `suchai1/matlab/mat/ts/test/` (timeseries) and in `suchai1/matlab/mat/pdf/test/` (probability density functions). The output files are stored aa MAT-files (v7.3) and can be used to further analysis or graphs.
-#### Lab
+#### Lab Logs
 ```
 >> testPreProcessor
 >> testParser
 >> testTimeSeriesFactory
 >> testPdfEstimator
 ```
-#### Suchai
+#### Suchai Logs
 ```
 >> testPreProcessorSuchai
 >> testParser
@@ -37,14 +37,14 @@ The folder `matlab/logs/test/` contains test fixtures (emulating lab and satelli
 
 ## Running the scripts
 The folder `matlab/logs/` contains logs files from the laboratory (`/lab`) and from SUCHAI (`/suchai`). These logs files are expected to be used with the scripts `do*.m` and the output generated are stored in `suchai1/matlab/mat/ts/` (timeseries) and in `suchai1/matlab/mat/pdf/test` (probability density functions). The output files are stored aa MAT-files (v7.3) and can be used to further analysis or graphs.
-#### Lab
+#### Lab Logs
 ```
 >> doPreProcessor
 >> doParser
 >> doTimeSeriesFactory
 >> doPdfEstimator
 ```
-#### Suchai
+#### Suchai Logs
 ```
 >> doPreProcessorSuchaiLogs
 >> doParser
