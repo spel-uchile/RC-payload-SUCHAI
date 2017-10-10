@@ -16,7 +16,7 @@ Cutecom (or any Serial Terminal)
 ```
 It should work with newer Matlab/Simulink versions.
 ## Installing 
-Not needed! Just open your Matlab IDE and run the scripts (see *Running the tests*).
+Not needed (?) Just open your Matlab IDE and run the scripts (see *Running the tests*).
 
 ## Running the tests
 The folder `matlab/logs/test/` contains test fixtures (emulating lab and satellite logs). These logs files are expected to be used with the scripts `test*.m` and the output generated are stored in `suchai1/matlab/mat/ts/test/` (timeseries) and in `suchai1/matlab/mat/pdf/test/` (probability density functions). The output files are stored aa MAT-files (v7.3) and can be used to further analysis or graphs.
