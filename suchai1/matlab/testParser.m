@@ -5,10 +5,10 @@ parserFolder = './parser';
 preprocessorFolder = './preprocessor';
 fixtureFolder = strcat(preprocessorFolder, '/test');
 preprocessedFiles = dir(fixtureFolder);
+preprocessedFiles = preprocessedFiles(arrayfun(@(x) ~strcmp(x.name(1),'.')...
+    ,preprocessedFiles));
 preprocessedFiles = {preprocessedFiles.name};
-preprocessedFiles = preprocessedFiles(3:end)';
 preprocessedFiles = sortn(preprocessedFiles);
-
 saveFolder = strcat(parserFolder,'/test');
 if ~isdir(saveFolder)
     mkdir(saveFolder)

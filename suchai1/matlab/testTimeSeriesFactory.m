@@ -4,8 +4,9 @@ close all;
 parserFolder = './parser';
 fixtureFolder = strcat(parserFolder,'/test');
 parserFiles = dir(fixtureFolder);
+parserFiles = parserFiles(arrayfun(@(x) ~strcmp(x.name(1),'.')...
+    ,parserFiles));
 parserFiles = {parserFiles.name};
-parserFiles = parserFiles(3:end)';
 parserFiles = sortn(parserFiles);
 saveFolder = './mat/ts/test';
 
@@ -20,7 +21,8 @@ fsignal = computeFreqSignalHz(adcPeriod, sampCoeff);
 raw = timeSeriesFactory(fsignal, 'raw', inputFixture, outputFixture, sampCoeff);
 save(strcat(saveFolder, '/',raw.Name,'.mat'),'raw','-v7.3');
 
-filtered = timeSeriesFactory(fsignal, 'filtered', inputFixture, outputFixture, sampCoeff);
+%replace 'raw' argument with 'filtered' to test the transient filtering method
+filtered = timeSeriesFactory(fsignal, 'raw', inputFixture, outputFixture, sampCoeff);
 save(strcat(saveFolder, '/', filtered.Name,'.mat'),'filtered','-v7.3');
 
 simulation = timeSeriesFactory(fsignal, 'simulink', inputFixture, sampCoeff);
@@ -32,6 +34,8 @@ Parameters.adcBits = 10;
 Parameters.dacMaxVoltage = 3.3;
 Parameters.dacMinvoltage = 0;
 Parameters.oversamplingCoeff = 4;
+Parameters.sampledValuesPerRound = 
+
 theoretical = timeSeriesFactory(fsignal, 'theoretical', Parameters);
 save(strcat(saveFolder, '/', theoretical.Name,'.mat'),'theoretical','-v7.3');
 
