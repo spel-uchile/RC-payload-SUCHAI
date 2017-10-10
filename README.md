@@ -16,13 +16,43 @@ Cutecom (or any Serial Terminal)
 ```
 It should work with newer Matlab/Simulink versions.
 ## Installing 
-Not needed! Just open your Matlab version and run the scripts!.
+Not needed! Just open your Matlab IDE and run the scripts (see *Running the tests*).
 
 ## Running the tests
-The folder `matlab/logs/test` contains test data (emulating lab and satellite). These logs files are expected to be used with the scripts `testPreProcessor.m `(lab only), ` testParser.m, testPreProcessorSuchai.m `(suchai only), `testTimeSeriesFactory.m, testPdfEstimator.m, testSDsimulation.m` and others (all `test*.m` files). If you can run the chain  preprocessor>Parser>timeseriesFactory>PdfEstimator then you are ready to process the real Suchai 
+The folder `matlab/logs/test/` contains test fixtures (emulating lab and satellite logs). These logs files are expected to be used with the scripts `test*.m` and the output generated are stored in `suchai1/matlab/mat/ts/test/` (timeseries) and in `suchai1/matlab/mat/pdf/test/` (probability density functions). The output files are stored aa MAT-files (v7.3) and can be used to further analysis or graphs.
+#### Lab
+```
+>> testPreProcessor
+>> testParser
+>> testTimeSeriesFactory
+>> testPdfEstimator
+```
+#### Suchai
+```
+>> testPreProcessorSuchai
+>> testParser
+>> testTimeSeriesFactory
+>> testPdfEstimator
+```
 
 ## Running the scripts
-The folder`matlab/logs/suchai` contains the raw frames with the data collected by the satellite, and  `matlab/logs/lab` contains the data generated with a satellite replica inside the laboratory. These dataset is expected to be used with the scripts `doPreProcessor.m`(lab only), `doParser.m, doPreProcessorSuchai.m `(suchai telemetry only), `testTimeSeriesFactory.m, testPdfEstimator.m` and others (aka all `test*.m` files).
+The folder `matlab/logs/` contains logs files from the laboratory (`/lab`) and from SUCHAI (`/suchai`). These logs files are expected to be used with the scripts `do*.m` and the output generated are stored in `suchai1/matlab/mat/ts/` (timeseries) and in `suchai1/matlab/mat/pdf/test` (probability density functions). The output files are stored aa MAT-files (v7.3) and can be used to further analysis or graphs.
+#### Lab
+```
+>> doPreProcessor
+>> doParser
+>> doTimeSeriesFactory
+>> doPdfEstimator
+```
+#### Suchai
+```
+>> doPreProcessorSuchaiLogs
+>> doParser
+>> doTimeSeriesFactory
+>> doPdfEstimator
+```
+
+## Plotting the data
 
 
 
