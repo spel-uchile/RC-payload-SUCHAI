@@ -69,5 +69,8 @@ To plot a specific PDF inside `suchai1/matlab/mat/ts` folder use `doPlotOneTimeS
 
 Every graph generated should be stored in `suchai1/matlab/img/` folder.
 
+## Contact
 
+Use the [issue tracker](https://github.com/spel-uchile/RC-payload-SUCHAI/issues) to submit questions, requirements and bugs.
 
+Follow [SPEL team](https://twitter.com/SPEL_UCHILE) at Twitter to get latest news about SUCHAI project.
