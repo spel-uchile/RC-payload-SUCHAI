@@ -1,5 +1,5 @@
-# Suchai1: experimento RC
-Resumen:
+# Scripts Description 
+*This readme file is not updated with the lasts commits so the following description could be misleading.*
 
 | Directorio | Descripción |
 | ------ | ------ |
@@ -113,5 +113,4 @@ Regresion lineal que calcula las constantes `(m,n)` asociadas al tiempo que dura
 - testSDsimulation.m
 - testTimeSeriesFactory.m
 - timeSeriesFactory.m
-
 
