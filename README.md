@@ -64,6 +64,7 @@ To generate one graph of the PDFs of all the frequencies.
 ```
 
 To plot a specific PDF inside `suchai1/matlab/mat/pdf` folder use `doPlotOnePDF.m`.
+
 To plot a specific PDF inside `suchai1/matlab/mat/ts` folder use `doPlotOneTimeSeries.m`
 
 
