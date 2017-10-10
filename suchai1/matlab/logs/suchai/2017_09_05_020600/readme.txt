@@ -1,0 +1,1 @@
+The log file "SUCHAI_20170905_020600-frames.txt" in this directory was merged with the original log file "SUCHAI_20170905_124400.txt" and "SUCHAI_20170905_020600.txt" which both correspond to the same execution of the experiment.

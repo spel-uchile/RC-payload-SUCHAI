@@ -1,0 +1,5 @@
+# Available values in each frame of the experiment telemetry
+
+firstFrame = 27 values #frame number 0x0000
+regularFrame = 30 values
+finalFrame = 13 values #frame number 0x0085/0xFF85

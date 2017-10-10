@@ -1,0 +1,110 @@
+[2017-09-15 14:17:29.593223][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "trx"}}
+[2017-09-15 14:17:34.590504][debug] Ping to 5 of size 10 took -1 ms.
+[2017-09-15 14:17:39.394255][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "trx"}}
+[2017-09-15 14:17:44.394566][debug] Ping to 5 of size 10 took -1 ms.
+[2017-09-15 14:17:48.009306][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "trx"}}
+[2017-09-15 14:17:53.009407][debug] Ping to 5 of size 10 took -1 ms.
+[2017-09-15 14:17:57.139718][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "trx"}}
+[2017-09-15 14:18:02.139870][debug] Ping to 5 of size 10 took -1 ms.
+[2017-09-15 14:18:08.090485][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "trx"}}
+[2017-09-15 14:18:13.090442][debug] Ping to 5 of size 10 took -1 ms.
+[2017-09-15 14:18:17.153912][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "trx"}}
+[2017-09-15 14:18:22.154095][debug] Ping to 5 of size 10 took -1 ms.
+[2017-09-15 14:18:28.212107][debug] [Client] Received message: {"type": "tnc", "data": {"get_config": 12}}
+[2017-09-15 14:18:28.212957][debug] FEC: rs 1, random 1, viterbi 0
+[2017-09-15 14:18:28.213137][debug] RADIO: rx 24, tx 12, preamble 75, max temp: 60
+[2017-09-15 14:18:28.213316][debug] RADIO: rx 24, tx 12, preamble 75, max temp: 60
+[2017-09-15 14:18:28.213491][debug] MORSE: enable: 0, mode: 2,  delay 20, pospone 900, wpm 20, batt level 680, text NANOCOM
+[2017-09-15 14:18:28.213691][debug] MORSE: cycle: 1, volt:1 rxc:1 txc:1 tempa:1 tempb:1 rssi:1 rferr:1
+[2017-09-15 14:18:28.213876][debug] HK: interval 5
+[2017-09-15 14:18:38.094748][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "trx"}}
+[2017-09-15 14:18:43.094803][debug] Ping to 5 of size 10 took -1 ms.
+[2017-09-15 14:18:46.649973][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "eps"}}
+[2017-09-15 14:18:51.647206][debug] Ping to 2 of size 10 took -1 ms.
+[2017-09-15 14:18:57.806845][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "trx"}}
+[2017-09-15 14:19:02.807014][debug] Ping to 5 of size 10 took -1 ms.
+[2017-09-15 14:19:13.840824][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "trx"}}
+[2017-09-15 14:19:18.841024][debug] Ping to 5 of size 10 took -1 ms.
+[2017-09-15 14:19:37.436016][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "trx"}}
+[2017-09-15 14:19:42.436163][debug] Ping to 5 of size 10 took -1 ms.
+[2017-09-15 14:19:55.132149][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "trx"}}
+[2017-09-15 14:20:00.132270][debug] Ping to 5 of size 10 took -1 ms.
+[2017-09-15 14:20:06.828794][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "trx"}}
+[2017-09-15 14:20:11.828820][debug] Ping to 5 of size 10 took -1 ms.
+[2017-09-15 14:20:18.132530][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "trx"}}
+[2017-09-15 14:20:23.132647][debug] Ping to 5 of size 10 took -1 ms.
+[2017-09-15 14:20:25.900849][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "trx"}}
+[2017-09-15 14:20:30.901033][debug] Ping to 5 of size 10 took -1 ms.
+[2017-09-15 14:20:37.990118][debug] [Client] Received message: {"data": [20485, 684, 20487, 32771, 20488, 0, 20485, 699, 20487, 24621, 20488, 4029, 20485, 750, 20487, 65535, 20488, 0, 65534, 65534], "type": "tc"}
+[2017-09-15 14:20:49.598561][debug] [Client] Received message: {"data": [20485, 684, 20487, 32771, 20488, 0, 20485, 699, 20487, 24621, 20488, 4029, 20485, 750, 20487, 65535, 20488, 0, 65534, 65534], "type": "tc"}
+[2017-09-15 14:21:03.652970][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "trx"}}
+[2017-09-15 14:21:08.652969][debug] Ping to 5 of size 10 took -1 ms.
+[2017-09-15 14:21:14.285866][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "obc"}}
+[2017-09-15 14:21:19.297338][debug] Ping to 0 of size 10 took -1 ms.
+[2017-09-15 14:21:26.430418][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "trx"}}
+[2017-09-15 14:21:31.430687][debug] Ping to 5 of size 10 took -1 ms.
+[2017-09-15 14:21:34.854115][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "obc"}}
+[2017-09-15 14:21:39.854333][debug] Ping to 0 of size 10 took -1 ms.
+[2017-09-15 14:21:43.033644][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "obc"}}
+[2017-09-15 14:21:48.029769][debug] Ping to 0 of size 10 took -1 ms.
+[2017-09-15 14:21:50.646461][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "eps"}}
+[2017-09-15 14:21:55.646628][debug] Ping to 2 of size 10 took -1 ms.
+[2017-09-15 14:21:57.743579][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "trx"}}
+[2017-09-15 14:22:02.743709][debug] Ping to 5 of size 10 took -1 ms.
+[2017-09-15 14:22:08.726985][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "trx"}}
+[2017-09-15 14:22:13.727001][debug] Ping to 5 of size 10 took -1 ms.
+[2017-09-15 14:22:23.151866][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "trx"}}
+[2017-09-15 14:22:28.151947][debug] Ping to 5 of size 10 took -1 ms.
+[2017-09-15 14:22:33.121118][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "trx"}}
+[2017-09-15 14:22:38.121277][debug] Ping to 5 of size 10 took -1 ms.
+[2017-09-15 14:22:43.738562][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "obc"}}
+[2017-09-15 14:22:48.738592][debug] Ping to 0 of size 10 took -1 ms.
+[2017-09-15 14:22:55.872270][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "trx"}}
+[2017-09-15 14:23:00.872479][debug] Ping to 5 of size 10 took -1 ms.
+[2017-09-15 14:25:03.643667][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "trx"}}
+[2017-09-15 14:25:04.521729][debug] Ping to 5 of size 10 took 878 ms.
+[2017-09-15 14:25:12.050784][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "obc"}}
+[2017-09-15 14:25:17.050945][debug] Ping to 0 of size 10 took -1 ms.
+[2017-09-15 14:25:18.478423][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "trx"}}
+[2017-09-15 14:25:19.377897][debug] Ping to 5 of size 10 took 903 ms.
+[2017-09-15 14:25:25.611424][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "obc"}}
+[2017-09-15 14:25:30.611579][debug] Ping to 0 of size 10 took -1 ms.
+[2017-09-15 14:25:32.716596][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "eps"}}
+[2017-09-15 14:25:33.605865][debug] Ping to 2 of size 10 took 893 ms.
+[2017-09-15 14:25:37.875938][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "trx"}}
+[2017-09-15 14:25:38.766306][debug] Ping to 5 of size 10 took 891 ms.
+[2017-09-15 14:25:41.827645][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "obc"}}
+[2017-09-15 14:25:46.827824][debug] Ping to 0 of size 10 took -1 ms.
+[2017-09-15 14:25:50.308304][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "trx"}}
+[2017-09-15 14:25:51.196514][debug] Ping to 5 of size 10 took 889 ms.
+[2017-09-15 14:25:56.667387][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "eps"}}
+[2017-09-15 14:26:01.666094][debug] Ping to 2 of size 10 took -1 ms.
+[2017-09-15 14:26:08.812805][debug] [Client] Received message: {"data": [32771, 0, 65534, 65534], "type": "tc"}
+[2017-09-15 14:26:28.997320][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "trx"}}
+[2017-09-15 14:26:33.997364][debug] Ping to 5 of size 10 took -1 ms.
+[2017-09-15 14:26:41.413184][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "obc"}}
+[2017-09-15 14:26:46.413662][debug] Ping to 0 of size 10 took -1 ms.
+[2017-09-15 14:26:46.414379][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "trx"}}
+[2017-09-15 14:26:51.414278][debug] Ping to 5 of size 10 took -1 ms.
+[2017-09-15 14:26:51.414755][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "eps"}}
+[2017-09-15 14:26:56.414816][debug] Ping to 2 of size 10 took -1 ms.
+[2017-09-15 14:27:01.147247][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "trx"}}
+[2017-09-15 14:27:06.147341][debug] Ping to 5 of size 10 took -1 ms.
+[2017-09-15 14:27:26.881403][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "trx"}}
+[2017-09-15 14:27:31.878743][debug] Ping to 5 of size 10 took -1 ms.
+[2017-09-15 14:27:50.742613][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "trx"}}
+[2017-09-15 14:27:51.633472][debug] Ping to 5 of size 10 took 892 ms.
+[2017-09-15 14:27:56.025596][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "obc"}}
+[2017-09-15 14:28:01.025075][debug] Ping to 0 of size 10 took -1 ms.
+[2017-09-15 14:28:02.958951][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "eps"}}
+[2017-09-15 14:28:03.847908][debug] Ping to 2 of size 10 took 889 ms.
+[2017-09-15 14:28:11.672223][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "obc"}}
+[2017-09-15 14:28:16.664234][debug] Ping to 0 of size 10 took -1 ms.
+[2017-09-15 14:28:17.879954][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "trx"}}
+[2017-09-15 14:28:18.770804][debug] Ping to 5 of size 10 took 891 ms.
+[2017-09-15 14:28:24.897684][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "eps"}}
+[2017-09-15 14:28:29.897700][debug] Ping to 2 of size 10 took -1 ms.
+[2017-09-15 14:28:31.583537][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "obc"}}
+[2017-09-15 14:28:36.583541][debug] Ping to 0 of size 10 took -1 ms.
+[2017-09-15 14:28:40.375824][debug] [Client] Received message: {"type": "tnc", "data": {"ping": "trx"}}
+[2017-09-15 14:28:45.376003][debug] Ping to 5 of size 10 took -1 ms.
