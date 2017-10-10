@@ -53,6 +53,19 @@ The folder `matlab/logs/` contains logs files from the laboratory (`/lab`) and f
 ```
 
 ## Plotting the data
+To generate one graph of the probability density function (PDF) per each frequency.
+```
+>> doPlotEachFrequency
+```
+
+To generate one graph of the PDFs of all the frequencies.
+```
+>> doPlotAllTelemetries
+```
+
+To plot a specific PDF inside `suchai1/matlab/mat/pdf` folder use `doPlotOnePDF.m`.
+To plot a specific PDF inside `suchai1/matlab/mat/ts` folder use `doPlotOneTimeSeries.m`
+
 
 
 
