@@ -23,7 +23,8 @@ for i = 1 : numel(suchaiFolders)
     for j = 1 : length(tmFile)
         telemetryCounter = telemetryCounter + 1;
         pathMatTelemetry{telemetryCounter} = strcat(tmFolder,'/',tmFile{j});
-        freqsLegend{telemetryCounter} = strcat(num2str(str2double(freqInHz)/91.5),' f_{RC} SUCHAI');
+        str = tmFile{j};
+        freqsLegendTM{telemetryCounter} = strcat('SUCHAI_',str(1:15));
         freqsTelemetry{telemetryCounter} = freqInHz;
         matfileTM{telemetryCounter} = load(pathMatTelemetry{telemetryCounter});
     end
@@ -57,7 +58,8 @@ set(gca,'YTickLabel', myylabels);
 set(gca, 'YMinorTick','on', 'YMinorGrid','on');
 title(['SUCHAI Vin PDF']);
 xlabel('V');
-legend(freqsLegend,'Location','eastoutside','Orientation','vertical');
+hleg = legend(freqsLegendTM,'Location','eastoutside','Orientation','vertical');
+set(hleg, 'interpreter', 'none');
 figSaveName = [saveFolderFig,'/','compareAllTelemetries_','vin_',date,'.png'];
 saveas(gcf,figSaveName);
 
@@ -86,7 +88,8 @@ set(gca,'YTickLabel', myylabels);
 set(gca, 'YMinorTick','on', 'YMinorGrid','on');
 title(['SUCHAI Vout PDFs']);
 xlabel('V');
-legend(freqsLegend,'Location','eastoutside','Orientation','vertical');
+hleg = legend(freqsLegendTM,'Location','eastoutside','Orientation','vertical');
+set(hleg, 'interpreter', 'none');
 figSaveName = [saveFolderFig,'/','compareAllTelemetries_','vout_',date,'.png'];
 saveas(gcf,figSaveName);
 
@@ -114,6 +117,7 @@ set(gca,'YTickLabel', myylabels);
 set(gca, 'YMinorTick','on', 'YMinorGrid','on');
 title(['SUCHAI injected Power PDFs']);
 xlabel('V^2 \cdot Hz');
-legend(freqsLegend,'Location','eastoutside','Orientation','vertical');
+hleg = legend(freqsLegendTM,'Location','eastoutside','Orientation','vertical');
+set(hleg, 'interpreter', 'none');
 figSaveName = [saveFolderFig,'/','compareAllTelemetries_','power_',date,'.png'];
 saveas(gcf,figSaveName);

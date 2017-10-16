@@ -36,7 +36,6 @@ for i = 1 : numel(suchaiFolders)
         pathMatTelemetry{telemetryCounter} = strcat(tmFolder,'/',tmFile{j});
         str = tmFile{j};
         freqsLegendTM{telemetryCounter} = strcat('SUCHAI_',str(1:15));
-%         freqsLegendTM{telemetryCounter} = strcat(num2str(str2double(freqInHz)/91.5),' f_{RC} SUCHAI');
         freqsTelemetry{telemetryCounter} = freqInHz;
         matfileTM{telemetryCounter} = load(pathMatTelemetry{telemetryCounter});
     end
@@ -61,7 +60,6 @@ for i = 1 : numel(suchaiFolders)
         pathMatLab{labCounter} = strcat(tmFolder,'/',tmFile{j});
         str = tmFile{j};
         freqsLegendLab{labCounter} = strcat('LAB_',str(1:15));
-%         freqsLegendLab{labCounter} = strcat(num2str(str2double(freqInHz)/91.5),' f_{RC} LAB');
         freqsLab{labCounter} = freqInHz;
         matfileLab{labCounter} = load(pathMatLab{labCounter});
     end
@@ -104,7 +102,7 @@ for i = 1 : numel(suchaiFolders)
     myylabels = cellstr(num2str(yt(:), '10^{%.1f}'));
     set(gca,'YTickLabel', myylabels);
     set(gca, 'YMinorTick','on', 'YMinorGrid','on');
-    title(['Vin PDF']);
+    title(['Vin PDF ', num2str(str2double(freqsLab(i))/91.5), ' f_{RC}']);
     xlabel('V');
     currLegend = [currLegendSuchai, currLegendLab]';
     hleg = legend(currLegend,'Location','eastoutside','Orientation','vertical');
@@ -150,7 +148,7 @@ for i = 1 : numel(suchaiFolders)
     myylabels = cellstr(num2str(yt(:), '10^{%.1f}'));
     set(gca,'YTickLabel', myylabels);
     set(gca, 'YMinorTick','on', 'YMinorGrid','on');
-    title(['Vout PDF']);
+    title(['Vout PDF ', num2str(str2double(freqsLab(i))/91.5), ' f_{RC}']);
     xlabel('V');
     currLegend = [currLegendSuchai, currLegendLab]';
     hleg = legend(currLegend,'Location','eastoutside','Orientation','vertical');
@@ -196,7 +194,7 @@ for i = 1 : numel(suchaiFolders)
     myylabels = cellstr(num2str(yt(:), '10^{%.1f}'));
     set(gca,'YTickLabel', myylabels);
     set(gca, 'YMinorTick','on', 'YMinorGrid','on');
-    title(['Injected Power PDFs']);
+    title(['Injected Power PDFs ', num2str(str2double(freqsLab(i))/91.5), ' f_{RC}']);
     xlabel('V^2 \cdot Hz');
     currLegend = [currLegendSuchai, currLegendLab]';
     hleg = legend(currLegend,'Location','eastoutside','Orientation','vertical');
