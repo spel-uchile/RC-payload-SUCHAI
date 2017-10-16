@@ -34,7 +34,9 @@ for i = 1 : numel(suchaiFolders)
     for j = 1 : length(tmFile)
         telemetryCounter = telemetryCounter + 1;
         pathMatTelemetry{telemetryCounter} = strcat(tmFolder,'/',tmFile{j});
-        freqsLegendTM{telemetryCounter} = strcat(num2str(str2double(freqInHz)/91.5),' f_{RC} SUCHAI');
+        str = tmFile{j};
+        freqsLegendTM{telemetryCounter} = strcat('SUCHAI_',str(1:15));
+%         freqsLegendTM{telemetryCounter} = strcat(num2str(str2double(freqInHz)/91.5),' f_{RC} SUCHAI');
         freqsTelemetry{telemetryCounter} = freqInHz;
         matfileTM{telemetryCounter} = load(pathMatTelemetry{telemetryCounter});
     end
@@ -57,7 +59,9 @@ for i = 1 : numel(suchaiFolders)
     for j = 1 : length(tmFile)
         labCounter = labCounter + 1;
         pathMatLab{labCounter} = strcat(tmFolder,'/',tmFile{j});
-        freqsLegendLab{labCounter} = strcat(num2str(str2double(freqInHz)/91.5),' f_{RC} LAB');
+        str = tmFile{j};
+        freqsLegendLab{labCounter} = strcat('LAB_',str(1:15));
+%         freqsLegendLab{labCounter} = strcat(num2str(str2double(freqInHz)/91.5),' f_{RC} LAB');
         freqsLab{labCounter} = freqInHz;
         matfileLab{labCounter} = load(pathMatLab{labCounter});
     end
@@ -104,6 +108,7 @@ for i = 1 : numel(suchaiFolders)
     xlabel('V');
     currLegend = [currLegendSuchai, currLegendLab]';
     hleg = legend(currLegend,'Location','eastoutside','Orientation','vertical');
+    set(hleg, 'Interpreter', 'none');
     figSaveName = [saveFolderFig, '/',suchaiFolders{i},'_vin_',date,'.png'];
     saveas(gcf, figSaveName);
 end
@@ -149,6 +154,7 @@ for i = 1 : numel(suchaiFolders)
     xlabel('V');
     currLegend = [currLegendSuchai, currLegendLab]';
     hleg = legend(currLegend,'Location','eastoutside','Orientation','vertical');
+    set(hleg, 'Interpreter', 'none');
     figSaveName = [saveFolderFig, '/',suchaiFolders{i},'_vout_',date,'.png'];
     saveas(gcf, figSaveName);
 end
@@ -194,6 +200,7 @@ for i = 1 : numel(suchaiFolders)
     xlabel('V^2 \cdot Hz');
     currLegend = [currLegendSuchai, currLegendLab]';
     hleg = legend(currLegend,'Location','eastoutside','Orientation','vertical');
+    set(hleg, 'Interpreter', 'none');
     figSaveName = [saveFolderFig, '/',suchaiFolders{i},'_power_',date,'.png'];
     saveas(gcf, figSaveName);
 end
