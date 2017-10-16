@@ -1,4 +1,4 @@
-prefix = '2017_09_08_132000';
+prefix = '2017_10_12_133800';
 j = strfind(prefix,'_');
 suffix = prefix(j(3)+1:end);
 suffixFrames = [suffix '-frames'];
@@ -12,6 +12,8 @@ if ~isdir(saveFolder)
 end
 
 telemetryFile = ['./logs/suchai/', prefix, '/SUCHAI_', prefixjoin,'_', suffixFrames,'.txt'];
+telemetryFile = fullfile(telemetryFile);
+[dir, name, extension] = fileparts(telemetryFile);
 adcFile = ['./logs/suchai/', prefix, '/SUCHAI_', prefixjoin,'_', suffixAdc,'.txt'];
 fid = fopen(adcFile);
 tline = fgets(fid);
