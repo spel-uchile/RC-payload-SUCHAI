@@ -2,13 +2,7 @@
 pathMatfile = './mat/ts/lab/2937.9922/20161805_123456_raw_2937.9922Hz.mat';
 
 pathMatfile = fullfile(pathMatfile);
-[directoryOfFile, nameOfFile, extension] = fileparts(pathMatfile);
-saveFolderFig =['./img/timeseries/',nameOfFile];
-figSaveName = [saveFolderFig,'/',date,'_ts.png'];
-if ~isdir(saveFolderFig)
-    mkdir(saveFolderFig);
-end
-S = load(pathMatfile1);
+S = load(pathMatfile);
 Sfnames = fieldnames(S);
 name = Sfnames{1};
 tsStruct = S.(name);
@@ -33,4 +27,3 @@ hleg = legend({legVoutData});
 set(htit, 'Interpreter', 'none');
 set(hleg, 'Location','southoutside');
 set(hleg,'Orientation','vertical');
-saveas(gcf,figSaveName);
