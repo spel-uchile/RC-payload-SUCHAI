@@ -1,0 +1,10 @@
+*set (no seguro) 2017-09-22 3:06
+"FP:
+00:01 1 0x602D 21 Sobreescribe el índice 1 con ""pay_testFreq_expFis"" y argumento 21
+Otros: Se pierden muchos frames en la demodulación, sin embargo fue posible oir la respuesta del satélite. Se grabó el audio de las pasada en el PC de Javier Rojas con el programa VLC.
+Tampoco fue posible re-descargar la telemetría del payload de baterías.
+"
+
+*ejecucion 23 Sep 2017 03:01:00.640	-41.756	-120.948	510.47757
+LAT LONG
+-41.756	-120.948

@@ -1,0 +1,3 @@
+*ejecucion sobre la pasada (ground station)
+LAT LONG
+-33.458153, -70.661927

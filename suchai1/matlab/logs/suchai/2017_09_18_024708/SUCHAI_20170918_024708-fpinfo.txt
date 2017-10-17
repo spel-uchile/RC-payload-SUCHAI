@@ -1,0 +1,7 @@
+*set: 2017-09-16 13:58
+"Flight plan: experimento de física a las 11:22"
+
+*ejecucion: 16 Sep 2017 14:22:00.640	-62.492	-132.326	525.187293
+LAT LONG
+-62.492	-132.326
+

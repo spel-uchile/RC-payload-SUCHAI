@@ -1,0 +1,7 @@
+En las dos pasadas anteriores hubieron varios HardReset
+
+No hay FP para esta pasada
+
+*ejecucion sobre la pasada (ground station)
+LAT LONG
+-33.458153, -70.661927

@@ -1,1 +1,13 @@
-FP de exp de fisica nuevo pasando por polo sur a las 12:15 CLST y junto con LP. Se usa TM estado para confirmacion.									
+* Coordinado con LP descargado en 2017-10-13 13:20.
+* 2017-10-13 2:45 FP de exp de fisica nuevo pasando por polo sur a las 12:15 CLST y junto con LP. Se usa TM estado para confirmacion.								
+FP de Fisica
+0x5005 735
+0x5007 24621
+0x5008 7
+0x8003 0"
+13 Oct 2017 15:15:00.000	-82.342	-161.056	525.963742	-0.016159	-0.460303	0.007471
+
+LAT LONG
+-82.342	-161.056
+
+

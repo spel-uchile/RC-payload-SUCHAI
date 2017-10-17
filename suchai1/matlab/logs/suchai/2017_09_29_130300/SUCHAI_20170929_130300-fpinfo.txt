@@ -1,0 +1,17 @@
+*set: 28/09/17 13:21:26
+
+Flight Plan Fisica (Borrado FP anterior)
+drp_fpl_set_index        0x5005        1415 (23:35CLST/02:35 UTC)
+rp_fpl_set_cmd        0x5007        28679
+drp_fpl_set_param        0x5008        0
+
+Flight Plan Fisica (Polo)
+drp_fpl_set_index        0x5005        640  (10:40CLST/13:40 UTC)
+rp_fpl_set_cmd        0x5007        28679
+drp_fpl_set_cmd        0x5007        24621
+drp_fpl_set_param        0x5008        21
+
+*ejecucion 28 Sep 2017 13:40:00.000	-80.676	-114.629	523.876282	-0.038186	-0.312971	0.00328
+LAT LONG
+-80.676	-114.629
+

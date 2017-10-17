@@ -1,0 +1,12 @@
+*set: 2017-09-15 14:17
+"11:24        684        0x8003        0
+11:39        699        0x602D        4029
+12:30        750        0xffff        0"
+
+699 (11:39 CLST/14:39 UTC) 
+
+*ejecucion: 15 Sep 2017 14:39:00.640	-55.644	-133.086	524.505467
+LAT LONG
+-55.644	-133.086
+
+*se envia un hard reset entre esta pasada y la descarga xtanto es dificil saber why el adcPeriod es distinto

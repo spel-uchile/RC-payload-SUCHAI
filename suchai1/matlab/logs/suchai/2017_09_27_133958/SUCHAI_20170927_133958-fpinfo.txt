@@ -1,0 +1,11 @@
+*set 2017-09-27 1:32
+
+"Flight Plan
+drp_fpl_set_index 0x5005 548 (09:08 CLST/ 12:08 UTC)
+drp_fpl_set_cmd 0x5007 24621
+drp_fpl_set_param 0x5008 21"
+
+* ejecucion 
+27 Sep 2017 12:08:00.000	-22.575	-42.448	509.694328	-0.062975	-0.013772	0.013851
+LAT LONG
+-22.575	-42.448
