@@ -18,7 +18,7 @@ switch varargin{1}
         
         oversamplingCoeff = varargin{4};
         tsCollection = makeExperimentalSeries(Input, Output, freqSignalHz, ...
-            oversamplingCoeff, dampingRate);
+            oversamplingCoeff, R, C);
         dacBits = Input.nbits;
         adcBits = Output.nbits;
         maxVin = Input.maxVoltage;
