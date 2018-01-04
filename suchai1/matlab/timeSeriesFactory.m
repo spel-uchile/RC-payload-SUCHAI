@@ -36,7 +36,7 @@ switch varargin{1}
         
         oversamplingCoeff = varargin{4};
         rawCollection = makeExperimentalSeries(Input, Output, freqSignalHz, ...
-            oversamplingCoeff, dampingRate);
+            oversamplingCoeff, R, C);
         buffLen = 200;
         [indexes, ~, ~] = findSState('simple', rawCollection.Vout.Data, buffLen);
         tsCollection = filterCollection(rawCollection, indexes, buffLen);
@@ -78,8 +78,10 @@ createdTimeSeries.maxVin = max(tsCollection.Vin.Data);
 createdTimeSeries.minVin = min(tsCollection.Vin.Data);
 createdTimeSeries.maxVout = max(tsCollection.Vout.Data);
 createdTimeSeries.minVout = min(tsCollection.Vout.Data);
-createdTimeSeries.maxPower = max(tsCollection.injectedPower.Data);
-createdTimeSeries.minPower = min(tsCollection.injectedPower.Data);
+createdTimeSeries.maxPower = max(tsCollection.Pin.Data);
+createdTimeSeries.minPower = min(tsCollection.Pin.Data);
+createdTimeSeries.maxPowerLangevin = max(tsCollection.langevinInjected.Data);
+createdTimeSeries.minPowerLangevin = min(tsCollection.langevinInjected.Data);
 createdTimeSeries.dacBits = dacBits;
 createdTimeSeries.adcBits = adcBits;
 createdTimeSeries.dampingRate = dampingRate;
