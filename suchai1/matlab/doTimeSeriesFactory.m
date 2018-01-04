@@ -11,7 +11,7 @@
 %         '2017_10_13_024557','2017_10_14_022659','2017_10_12_133800'};
 for prefixx = {'2017_09_18_132118'}
 prefix = prefixx{1};
-    prefixjoin = [prefix(1:4), prefix(w6:7), prefix(9:end)];
+    prefixjoin = [prefix(1:4), prefix(6:7), prefix(9:end)];
     parserFolder = './parser/suchai';
     fixtureFolder = strcat(parserFolder,'/', prefix);
     parserFiles = dir(fixtureFolder);
