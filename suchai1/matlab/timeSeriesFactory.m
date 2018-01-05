@@ -51,7 +51,7 @@ switch varargin{1}
         maxVout = Input.maxVoltage;
         
         oversamplingCoeff = varargin{3};
-        rawCollection = makeSimulationSeries(Input, freqSignalHz, oversamplingCoeff, dampingRate);
+        rawCollection = makeSimulationSeries(Input, freqSignalHz, oversamplingCoeff, R, C);
         buffLen = length(rawCollection.Vin.Data);
         [indexes, ~, ~] = findSState('simple', rawCollection.Vout.Data);
         tsCollection = filterCollection(rawCollection, indexes, buffLen);
