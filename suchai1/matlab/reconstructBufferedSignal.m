@@ -15,6 +15,9 @@ for k = 1 : length(indexArray)
         continue
     end
     
+    if lastUsefulDataIndex >= length(originalSignal)
+        lastUsefulDataIndex = length(originalSignal);
+    end
     usefulSliceOfSignal = originalSignal( firstUsefulDataIndex : lastUsefulDataIndex);
     joinedSlices = [joinedSlices; usefulSliceOfSignal];
     filtered(firstNonUsefulDataIndex : lastNonUsefulDataIndex,1) = refLevel;
