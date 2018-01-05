@@ -2,15 +2,14 @@
 % files and modifies and saves them in MAT-files for further time series
 % creation.
 
-% for prefixx = {'2017_08_24_132346','2017_08_29_131900','2017_08_30_022511', ...
-%         '2017_08_31_124200','2017_09_01_135700', '2017_09_05_020600',...
-%         '2017_09_08_132000','2017_09_15_020900', '2017_09_16_032505',...
-%         '2017_09_18_024708','2017_09_18_132118', '2017_09_22_030600',...
-%         '2017_09_22_133600','2017_09_24_130307', '2017_09_26_135800', ...
-%         '2017_09_27_133958','2017_09_28_024600', '2017_09_29_130300',...
-%         '2017_10_13_024557','2017_10_14_022659','2017_10_12_133800'};
-for prefixx = {'2017_09_18_132118'}
-prefix = prefixx{1};
+for prefixx = {'2017_08_24_132346','2017_08_29_131900','2017_08_30_022511', ...
+        '2017_08_31_124200','2017_09_01_135700', '2017_09_05_020600',...
+        '2017_09_08_132000','2017_09_15_020900', '2017_09_16_032505',...
+        '2017_09_18_024708','2017_09_18_132118', '2017_09_22_030600',...
+        '2017_09_22_133600','2017_09_24_130307', '2017_09_26_135800', ...
+        '2017_09_27_133958','2017_09_28_024600', '2017_09_29_130300',...
+        '2017_10_13_024557','2017_10_14_022659','2017_10_12_133800','2017_09_18_132118'};
+    prefix = prefixx{1};
     prefixjoin = [prefix(1:4), prefix(6:7), prefix(9:end)];
     parserFolder = './parser/suchai';
     fixtureFolder = strcat(parserFolder,'/', prefix);
@@ -42,25 +41,29 @@ prefix = prefixx{1};
             end
             
             %raw timeserie
+            disp(['raw timeseries ', num2str(fsignal), 'Hz']);
             raw = timeSeriesFactory(fsignal, 'raw', inputFixture, ...
                 outputFixture{fixtureIndexForOutputFiles}, sampCoeff);
             newRawFile = strcat(saveFolder, '/',prefixjoin,'_', raw.Name,'.mat');
             save(newRawFile,'raw','-v7.3');
             
             %filtered timeserie
+            disp(['filtered timeseries ', num2str(fsignal), 'Hz']);
             filtered = timeSeriesFactory(fsignal, 'filtered', inputFixture,...
                 outputFixture{fixtureIndexForOutputFiles}, sampCoeff);
             newFilteredFile = strcat(saveFolder, '/',prefixjoin,'_', filtered.Name,'.mat');
             save(newFilteredFile,'filtered','-v7.3');
             
             %simulation timeserie
+            disp(['simulink timeseries ', num2str(fsignal), 'Hz']);
             simulation = timeSeriesFactory(fsignal, 'simulink', inputFixture, ...
                 sampCoeff);
             newSimFile = strcat(saveFolder, '/',prefixjoin,'_', simulation.Name,'.mat');
             save(newSimFile,'simulation','-v7.3');
             
             %theoretical timeserie
-            Parameters.numberOfRandomValues = 1e6;
+            disp(['theoretical simulation timeseries', num2str(fsignal), 'Hz']);
+            Parameters.numberOfRandomValues = 1e5;
             Parameters.dacBits = 16;
             Parameters.adcBits = 10;
             Parameters.dacMaxVoltage = 3.3;
