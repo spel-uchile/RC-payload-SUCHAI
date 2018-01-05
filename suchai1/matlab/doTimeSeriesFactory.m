@@ -2,6 +2,8 @@
 % files and modifies and saves them in MAT-files for further time series
 % creation.
 
+% for prefixx = {'2016_18_05'}
+database = 'suchai'; %other: 'lab'
 for prefixx = {'2017_08_24_132346','2017_08_29_131900','2017_08_30_022511', ...
         '2017_08_31_124200','2017_09_01_135700', '2017_09_05_020600',...
         '2017_09_08_132000','2017_09_15_020900', '2017_09_16_032505',...
@@ -11,7 +13,7 @@ for prefixx = {'2017_08_24_132346','2017_08_29_131900','2017_08_30_022511', ...
         '2017_10_13_024557','2017_10_14_022659','2017_10_12_133800','2017_09_18_132118'};
     prefix = prefixx{1};
     prefixjoin = [prefix(1:4), prefix(6:7), prefix(9:end)];
-    parserFolder = './parser/suchai';
+    parserFolder = ['./parser/', database];
     fixtureFolder = strcat(parserFolder,'/', prefix);
     parserFiles = dir(fixtureFolder);
     parserFiles = {parserFiles.name};
@@ -34,7 +36,7 @@ for prefixx = {'2017_08_24_132346','2017_08_29_131900','2017_08_30_022511', ...
             adcPeriod = S.(name{1}).adcPeriod;
             sampCoeff = S.(name{1}).oversamplingCoeff;
             fsignal = computeFreqSignalHz(adcPeriod, sampCoeff);
-            saveFolder = strcat('./mat/ts/suchai/', num2str(fsignal));
+            saveFolder = strcat(['./mat/ts/',database,'/'], num2str(fsignal));
             
             if ~isdir(saveFolder)
                 mkdir(saveFolder)
