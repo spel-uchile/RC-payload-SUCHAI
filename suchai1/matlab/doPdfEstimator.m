@@ -1,4 +1,5 @@
-database = 'suchai';
+database = 'lab';
+npoints = 100;  %numbins
 seedFolder = ['./mat/ts/',database];
 freqsDir = dir(seedFolder);
 freqsDir = {freqsDir.name};
@@ -13,14 +14,7 @@ for i = 1 : length(freqsDir)
     if ~isdir(saveFolder)
         mkdir(saveFolder)
     end
-    currFreqFolder = strcat(seedFolder, '/', freq);
-    
-    freqCircuitHz = 92;
-    R = 1210;
-    C = 1 / (freqCircuitHz * 2 * pi * R);
-    dampingRate = 1/ (R*C);
-    npoints = 100;
-    
+    currFreqFolder = strcat(seedFolder, '/', freq); 
     matfiles = dir(currFreqFolder);
     matfiles = {matfiles.name};
     matfiles = matfiles(3:end);
@@ -51,7 +45,7 @@ for i = 1 : length(freqsDir)
             loadMyFile = filesWithDate{j};
             S = load(loadMyFile);
             name = fieldnames(S);
-            name = name{1};
+            name = name{1}; %only raw timeserie
             if strfind(name, 'filtered')
                 continue
             end
