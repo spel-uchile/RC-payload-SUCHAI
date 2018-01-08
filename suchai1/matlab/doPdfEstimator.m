@@ -1,4 +1,4 @@
-database = 'lab';
+database = 'suchai';
 npoints = 100;  %numbins
 seedFolder = ['./mat/ts/',database];
 freqsDir = dir(seedFolder);
@@ -7,8 +7,8 @@ freqsDir = freqsDir(3:end);
 freqsDir = sortn(freqsDir);
 freqsDir = lower(freqsDir);
 
-for i = 1 : length(freqsDir)
-    
+% for i = 1 : length(freqsDir)
+    i = 4;
     freq = freqsDir{i};
     saveFolder = ['./mat/pdf/',database,'/',freq];
     if ~isdir(saveFolder)
@@ -50,9 +50,9 @@ for i = 1 : length(freqsDir)
                 continue
             end
             ts = S.(name);
-            [pdfResult.(name), xbins.(name),Parameters.(name)]= pdfEstimator(ts, [], npoints );
+            [pdfResult.(name), xbins.(name),Parameters.(name)]= pdfEstimator(ts, npoints );
         end
         save(newMatFileName,'pdfResult','xbins','Parameters','-v7.3');
         disp([newMatFileName,' saved sucessfully']);
     end
-end
+% end
