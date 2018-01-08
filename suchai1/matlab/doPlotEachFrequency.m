@@ -54,14 +54,17 @@ for i = 1 : numel(suchaiFolders)
     tmFile = tmFile(3:end)';
     tmFile = sortn(tmFile);
     freqInHz = suchaiFolders{i};
-    tmPerFreqLab(i) = length(tmFile);
+    tmPerFreqLab(i) = 0;
     for j = 1 : length(tmFile)
-        labCounter = labCounter + 1;
-        pathMatLab{labCounter} = strcat(tmFolder,'/',tmFile{j});
-        str = tmFile{j};
-        freqsLegendLab{labCounter} = strcat('LAB_',str(1:15));
-        freqsLab{labCounter} = freqInHz;
-        matfileLab{labCounter} = load(pathMatLab{labCounter});
+        if strfind (tmFile{j}, 'raw')
+            labCounter = labCounter + 1;
+            tmPerFreqLab(i) = tmPerFreqLab(i) + 1;
+            pathMatLab{labCounter} = strcat(tmFolder,'/',tmFile{j});
+            str = tmFile{j};
+            freqsLegendLab{labCounter} = strcat('LAB_',str(1:15));
+            freqsLab{labCounter} = freqInHz;
+            matfileLab{labCounter} = load(pathMatLab{labCounter});
+        end
     end
 end
 plotLegendCell = [freqsLegendTM, freqsLegendLab]';
@@ -174,7 +177,7 @@ for i = 1 : numel(suchaiFolders)
         pdfResult = matfileTM{ks}.pdfResult;
         Parameters = matfileTM{ks}.Parameters;
         hold on;
-        plot(xbins.raw.injectedPower, log10(pdfResult.raw.injectedPower),'*','MarkerSize', mkrsize);
+        plot(xbins.raw.LangInj, log10(pdfResult.raw.LangInj),'*','MarkerSize', mkrsize);
         hold off;
         ks = ks +1;
     end
@@ -184,7 +187,7 @@ for i = 1 : numel(suchaiFolders)
         pdfResult = matfileLab{kl}.pdfResult;
         Parameters = matfileLab{kl}.Parameters;
         hold on;
-        plot(xbins.raw.injectedPower, log10(pdfResult.raw.injectedPower),'o','MarkerSize', mkrsize);
+        plot(xbins.raw.LangInj, log10(pdfResult.raw.LangInj),'o','MarkerSize', mkrsize);
         hold off;
         kl = kl + 1;
     end
