@@ -86,7 +86,7 @@ pdfValue.DeltaP = normalize(ptsDeltaP, fDeltaP);
 pdfValue.LangInj = normalize(ptsLangInj, fLangInj);
 pdfValue.LangDiss = normalize(ptsLangDiss, fLangDiss);
 pdfValue.LangStored = normalize(ptsLangStored, fLangStored);
-pdfValue.LangDeltaP = normalize(ptsLangDelta, fLangDelta);
+pdfValue.LangDeltaP = normalize(ptsLangDeltaP, fLangDelta);
 
 xbins.Vin = ptsVin;
 xbins.Vout = ptsVout;
