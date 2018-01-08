@@ -1,28 +1,23 @@
-function [pdfValue, xbins, EstimationParameters] = pdfEstimator(tSeries, varargin)
+function [pdfValue, xbins, bandWidth, OtherParameters] = pdfEstimator(tSeries, varargin)
 
 frequency = tSeries.fsignal;
 tsCollection = tSeries.tsc;
 kernel = 'normal';
 npoints = 100;
 typeOfFunction = 'pdf';
-bw = [];
+
 if nargin > 2
     switch length(varargin)
         case 1
-            bw = varargin{1};
+            npoints = varargin{1};
         case 2
-            bw = varargin{1};
-            npoints = varargin{2};
-        case 3
-            bw = varargin{1};
-            npoints = varargin{2};
-            kernel = varargin{3};
+            npoints = varargin{1};
+            kernel = varargin{2};
         otherwise
             error('too many arguments');
     end
 end
 
-dampingRate = tSeries.dampingRate;
 vin = tsCollection.Vin.Data;
 vout = tsCollection.Vout.Data;
 vR = tsCollection.Vr.Data;
@@ -37,42 +32,47 @@ langInj = tsCollection.langevinInjected.Data;
 langStored = tsCollection.langevinStored.Data;
 langDeltaP = tsCollection.langevinDeltaPower.Data;
 
-ptsVin = linspace(tSeries.minVin, tSeries.maxVin, npoints);
-ptsVout = ptsVin;
-ptsVr = ptsVin;
-ptsPin = linspace(-0.2, 1, npoints); %in mW
-ptsPr = ptsPin;
-ptsPc = ptsPin;
-ptsDeltaP = ptsPin;
-ptsIr = linspace(-1, 1, npoints);
-ptsIc = linspace(-0.15, 0.15, npoints);
-ptsLangInj = linspace(-0.2*dampingRate, 0.2*dampingRate, npoints);
-ptsLangDiss = ptsLangInj;
-ptsLangStored = ptsLangInj;
-ptsLangDelta = ptsLangInj;
+% dampingRate = tSeries.dampingRate;
+% ptsVin = linspace(tSeries.minVin, tSeries.maxVin, npoints);
+% ptsVout = ptsVin;
+% ptsVr = ptsVin;
+% ptsPin = linspace(-0.2, 1, npoints); %in mW
+% ptsPr = ptsPin;
+% ptsPc = ptsPin;
+% ptsDeltaP = ptsPin;
+% ptsIr = linspace(-1, 1, npoints);
+% ptsIc = linspace(-0.15, 0.15, npoints);
+% ptsLangInj = linspace(-0.2*dampingRate, 0.2*dampingRate, npoints);
+% ptsLangDiss = ptsLangInj;
+% ptsLangStored = ptsLangInj;
+% ptsLangDeltaP = ptsLangInj;
+% [fVin, ~, bw(1)] = ksdensity(vin, ptsVin,'kernel',kernel);
+% [fVout, ~, bw(2)] = ksdensity(vout, ptsVout,'kernel',kernel);
+% [fVr, ~, bw(3)] = ksdensity(vR, ptsVr,'kernel',kernel);
+% [fIr, ~, bw(4)] = ksdensity(iR, ptsIr,'kernel',kernel);
+% [fIc, ~, bw(5)] = ksdensity(iC, ptsIc,'kernel',kernel);
+% [fPin, ~, bw(6)] = ksdensity(pIn, ptsPin,'kernel',kernel);
+% [fPr, ~, bw(7)] = ksdensity(pR, ptsPr,'kernel',kernel);
+% [fPc, ~, bw(8)] = ksdensity(pC, ptsPc,'kernel',kernel);
+% [fDeltaP, ~, bw(9)] = ksdensity(deltaP, ptsDeltaP,'kernel',kernel);
+% [fLangInj, ~, bw(11)] = ksdensity(langInj, ptsLangInj,'kernel',kernel);
+% [fLangDiss, ~, bw(12)] = ksdensity(langDiss, ptsLangDiss,'kernel',kernel);
+% [fLangStored, ~, bw(13)] = ksdensity(langStored, ptsLangStored,'kernel',kernel);
+% [fLangDelta, ~, bw(14)] = ksdensity(langDeltaP, ptsLangDelta,'kernel',kernel);
 
-if ~isempty(bw)
-    [fVin, ~, bw(1)] = ksdensity(vin, ptsVin,'kernel',kernel,...
-        'Bandwidth',bw(1));
-    [fVout, ~, bw(2)] = ksdensity(vout, ptsVout,'kernel',kernel, ...
-        'Bandwidth',bw(2));
-    [fPIn, ~, bw(3)] = ksdensity(pIn, ptsPIn,'kernel',kernel,...
-        'Bandwidth',bw(3));
-else
-    [fVin, ~, bw(1)] = ksdensity(vin, ptsVin,'kernel',kernel);
-    [fVout, ~, bw(2)] = ksdensity(vout, ptsVout,'kernel',kernel);
-    [fVr, ~, bw(3)] = ksdensity(vR, ptsVr,'kernel',kernel);
-    [fIr, ~, bw(4)] = ksdensity(iR, ptsIr,'kernel',kernel);
-    [fIc, ~, bw(5)] = ksdensity(iC, ptsIc,'kernel',kernel);
-    [fPin, ~, bw(6)] = ksdensity(pIn, ptsPin,'kernel',kernel);
-    [fPr, ~, bw(7)] = ksdensity(pR, ptsPr,'kernel',kernel);
-    [fPc, ~, bw(8)] = ksdensity(pC, ptsPc,'kernel',kernel);
-    [fDeltaP, ~, bw(9)] = ksdensity(deltaP, ptsDeltaP,'kernel',kernel);
-    [fLangInj, ~, bw(11)] = ksdensity(langInj, ptsLangInj,'kernel',kernel);
-    [fLangDiss, ~, bw(12)] = ksdensity(langDiss, ptsLangDiss,'kernel',kernel);
-    [fLangStored, ~, bw(13)] = ksdensity(langStored, ptsLangStored,'kernel',kernel);
-    [fLangDelta, ~, bw(14)] = ksdensity(langDeltaP, ptsLangDelta,'kernel',kernel);
-end
+[fVin, ptsVin, bwVin] = ksdensity(vin, 'kernel',kernel);
+[fVout, ptsVout, bwVout] = ksdensity(vout, 'kernel',kernel);
+[fVr, ptsVr, bwVr] = ksdensity(vR,'kernel',kernel);
+[fIr, ptsIr, bwIr] = ksdensity(iR, 'kernel',kernel);
+[fIc, ptsIc, bwIc] = ksdensity(iC, 'kernel',kernel);
+[fPin, ptsPin, bwPin] = ksdensity(pIn, 'kernel',kernel);
+[fPr, ptsPr, bwPr] = ksdensity(pR, 'kernel',kernel);
+[fPc, ptsPc, bwPc] = ksdensity(pC, 'kernel',kernel);
+[fDeltaP, ptsDeltaP, bwDeltaP] = ksdensity(deltaP, 'kernel',kernel);
+[fLangInj, ptsLangInj, bwLangInj] = ksdensity(langInj, 'kernel',kernel);
+[fLangDiss, ptsLangDiss, bwLangDiss] = ksdensity(langDiss, 'kernel',kernel);
+[fLangStored, ptsLangStored, bwLangStored] = ksdensity(langStored, 'kernel',kernel);
+[fLangDelta, ptsLangDeltaP, bwLangDeltaP] = ksdensity(langDeltaP, 'kernel',kernel);
 
 pdfValue.Vin = normalize(ptsVin, fVin);
 pdfValue.Vout = normalize(ptsVout, fVout);
@@ -100,12 +100,25 @@ xbins.DeltaP = ptsDeltaP;
 xbins.LangInj = ptsLangInj;
 xbins.LangDiss = ptsLangDiss;
 xbins.LangStored = ptsLangStored;
-xbins.LangDeltaP = ptsLangDelta;
+xbins.LangDeltaP = ptsLangDeltaP;
 
-EstimationParameters.kernel = kernel;
-EstimationParameters.bandWidthValues = bw;
-EstimationParameters.npoints = npoints;
-EstimationParameters.function = typeOfFunction;
-EstimationParameters.fsignal = frequency;
+bandWidth.Vin = bwVin;
+bandWidth.Vout = bwVout;
+bandWidth.Vr = bwVr;
+bandWidth.Ir = bwIr;
+bandWidth.Ic = bwIc;
+bandWidth.Pin = bwPin;
+bandWidth.Pr = bwPr;
+bandWidth.Pc = bwPc;
+bandWidth.DeltaP = bwDeltaP;
+bandWidth.LangInj = bwLangInj;
+bandWidth.LangDiss = bwLangDiss;
+bandWidth.LangStored = bwLangStored;
+bandWidth.LangDeltaP = bwLangDeltaP;
+
+OtherParameters.kernel = kernel;
+OtherParameters.npoints = npoints;
+OtherParameters.function = typeOfFunction;
+OtherParameters.fsignal = frequency;
 
 end
