@@ -25,7 +25,7 @@ switch varargin{1}
         maxVout = Output.maxVoltage;
         
         tsCollection.Name = strcat( 'raw_', num2str(freqSignalHz),'Hz');
-        
+
     case 'filtered'
         S = load(varargin{2});
         Input = S.InputCounts;
