@@ -69,10 +69,10 @@ for i = 1 : numel(suchaiFolders)
 end
 plotLegendCell = [freqsLegendTM, freqsLegendLab]';
 
-%% Vin Plot
+%% Pin Plot
 ks = 1;
 kl = 1;
-subFolderName = 'vin';
+subFolderName = 'Pin';
 saveFolderFig = [saveFolder , '/', subFolderName];
 if ~isdir(saveFolderFig)
     mkdir(saveFolderFig);
@@ -85,7 +85,7 @@ for i = 1 : numel(suchaiFolders)
         pdfResult = matfileTM{ks}.pdfResult;
         Parameters = matfileTM{ks}.Parameters;
         hold on;
-        plot(xbins.raw.Vin, log10(pdfResult.raw.Vin),'*','MarkerSize', mkrsize);
+        plot(xbins.raw.Pin, log10(pdfResult.raw.Pin),'*','MarkerSize', mkrsize);
         hold off;
         ks = ks +1;
     end
@@ -95,7 +95,7 @@ for i = 1 : numel(suchaiFolders)
         pdfResult = matfileLab{kl}.pdfResult;
         Parameters = matfileLab{kl}.Parameters;
         hold on;
-        plot(xbins.raw.Vin, log10(pdfResult.raw.Vin),'o','MarkerSize', mkrsize);
+        plot(xbins.raw.Pin, log10(pdfResult.raw.Pin),'o','MarkerSize', mkrsize);
         hold off;
         kl = kl + 1;
     end
@@ -105,20 +105,20 @@ for i = 1 : numel(suchaiFolders)
     myylabels = cellstr(num2str(yt(:), '10^{%.1f}'));
     set(gca,'YTickLabel', myylabels);
     set(gca, 'YMinorTick','on', 'YMinorGrid','on');
-    title(['Vin PDF ', num2str(str2double(freqsLab(i))/91.5), ' f_{RC}']);
-    xlabel('V');
+    title(['Power Input PDF ', num2str(str2double(freqsLab(i))/91.5), ' f_{RC}']);
+    xlabel('mW');
     currLegend = [currLegendSuchai, currLegendLab]';
     hleg = legend(currLegend,'Location','eastoutside','Orientation','vertical');
     set(hleg, 'Interpreter', 'none');
-    figSaveName = [saveFolderFig, '/',suchaiFolders{i},'_vin_',date,'.png'];
+    figSaveName = [saveFolderFig, '/',suchaiFolders{i},'_Pin_',date,'.png'];
     saveas(gcf, figSaveName);
 end
 close all;
 
-%% Vout Plot
+%% Pr Plot
 ks = 1;
 kl = 1;
-subFolderName = 'vout';
+subFolderName = 'Pr';
 saveFolderFig = [saveFolder , '/', subFolderName];
 if ~isdir(saveFolderFig)
     mkdir(saveFolderFig);
@@ -131,7 +131,7 @@ for i = 1 : numel(suchaiFolders)
         pdfResult = matfileTM{ks}.pdfResult;
         Parameters = matfileTM{ks}.Parameters;
         hold on;
-        plot(xbins.raw.Vout, log10(pdfResult.raw.Vout),'*','MarkerSize', mkrsize);
+        plot(xbins.raw.Pr, log10(pdfResult.raw.Pr),'*','MarkerSize', mkrsize);
         hold off;
         ks = ks +1;
     end
@@ -141,7 +141,7 @@ for i = 1 : numel(suchaiFolders)
         pdfResult = matfileLab{kl}.pdfResult;
         Parameters = matfileLab{kl}.Parameters;
         hold on;
-        plot(xbins.raw.Vout, log10(pdfResult.raw.Vout),'o','MarkerSize', mkrsize);
+        plot(xbins.raw.Pr, log10(pdfResult.raw.Pr),'o','MarkerSize', mkrsize);
         hold off;
         kl = kl + 1;
     end
@@ -151,20 +151,20 @@ for i = 1 : numel(suchaiFolders)
     myylabels = cellstr(num2str(yt(:), '10^{%.1f}'));
     set(gca,'YTickLabel', myylabels);
     set(gca, 'YMinorTick','on', 'YMinorGrid','on');
-    title(['Vout PDF ', num2str(str2double(freqsLab(i))/91.5), ' f_{RC}']);
-    xlabel('V');
+    title(['Power Resistor PDF', num2str(str2double(freqsLab(i))/91.5), ' f_{RC}']);
+    xlabel('mW');
     currLegend = [currLegendSuchai, currLegendLab]';
     hleg = legend(currLegend,'Location','eastoutside','Orientation','vertical');
     set(hleg, 'Interpreter', 'none');
-    figSaveName = [saveFolderFig, '/',suchaiFolders{i},'_vout_',date,'.png'];
+    figSaveName = [saveFolderFig, '/',suchaiFolders{i},'_Pr_',date,'.png'];
     saveas(gcf, figSaveName);
 end
 close all;
 
-%% Power Plot
+%% LangInj Plot
 ks = 1;
 kl = 1;
-subFolderName = 'injectedPower';
+subFolderName = 'LangInj';
 saveFolderFig = [saveFolder , '/', subFolderName];
 if ~isdir(saveFolderFig)
     mkdir(saveFolderFig);
@@ -197,12 +197,57 @@ for i = 1 : numel(suchaiFolders)
     myylabels = cellstr(num2str(yt(:), '10^{%.1f}'));
     set(gca,'YTickLabel', myylabels);
     set(gca, 'YMinorTick','on', 'YMinorGrid','on');
-    title(['Injected Power PDFs ', num2str(str2double(freqsLab(i))/91.5), ' f_{RC}']);
+    title(['Injected Power PDF ', num2str(str2double(freqsLab(i))/91.5), ' f_{RC}']);
     xlabel('V^2 \cdot Hz');
     currLegend = [currLegendSuchai, currLegendLab]';
     hleg = legend(currLegend,'Location','eastoutside','Orientation','vertical');
     set(hleg, 'Interpreter', 'none');
-    figSaveName = [saveFolderFig, '/',suchaiFolders{i},'_power_',date,'.png'];
+    figSaveName = [saveFolderFig, '/',suchaiFolders{i},'_LangInj_',date,'.png'];
+    saveas(gcf, figSaveName);
+end
+
+%% LangDiss Plot
+ks = 1;
+kl = 1;
+subFolderName = 'LangDiss';
+saveFolderFig = [saveFolder , '/', subFolderName];
+if ~isdir(saveFolderFig)
+    mkdir(saveFolderFig);
+end
+for i = 1 : numel(suchaiFolders)
+    hfig = figure('units','normalized','outerposition',[0 0 1 1]);
+    currLegendSuchai = freqsLegendTM(ks:ks+tmPerFreqSuchai(i)-1);
+    for j = 1 : tmPerFreqSuchai(i)
+        xbins = matfileTM{ks}.xbins;
+        pdfResult = matfileTM{ks}.pdfResult;
+        Parameters = matfileTM{ks}.Parameters;
+        hold on;
+        plot(xbins.raw.LangDiss, log10(pdfResult.raw.LangDiss),'*','MarkerSize', mkrsize);
+        hold off;
+        ks = ks +1;
+    end
+    currLegendLab = freqsLegendLab(kl:kl+tmPerFreqLab(i)-1);
+    for j = 1 : tmPerFreqLab(i)
+        xbins = matfileLab{kl}.xbins;
+        pdfResult = matfileLab{kl}.pdfResult;
+        Parameters = matfileLab{kl}.Parameters;
+        hold on;
+        plot(xbins.raw.LangDiss, log10(pdfResult.raw.LangDiss),'o','MarkerSize', mkrsize);
+        hold off;
+        kl = kl + 1;
+    end
+    grid on;
+    ylim([-4 -1]);
+    yt = get(gca, 'YTick');
+    myylabels = cellstr(num2str(yt(:), '10^{%.1f}'));
+    set(gca,'YTickLabel', myylabels);
+    set(gca, 'YMinorTick','on', 'YMinorGrid','on');
+    title(['Dissipated Power PDF ', num2str(str2double(freqsLab(i))/91.5), ' f_{RC}']);
+    xlabel('V^2 \cdot Hz');
+    currLegend = [currLegendSuchai, currLegendLab]';
+    hleg = legend(currLegend,'Location','eastoutside','Orientation','vertical');
+    set(hleg, 'Interpreter', 'none');
+    figSaveName = [saveFolderFig, '/',suchaiFolders{i},'_LangDiss_',date,'.png'];
     saveas(gcf, figSaveName);
 end
 close all;
