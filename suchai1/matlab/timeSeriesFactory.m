@@ -4,7 +4,7 @@ if nargin < 2
     error('Second argument missing');
 end
 
-freqCircuitHz = 92;
+freqCircuitHz = 91.5;
 R = 1210;
 C = 1 / (freqCircuitHz * 2 * pi * R);
 dampingRate = 1/ (R*C);
