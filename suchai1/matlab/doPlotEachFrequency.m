@@ -11,25 +11,25 @@ end
 
 labRootFolder = [rootDir,'/','lab'];
 suchaiRootFolder =  [rootDir,'/','suchai'];
-suchaiFolders = dir(suchaiRootFolder);
-suchaiFolders = {suchaiFolders.name};
-suchaiFolders = suchaiFolders(3:end)';
-suchaiFolders = sortn(suchaiFolders);
-
+suchaiFoldersStruct = dir(suchaiRootFolder);
+suchaiFoldersStruct = suchaiFoldersStruct(3:end);
+isADir = [suchaiFoldersStruct.isdir];
+suchaiFoldersStruct = suchaiFoldersStruct(isADir);
+suchaiFoldersName = {suchaiFoldersStruct.name};
+suchaiFoldersName = sortn(suchaiFoldersName);
 freqsTelemetry = {};
 freqsLegendTM = {};
 telemetryCounter = 0;
 pathMatTelemetry = {};
 matfileTM = {};
-tmPerFreqSuchai = zeros(1,numel(suchaiFolders));
-for i = 1 : numel(suchaiFolders)
-    
-    tmFolder = strcat(suchaiRootFolder,'/', suchaiFolders{i});
+tmPerFreqSuchai = zeros(1,numel(suchaiFoldersName));
+for i = 1 : numel(suchaiFoldersName)
+    tmFolder = strcat(suchaiRootFolder,'/', suchaiFoldersName{i});
     tmFile = dir(tmFolder);
     tmFile = {tmFile.name};
     tmFile = tmFile(3:end)';
     tmFile = sortn(tmFile);
-    freqInHz = suchaiFolders{i};
+    freqInHz = suchaiFoldersName{i};
     tmPerFreqSuchai(i) = length(tmFile);
     for j = 1 : length(tmFile)
         telemetryCounter = telemetryCounter + 1;
@@ -45,15 +45,15 @@ freqsLegendLab = {};
 labCounter = 0;
 pathMatLab = {};
 matfileLab = {};
-tmPerFreqLab = zeros(1,numel(suchaiFolders));
-for i = 1 : numel(suchaiFolders)
+tmPerFreqLab = zeros(1,numel(suchaiFoldersName));
+for i = 1 : numel(suchaiFoldersName)
     
-    tmFolder = strcat(labRootFolder,'/', suchaiFolders{i});
+    tmFolder = strcat(labRootFolder,'/', suchaiFoldersName{i});
     tmFile = dir(tmFolder);
     tmFile = {tmFile.name};
     tmFile = tmFile(3:end)';
     tmFile = sortn(tmFile);
-    freqInHz = suchaiFolders{i};
+    freqInHz = suchaiFoldersName{i};
     tmPerFreqLab(i) = 0;
     for j = 1 : length(tmFile)
         if strfind (tmFile{j}, 'raw')
@@ -77,7 +77,7 @@ saveFolderFig = [saveFolder , '/', subFolderName];
 if ~isdir(saveFolderFig)
     mkdir(saveFolderFig);
 end
-for i = 1 : numel(suchaiFolders)
+for i = 1 : numel(suchaiFoldersName)
     hfig = figure('units','normalized','outerposition',[0 0 1 1]);
     currLegendSuchai = freqsLegendTM(ks:ks+tmPerFreqSuchai(i)-1);
     for j = 1 : tmPerFreqSuchai(i)
@@ -110,7 +110,7 @@ for i = 1 : numel(suchaiFolders)
     currLegend = [currLegendSuchai, currLegendLab]';
     hleg = legend(currLegend,'Location','eastoutside','Orientation','vertical');
     set(hleg, 'Interpreter', 'none');
-    figSaveName = [saveFolderFig, '/',suchaiFolders{i},'_Pin_',date,'.png'];
+    figSaveName = [saveFolderFig, '/',suchaiFoldersName{i},'_Pin_',date,'.png'];
     saveas(gcf, figSaveName);
 end
 close all;
@@ -123,7 +123,7 @@ saveFolderFig = [saveFolder , '/', subFolderName];
 if ~isdir(saveFolderFig)
     mkdir(saveFolderFig);
 end
-for i = 1 : numel(suchaiFolders)
+for i = 1 : numel(suchaiFoldersName)
     hfig = figure('units','normalized','outerposition',[0 0 1 1]);
     currLegendSuchai = freqsLegendTM(ks:ks+tmPerFreqSuchai(i)-1);
     for j = 1 : tmPerFreqSuchai(i)
@@ -156,7 +156,7 @@ for i = 1 : numel(suchaiFolders)
     currLegend = [currLegendSuchai, currLegendLab]';
     hleg = legend(currLegend,'Location','eastoutside','Orientation','vertical');
     set(hleg, 'Interpreter', 'none');
-    figSaveName = [saveFolderFig, '/',suchaiFolders{i},'_Pr_',date,'.png'];
+    figSaveName = [saveFolderFig, '/',suchaiFoldersName{i},'_Pr_',date,'.png'];
     saveas(gcf, figSaveName);
 end
 close all;
@@ -169,7 +169,7 @@ saveFolderFig = [saveFolder , '/', subFolderName];
 if ~isdir(saveFolderFig)
     mkdir(saveFolderFig);
 end
-for i = 1 : numel(suchaiFolders)
+for i = 1 : numel(suchaiFoldersName)
     hfig = figure('units','normalized','outerposition',[0 0 1 1]);
     currLegendSuchai = freqsLegendTM(ks:ks+tmPerFreqSuchai(i)-1);
     for j = 1 : tmPerFreqSuchai(i)
@@ -202,7 +202,7 @@ for i = 1 : numel(suchaiFolders)
     currLegend = [currLegendSuchai, currLegendLab]';
     hleg = legend(currLegend,'Location','eastoutside','Orientation','vertical');
     set(hleg, 'Interpreter', 'none');
-    figSaveName = [saveFolderFig, '/',suchaiFolders{i},'_LangInj_',date,'.png'];
+    figSaveName = [saveFolderFig, '/',suchaiFoldersName{i},'_LangInj_',date,'.png'];
     saveas(gcf, figSaveName);
 end
 
@@ -214,7 +214,7 @@ saveFolderFig = [saveFolder , '/', subFolderName];
 if ~isdir(saveFolderFig)
     mkdir(saveFolderFig);
 end
-for i = 1 : numel(suchaiFolders)
+for i = 1 : numel(suchaiFoldersName)
     hfig = figure('units','normalized','outerposition',[0 0 1 1]);
     currLegendSuchai = freqsLegendTM(ks:ks+tmPerFreqSuchai(i)-1);
     for j = 1 : tmPerFreqSuchai(i)
@@ -247,7 +247,7 @@ for i = 1 : numel(suchaiFolders)
     currLegend = [currLegendSuchai, currLegendLab]';
     hleg = legend(currLegend,'Location','eastoutside','Orientation','vertical');
     set(hleg, 'Interpreter', 'none');
-    figSaveName = [saveFolderFig, '/',suchaiFolders{i},'_LangDiss_',date,'.png'];
+    figSaveName = [saveFolderFig, '/',suchaiFoldersName{i},'_LangDiss_',date,'.png'];
     saveas(gcf, figSaveName);
 end
 close all;
