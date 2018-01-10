@@ -1,5 +1,5 @@
-database = 'lab';
-npoints = 100;  %numbins
+database = 'suchai';
+npoints = 200;  %numbins
 seedFolder = ['./mat/ts/',database];
 freqsDir = dir(seedFolder);
 freqsDir = {freqsDir.name};
@@ -49,9 +49,9 @@ for i = 1 : length(freqsDir)
                 continue
             end
             ts = S.(name);
-            [pdfResult.(name), xbins.(name), bw.(name), Parameters.(name)]= pdfEstimator(ts, npoints );
+            [pdfResult.(name), xbins.(name), bandWidth.(name), Parameters.(name)]= pdfEstimator(ts, npoints );
         end
-        save(newMatFileName,'pdfResult','xbins','Parameters','-v7.3');
+        save(newMatFileName,'pdfResult','xbins','Parameters','bandWidth','-v7.3');
         disp([newMatFileName,' saved sucessfully']);
     end
 end
