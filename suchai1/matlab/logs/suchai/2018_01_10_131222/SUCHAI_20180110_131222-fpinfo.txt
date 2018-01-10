@@ -1,0 +1,9 @@
+Detalles adicionales																			
+"2 Experimentos: 1) LP pasando por jicamarca entre las fotos PS y PN. 2) Experimento de fisica a mas alta frecuencia justo pasado por brasil zona de mas aprticulas (datos 
+previos LP). 
+FP apagado foto PN del 09/01:   FP Foto PS 2:35UTC 10/01:   FP foto PN 3:23UTC 10/01:   FP descarga LP 0:47UTC 10/01:   FP EF 1:12UTC (ejecucion inmediata) 10/01:   
+0x5005 126                                 0x5005 153                              0x5005 201                            0x5005 45                                      0x5005 72     
+0x5007 28679                             0x5007 24604                          0x5007 24604                        0x5007 32773                                0x5007 24621 
+0x5008 0                                     0x5008 3                                  0x5008 3                                0x5008 3                                        0x5008 4 "																			
+																			
+																			
