@@ -1,7 +1,12 @@
-pathMatfile ={'./mat/ts/lab/14628.6768/20161805_raw_14628.6768Hz.mat',...
-    './mat/ts/suchai/14628.6768/20180111_125344_raw_14628.6768Hz.mat'};
 
-
+% pathMatfile ={'./mat/ts/lab/8593.9758/20161805_raw_8593.9758Hz.mat',...
+%     './mat/ts/suchai/8593.9758/20171012_133800_raw_8593.9758Hz.mat'};%1
+% pathMatfile ={'./mat/ts/lab/356.5754/20161805_raw_356.5754Hz.mat',...
+%     './mat/ts/suchai/356.5754/20170830_022511_raw_356.5754Hz.mat'};%2
+% pathMatfile ={'./mat/ts/lab/14628.6768/20161805_raw_14628.6768Hz.mat',...
+%     './mat/ts/suchai/14628.6768/20180110_131222_raw_14628.6768Hz.mat'};%marcos1
+% pathMatfile ={'./mat/ts/lab/14628.6768/20161805_raw_14628.6768Hz.mat',...
+%     './mat/ts/suchai/14628.6768/20180111_125344_raw_14628.6768Hz.mat'};%marcos2
 
 pathMatfile = fullfile(pathMatfile);
 pathMatfileA = pathMatfile{1};
@@ -43,7 +48,7 @@ plot(tdataB, dataB);
 set(gca, 'YMinorTick','on', 'YMinorGrid','on');
 htit = title([tsStructA.Name,' vs ',tsStructB.Name]);
 xlabel(tsStructA.tsc.TimeInfo.Units);
-ylabel(tsStructA.tsc.Vin.DataInfo.Units);
+ylabel(tsStructA.tsc.Vout.DataInfo.Units);
 legA = nicknameA;
 legB = nicknameB;
 hleg = legend({legA, legB});
