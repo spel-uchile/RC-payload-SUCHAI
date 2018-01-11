@@ -1,7 +1,7 @@
 clear all;
 close all;
 
-rootDir= './mat/pdf';
+rootDir= './mat/pdf-bwauto';
 saveFolder =['./img/suchaiPDFs/SeparatedByFrequency/',date];
 mkrsize = 6;
 myLegendFontSize = 10;
@@ -101,6 +101,7 @@ for i = 1 : numel(suchaiFoldersName)
     end
     grid on;
     ylim([-3 1]);
+    xlim([-0.4 1.5]);
     yt = get(gca, 'YTick');
     myylabels = cellstr(num2str(yt(:), '10^{%.1f}'));
     set(gca,'YTickLabel', myylabels);
@@ -147,6 +148,7 @@ for i = 1 : numel(suchaiFoldersName)
     end
     grid on;
     ylim([-5 1]);
+    xlim([-0.5 3]);
     yt = get(gca, 'YTick');
     myylabels = cellstr(num2str(yt(:), '10^{%.1f}'));
     set(gca,'YTickLabel', myylabels);
@@ -193,6 +195,7 @@ for i = 1 : numel(suchaiFoldersName)
     end
     grid on;
     ylim([-4 -1]);
+    xlim([-350 550]);
     yt = get(gca, 'YTick');
     myylabels = cellstr(num2str(yt(:), '10^{%.1f}'));
     set(gca,'YTickLabel', myylabels);
@@ -238,6 +241,7 @@ for i = 1 : numel(suchaiFoldersName)
     end
     grid on;
     ylim([-4 -1]);
+    xlim([-150 650]);
     yt = get(gca, 'YTick');
     myylabels = cellstr(num2str(yt(:), '10^{%.1f}'));
     set(gca,'YTickLabel', myylabels);
