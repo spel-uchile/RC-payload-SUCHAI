@@ -1,4 +1,4 @@
-rootDir= './mat/pdf';
+rootDir= './mat/pdf-bwmanual';
 saveFolder ='./img/suchai-vs-lab';
 mkrsize = 6;
 myLegendFontSize = 10;
@@ -8,9 +8,11 @@ end
 
 labRootFolder = [rootDir,'/','lab'];
 suchaiRootFolder =  [rootDir,'/','suchai'];
-suchaiFolders = dir(suchaiRootFolder);
-suchaiFolders = {suchaiFolders.name};
-suchaiFolders = suchaiFolders(3:end)';
+suchaiFoldersStruct = dir(suchaiRootFolder);
+suchaiFoldersStruct = suchaiFoldersStruct(3:end);
+isADir = [suchaiFoldersStruct.isdir];
+suchaiFoldersStruct = suchaiFoldersStruct(isADir);
+suchaiFolders = {suchaiFoldersStruct.name};
 suchaiFolders = sortn(suchaiFolders);
 
 freqsTelemetry = {};
@@ -130,7 +132,7 @@ for i = 1 : numel(matfileTM)
     Parameters = matfileTM{i}.Parameters;
     %% Plots
     hold on;
-    plot(xbins.raw.injectedPower, log10(pdfResult.raw.injectedPower),'*', 'MarkerSize', mkrsize);
+    plot(xbins.raw.LangInj, log10(pdfResult.raw.LangInj),'*', 'MarkerSize', mkrsize);
     hold off;
     
 end
@@ -139,7 +141,7 @@ for i = 1 : length(pathMatLab)
     pdfResult = matfileLab{i}.pdfResult;
     Parameters = matfileLab{i}.Parameters;
     hold on;
-    plot(xbins.raw.injectedPower, log10(pdfResult.raw.injectedPower),'o','MarkerSize', mkrsize);
+    plot(xbins.raw.LangInj, log10(pdfResult.raw.LangInj),'o','MarkerSize', mkrsize);
     hold off;
 end
 grid on;
