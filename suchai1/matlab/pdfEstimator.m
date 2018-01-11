@@ -43,12 +43,6 @@ ptsPin = linspace(-0.2, 1.2, npoints); %in mW
 ptsPr = linspace(-0.2, 2.5, npoints);
 ptsPc = ptsPin;
 ptsDeltaP = ptsPin;
-% ptsIr = linspace(-1, 1, npoints);
-% ptsIc = linspace(-0.15, 0.15, npoints);
-% ptsLangInj = linspace(-0.2*dampingRate, 0.2*dampingRate, npoints);
-% ptsLangDiss = ptsLangInj;
-% ptsLangStored = ptsLangInj;
-% ptsLangDeltaP = ptsLangInj;
 
 if isempty(bwStruct)
     [fVin, ptsVin, bwVin] = ksdensity(vin,ptsVin, 'kernel',kernel);
