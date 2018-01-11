@@ -13,6 +13,10 @@ if nargin > 2
         case 2
             npoints = varargin{1};
             kernel = varargin{2};
+        case 3
+            npoints = varargin{1};
+            kernel = varargin{2};
+            bwStruct = varargin{3};
         otherwise
             error('too many arguments');
     end
@@ -32,7 +36,6 @@ langInj = tsCollection.langevinInjected.Data;
 langStored = tsCollection.langevinStored.Data;
 langDeltaP = tsCollection.langevinDeltaPower.Data;
 
-dampingRate = tSeries.dampingRate;
 ptsVin = linspace(-1.25, 1.25, npoints);
 ptsVout = ptsVin;
 ptsVr = ptsVin;
@@ -47,19 +50,35 @@ ptsDeltaP = ptsPin;
 % ptsLangStored = ptsLangInj;
 % ptsLangDeltaP = ptsLangInj;
 
-[fVin, ptsVin, bwVin] = ksdensity(vin,ptsVin, 'kernel',kernel);
-[fVout, ptsVout, bwVout] = ksdensity(vout,ptsVout, 'kernel',kernel);
-[fVr, ptsVr, bwVr] = ksdensity(vR, ptsVr, 'kernel',kernel);
-[fIr, ptsIr, bwIr] = ksdensity(iR, 'kernel',kernel);
-[fIc, ptsIc, bwIc] = ksdensity(iC, 'kernel',kernel);
-[fPin, ptsPin, bwPin] = ksdensity(pIn, ptsPin,'kernel',kernel);
-[fPr, ptsPr, bwPr] = ksdensity(pR, ptsPr, 'kernel',kernel);
-[fPc, ptsPc, bwPc] = ksdensity(pC, ptsPc, 'kernel',kernel);
-[fDeltaP, ptsDeltaP, bwDeltaP] = ksdensity(deltaP, ptsDeltaP, 'kernel',kernel);
-[fLangInj, ptsLangInj, bwLangInj] = ksdensity(langInj, 'kernel',kernel);
-[fLangDiss, ptsLangDiss, bwLangDiss] = ksdensity(langDiss, 'kernel',kernel);
-[fLangStored, ptsLangStored, bwLangStored] = ksdensity(langStored, 'kernel',kernel);
-[fLangDelta, ptsLangDeltaP, bwLangDeltaP] = ksdensity(langDeltaP, 'kernel',kernel);
+if isempty(bwStruct)
+    [fVin, ptsVin, bwVin] = ksdensity(vin,ptsVin, 'kernel',kernel);
+    [fVout, ptsVout, bwVout] = ksdensity(vout,ptsVout, 'kernel',kernel);
+    [fVr, ptsVr, bwVr] = ksdensity(vR, ptsVr, 'kernel',kernel);
+    [fIr, ptsIr, bwIr] = ksdensity(iR, 'kernel',kernel);
+    [fIc, ptsIc, bwIc] = ksdensity(iC, 'kernel',kernel);
+    [fPin, ptsPin, bwPin] = ksdensity(pIn, ptsPin,'kernel',kernel);
+    [fPr, ptsPr, bwPr] = ksdensity(pR, ptsPr, 'kernel',kernel);
+    [fPc, ptsPc, bwPc] = ksdensity(pC, ptsPc, 'kernel',kernel);
+    [fDeltaP, ptsDeltaP, bwDeltaP] = ksdensity(deltaP, ptsDeltaP, 'kernel',kernel);
+    [fLangInj, ptsLangInj, bwLangInj] = ksdensity(langInj, 'kernel',kernel);
+    [fLangDiss, ptsLangDiss, bwLangDiss] = ksdensity(langDiss, 'kernel',kernel);
+    [fLangStored, ptsLangStored, bwLangStored] = ksdensity(langStored, 'kernel',kernel);
+    [fLangDelta, ptsLangDeltaP, bwLangDeltaP] = ksdensity(langDeltaP, 'kernel',kernel);
+else
+    [fVin, ptsVin, bwVin] = ksdensity(vin,ptsVin, 'kernel',kernel, 'bandwidth', bwStruct.Vin);
+    [fVout, ptsVout, bwVout] = ksdensity(vout,ptsVout, 'kernel',kernel, 'bandwidth', bwStruct.Vout);
+    [fVr, ptsVr, bwVr] = ksdensity(vR, ptsVr, 'kernel',kernel, 'bandwidth', bwStruct.Vr);
+    [fIr, ptsIr, bwIr] = ksdensity(iR, 'kernel',kernel, 'bandwidth', bwStruct.Ir);
+    [fIc, ptsIc, bwIc] = ksdensity(iC, 'kernel',kernel, 'bandwidth', bwStruct.Ic);
+    [fPin, ptsPin, bwPin] = ksdensity(pIn, ptsPin,'kernel',kernel, 'bandwidth', bwStruct.Pin);
+    [fPr, ptsPr, bwPr] = ksdensity(pR, ptsPr, 'kernel',kernel, 'bandwidth', bwStruct.Pr);
+    [fPc, ptsPc, bwPc] = ksdensity(pC, ptsPc, 'kernel',kernel, 'bandwidth', bwStruct.Pc);
+    [fDeltaP, ptsDeltaP, bwDeltaP] = ksdensity(deltaP, ptsDeltaP, 'kernel',kernel, 'bandwidth', bwStruct.DeltaP);
+    [fLangInj, ptsLangInj, bwLangInj] = ksdensity(langInj, 'kernel',kernel, 'bandwidth', bwStruct.LangInj);
+    [fLangDiss, ptsLangDiss, bwLangDiss] = ksdensity(langDiss, 'kernel',kernel, 'bandwidth', bwStruct.LangDiss);
+    [fLangStored, ptsLangStored, bwLangStored] = ksdensity(langStored, 'kernel',kernel, 'bandwidth', bwStruct.LangStored);
+    [fLangDelta, ptsLangDeltaP, bwLangDeltaP] = ksdensity(langDeltaP, 'kernel',kernel, 'bandwidth', bwStruct.LangDeltaP);
+end
 
 pdfValue.Vin = normalize(ptsVin, fVin);
 pdfValue.Vout = normalize(ptsVout, fVout);
