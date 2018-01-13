@@ -33,6 +33,7 @@ bwLangStored = [5.5448    5.5448    5.5448    5.5448    5.5448    5.5448    5.54
 % others
 npoints = 100;  %numbinsç
 kernel = 'normal';
+% kernel = 'epanechnikov';
 %% Loop
 seedFolder = ['./mat/ts/',database];
 freqsDir = dir('./mat/ts/suchai');  %pair only with suchi
@@ -64,10 +65,10 @@ for i = 1 : length(freqsDir)
         currentDataDate = dates{kl};
         newMatFileName = strcat(saveFolder,'/', currentDataDate,...
             '_pdfEstimator_',freq,'Hz.mat');
-        %         if exist(fullfile(newMatFileName))
-        %             disp([newMatFileName,' already exists']);
-        %             continue
-        %         end
+        if exist(fullfile(newMatFileName))
+            disp([newMatFileName,' already exists']);
+            continue
+        end
         disp([newMatFileName,' is being created']);
         dateIndexes = strfind(matfiles, currentDataDate);
         emptyCells = cellfun ('isempty', dateIndexes);
@@ -83,22 +84,22 @@ for i = 1 : length(freqsDir)
                 continue
             end
             ts = S.(name);
-%             bwStruct.Vin = bwVin(i);
-%             bwStruct.Vout = bwVout(i);
-%             bwStruct.Vr = bwVr(i);
-%             bwStruct.Ir =  bwIr(i);
-%             bwStruct.Ic = bwIc(i);
-%             bwStruct.Pin = bwPin(i);
-%             bwStruct.Pr =  bwPr(i);
-%             bwStruct.Pc = bwPc(i);
-%             bwStruct.DeltaP = bwDeltaP(i);
-%             bwStruct.LangInj = bwLangInj(i);
-%             bwStruct.LangDiss = bwLangDiss(i);
-%             bwStruct.LangStored = bwLangStored(i);
-%             bwStruct.LangDeltaP = bwLangDeltaP(i);
+            %             bwStruct.Vin = bwVin(i);
+            %             bwStruct.Vout = bwVout(i);
+            %             bwStruct.Vr = bwVr(i);
+            %             bwStruct.Ir =  bwIr(i);
+            %             bwStruct.Ic = bwIc(i);
+            %             bwStruct.Pin = bwPin(i);
+            %             bwStruct.Pr =  bwPr(i);
+            %             bwStruct.Pc = bwPc(i);
+            %             bwStruct.DeltaP = bwDeltaP(i);
+            %             bwStruct.LangInj = bwLangInj(i);
+            %             bwStruct.LangDiss = bwLangDiss(i);
+            %             bwStruct.LangStored = bwLangStored(i);
+            %             bwStruct.LangDeltaP = bwLangDeltaP(i);
             
-%             [pdfResult.(name), xbins.(name), bandWidth.(name), Parameters.(name)]= pdfEstimator(ts, npoints, kernel, bwStruct );
-                        [pdfResult.(name), xbins.(name), bandWidth.(name), Parameters.(name)]= pdfEstimator(ts, npoints, kernel, []);
+            %             [pdfResult.(name), xbins.(name), bandWidth.(name), Parameters.(name)]= pdfEstimator(ts, npoints, kernel, bwStruct );
+            [pdfResult.(name), xbins.(name), bandWidth.(name), Parameters.(name)]= pdfEstimator(ts, npoints, kernel, []);
             save(newMatFileName,'pdfResult','xbins','Parameters','bandWidth','-v7.3');
             disp([newMatFileName,' saved sucessfully']);
         end

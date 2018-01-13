@@ -1,4 +1,4 @@
-prefix = '2018_01_11_125344';
+prefix = '2018_01_13_031449';
 j = strfind(prefix,'_');
 suffix = prefix(j(3)+1:end);
 suffixFrames = [suffix '-frames'];

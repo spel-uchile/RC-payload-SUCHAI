@@ -1,5 +1,4 @@
-
-pathMatfile = './mat/ts/lab/2937.9922/20161805_123456_raw_2937.9922Hz.mat';
+pathMatfile = './mat/ts/suchai/14628.6768/20180111_125344_raw_14628.6768Hz.mat';
 
 pathMatfile = fullfile(pathMatfile);
 S = load(pathMatfile);
@@ -21,7 +20,7 @@ ylim([-0.9 0.9]);
 set(gca, 'YMinorTick','on', 'YMinorGrid','on');
 htit = title([tsStruct.Name,' Voltage time series']);
 xlabel(tsStruct.tsc.TimeInfo.Units);
-ylabel(tsStruct.tsc.Vin.DataInfo.Units);
+ylabel(tsStruct.tsc.Vout.DataInfo.Units);
 legVoutData = tsStruct.dateOfCreation;
 hleg = legend({legVoutData});
 set(htit, 'Interpreter', 'none');

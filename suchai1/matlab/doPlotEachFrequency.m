@@ -12,7 +12,7 @@ global tmPerFreqSuchai;
 global freqsLegendLab;
 global tmPerFreqLab;
 
-rootDir= './mat/pdf-bwmanual2';
+rootDir= './mat/pdf';
 saveFolder =['./img/suchaiPDFs/SeparatedByFrequency/',date];
 mkrsize = 6;
 myLegendFontSize = 10;
@@ -27,7 +27,7 @@ suchaiFoldersStruct = suchaiFoldersStruct(3:end);
 isADir = [suchaiFoldersStruct.isdir];
 suchaiFoldersStruct = suchaiFoldersStruct(isADir);
 suchaiFoldersName = {suchaiFoldersStruct.name};
-suchaiFoldersName = sortn(suchaiFoldersName)
+suchaiFoldersName = sortn(suchaiFoldersName);
 freqsTelemetry = {};
 freqsLegendTM = {};
 telemetryCounter = 0;

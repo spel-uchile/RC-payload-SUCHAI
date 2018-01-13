@@ -1,5 +1,5 @@
 clear dir;
-prefix = '2018_01_11_125344';  %date and foldername of logs
+prefix = '2018_01_13_031449';  %date and foldername of logs
 parserFolder = './parser/suchai';
 preprocessorFolder = './preprocessor/suchai';
 fixtureFolder = strcat(preprocessorFolder, '/', prefix);
