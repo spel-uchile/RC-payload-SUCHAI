@@ -1,0 +1,5 @@
+Esta ejecucion fue ejecutada por un FP que no fue borrado. El FP original fue seteado en el log "SUCHAI_20180114_025521.txt" el cual tiene los valores:
+FP EF 1:09UTC (ejecucion inmediata) 15/01: 
+0x5005 69 
+0x5007 24621 
+0x5008 498 
