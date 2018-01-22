@@ -6,11 +6,11 @@
 clear all;
 close all;
 
-prefix = '2016_18_05';
-rawLogsFolder = strcat('./logs','/', prefix);
+prefix = '2018_01_15_000004';
+rawLogsFolder = strcat('./logs/lab','/', prefix);
 inputVoltagesFile = strcat(prefix, '_', 'input_voltages.log');  %vin file
 logPath = strcat(rawLogsFolder, '/', inputVoltagesFile);
-preprocessorFolder = './preprocessor';
+preprocessorFolder = './preprocessor/lab';
 
 saveFolder = strcat(preprocessorFolder, '/', prefix);
 if ~isdir(saveFolder)
@@ -18,7 +18,7 @@ if ~isdir(saveFolder)
 end
 
 inFile = logPreProcessor(logPath, saveFolder, 'input');
-for i = 1 : 15
+for i = 1 : 1%15
     voutFile = strcat(prefix,'_freq', num2str(i-1),'.log');
     logPath = strcat(rawLogsFolder, '/', voutFile);
     outFiles{i} = logPreProcessor(logPath, saveFolder, 'output', i);
