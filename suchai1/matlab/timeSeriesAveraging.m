@@ -1,4 +1,4 @@
-function averagedStruct = timeSeriesAveraging( originalCollection, tratioValue)
+function averagedStruct = timeSeriesAveraging( originalCollection, tratioValue, fsignal)
     
 dtIncrement = originalCollection.tsc.TimeInfo.Increment;
 t = originalCollection.tsc.Time;
@@ -70,5 +70,6 @@ averagedCollection = tscollection({avgVin, avgVout, avgVr, avgIr, avgIc, avgPr,.
 
 averagedStruct.tsc = averagedCollection;
 averagedStruct.smoothedFlag = smoothedFlag;
+averagedStruct.fsignal = fsignal;
 end
 
