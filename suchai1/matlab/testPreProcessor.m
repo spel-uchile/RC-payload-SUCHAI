@@ -3,7 +3,7 @@ close all;
 
 prefix = 'test';
 rawLogsFolder = strcat('./logs','/',prefix);
-inputVoltagesFile = strcat(prefix,'_','input_voltages.log');  %vin file
+inputVoltagesFile = strcat(prefix,'_','input_voltages.txt');  %vin file
 logPath = strcat(rawLogsFolder, '/', inputVoltagesFile);
 preprocessorFolder = './preprocessor';
 
@@ -15,7 +15,7 @@ end
 inFile = logPreProcessor(logPath, saveFolder, 'input');
 
 for i = 1 :1
-    voutFile = strcat(prefix,'_freq',num2str(i-1),'.log');  %vout files
+    voutFile = strcat(prefix,'_freq',num2str(i-1),'.txt');  %vout files
     logPath = strcat(rawLogsFolder, '/', voutFile);
     outFiles{i} = logPreProcessor(logPath, saveFolder, 'output', i);
 end

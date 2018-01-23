@@ -1,5 +1,5 @@
 prefix = 'test';
-suffix = 'HHMMSS-frames';
+suffix = 'HHMMSS';
 prefixjoin = 'YYYYMMDD';
 
 preprocessorFolder = './preprocessor';
@@ -8,8 +8,13 @@ if ~isdir(saveFolder)
     mkdir(saveFolder)
 end
 
-telemetryFile = ['./logs/', prefix, '/SUCHAI_',prefixjoin,'_', suffix,'.txt'];
-adcPeriod = 175;
+adcFile = ['./logs/', prefix, '/SUCHAI_', prefixjoin,'_', suffix,'_adcPeriod.txt'];
+fid = fopen(adcFile);
+tline = fgets(fid);
+adcPeriod = sscanf(tline, 'adcPeriod %d');
+fclose(fid);
+
+telemetryFile = ['./logs/', prefix, '/SUCHAI_',prefixjoin,'_', suffix,'-frames.txt'];
 [outFiles{1}, tmParams] = logPreProcessor(telemetryFile, saveFolder, 'telemetry-output', adcPeriod);
 
 inputVoltagesFile = './logs/input_seed0.txt';

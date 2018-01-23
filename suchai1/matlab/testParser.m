@@ -24,5 +24,3 @@ for i = 1 : length(preprocessedFiles)
     savePrefix = strcat(saveFolder,'/outputTest', num2str(i));
     outputParsed{i} = parserOutput(currFile, savePrefix, 9, 0, 1.6, 4);
 end
-
-

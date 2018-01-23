@@ -9,6 +9,9 @@ parserFiles = parserFiles(arrayfun(@(x) ~strcmp(x.name(1),'.')...
 parserFiles = {parserFiles.name};
 parserFiles = sortn(parserFiles);
 saveFolder = './mat/ts/test';
+if ~isdir(saveFolder)
+    mkdir(saveFolder)
+end
 
 inputFixture = strcat(fixtureFolder,'/', parserFiles{1});
 outputFixture = strcat(fixtureFolder,'/', parserFiles{2});
@@ -24,7 +27,7 @@ save(strcat(saveFolder, '/',raw.Name,'.mat'),'raw','-v7.3');
 simulation = timeSeriesFactory(fsignal, 'simulink', inputFixture, sampCoeff);
 save(strcat(saveFolder, '/', simulation.Name,'.mat'),'simulation','-v7.3');
 
-Parameters.numberOfRandomValues = 1e6;
+Parameters.numberOfRandomValues = 1e4;
 Parameters.dacBits = 16;
 Parameters.adcBits = 10;
 Parameters.dacMaxVoltage = 3.3;
@@ -33,7 +36,7 @@ Parameters.oversamplingCoeff = 4;
 Parameters.buffLen = 200;
 Parameters.sampledValuesPerRound = floor(Parameters.buffLen / Parameters.oversamplingCoeff);
 Parameters.nonSampledValuesPerRound = 0;
-Parameters.nWaitingUnits = 0; 
+Parameters.nWaitingUnits = 0;
 
 theoretical = timeSeriesFactory(fsignal, 'theoretical', Parameters);
 save(strcat(saveFolder, '/', theoretical.Name,'.mat'),'theoretical','-v7.3');
