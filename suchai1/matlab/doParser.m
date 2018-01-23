@@ -1,7 +1,6 @@
 clear dir;
-prefix = '2018_01_17_123317';  %date and foldername of logs
-parserFolder = './parser/suchai';
-preprocessorFolder = './preprocessor/suchai';
+parserFolder = ['./parser/',dataset];
+preprocessorFolder = ['./preprocessor/', dataset];
 fixtureFolder = strcat(preprocessorFolder, '/', prefix);
 preprocessedFiles = dir(fixtureFolder);
 preprocessedFiles = {preprocessedFiles.name};

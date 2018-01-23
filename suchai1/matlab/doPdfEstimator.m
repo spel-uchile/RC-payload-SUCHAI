@@ -1,4 +1,3 @@
-database = 'suchai';
 %% KDE bandwidth automaticos
 % bandwidth
 % bwVin = [0.0886    0.0589    0.0584    0.0646    0.1032    0.1180    0.0974    0.0589];
@@ -30,13 +29,12 @@ bwLangDiss =[8.7650   8.7650   8.7650    8.7650   8.7650    8.7650    8.7650    
 bwDeltaP = [0.015    0.015    0.015    0.015    0.015    0.015    0.015   0.015];
 bwLangDeltaP = [8.8711    8.8711    8.8711    8.8711   8.8711    8.8711    8.8711    8.8711];
 bwLangStored = [5.5448    5.5448    5.5448    5.5448    5.5448    5.5448    5.5448    5.5448];
-% others
-npoints = 100;  %numbinsç
+npoints = 100;  %numbins
 kernel = 'normal';
 % kernel = 'epanechnikov';
 %% Loop
-seedFolder = ['./mat/ts/',database];
-freqsDir = dir('./mat/ts/suchai');  %pair only with suchi
+seedFolder = ['./mat/ts/',dataset];
+freqsDir = dir(['./mat/ts/',dataset]);  %pair only with suchai frequencies
 freqsDir = {freqsDir.name};
 freqsDir = freqsDir(3:end);
 freqsDir = sortn(freqsDir);
@@ -44,7 +42,7 @@ freqsDir = lower(freqsDir);
 
 for i = 1 : length(freqsDir)
     freq = freqsDir{i};
-    saveFolder = ['./mat/pdf/',database,'/',freq];
+    saveFolder = ['./mat/pdf/',dataset,'/',freq];
     if ~isdir(saveFolder)
         mkdir(saveFolder)
     end
@@ -98,7 +96,7 @@ for i = 1 : length(freqsDir)
             %             bwStruct.LangStored = bwLangStored(i);
             %             bwStruct.LangDeltaP = bwLangDeltaP(i);
             
-            %             [pdfResult.(name), xbins.(name), bandWidth.(name), Parameters.(name)]= pdfEstimator(ts, npoints, kernel, bwStruct );
+            %[pdfResult.(name), xbins.(name), bandWidth.(name), Parameters.(name)]= pdfEstimator(ts, npoints, kernel, bwStruct );
             [pdfResult.(name), xbins.(name), bandWidth.(name), Parameters.(name)]= pdfEstimator(ts, npoints, kernel, []);
             save(newMatFileName,'pdfResult','xbins','Parameters','bandWidth','-v7.3');
             disp([newMatFileName,' saved sucessfully']);

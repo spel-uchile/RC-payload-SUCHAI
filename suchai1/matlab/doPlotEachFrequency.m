@@ -1,6 +1,3 @@
-clear all;
-close all;
-
 global matfileTM;
 global matfileLab;
 global suchaiFoldersName;
