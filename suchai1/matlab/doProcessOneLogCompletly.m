@@ -1,7 +1,8 @@
 disp('Processing a new SUCHAI telemetry');
 
-prefix = '2016_18_05';
-dataset = 'lab';
+prefix = '2018_01_23_013627';
+dataset = 'suchai';
+overwrite = 'yes';
 if strfind(dataset,'suchai');
     doPreProcessorSuchaiLogs;
 else
