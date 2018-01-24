@@ -1,7 +1,8 @@
 disp('Processing a new SUCHAI telemetry');
 
-prefix = '2018_01_23_013627';
-dataset = 'suchai';
+%% when running for the first time uncommnet this values
+% prefix = '2016_18_05';
+% dataset = 'lab';
 overwrite = 'yes';
 if strfind(dataset,'suchai');
     doPreProcessorSuchaiLogs;
