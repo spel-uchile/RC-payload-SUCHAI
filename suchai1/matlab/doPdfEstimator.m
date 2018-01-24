@@ -62,44 +62,55 @@ for i = 1 : length(freqsDir)
     for kl = 1: length(dates)
         currentDataDate = dates{kl};
         newMatFileName = strcat(saveFolder,'/', currentDataDate,...
-            '_pdfEstimator_',freq,'Hz.mat');
-        if exist(fullfile(newMatFileName))
-            disp([newMatFileName,' already exists']);
-            continue
-        end
-        disp([newMatFileName,' is being created']);
-        dateIndexes = strfind(matfiles, currentDataDate);
-        emptyCells = cellfun ('isempty', dateIndexes);
-        dateIndexes(emptyCells) = {0};
-        dateIndexes = logical(cell2mat(dateIndexes));
-        filesWithDate = strcat(currFreqFolder,'/', matfiles(dateIndexes));
-        for j = 1 : length(filesWithDate)
-            loadMyFile = filesWithDate{j};
-            S = load(loadMyFile);
-            name = fieldnames(S);
-            name = name{1}; %only raw timeserie
-            if strfind(name, 'filtered')
-                continue
+            '_pdfEstimator_',freq,'Hz.mat');        
+        if ~exist(fullfile(newMatFileName))
+            disp([newMatFileName,' is being created']);
+        elseif exist(fullfile(newMatFileName)) && exist('overwrite') && exist('prefix');
+            tmpPrefix = [prefix(1:4), prefix(6:7), prefix(9:end)];
+            if strfind(currentDataDate,tmpPrefix)
+                disp([newMatFileName,' is being created']);
+            else
+                disp([newMatFileName,' already exists']);
+                continue;
             end
-            ts = S.(name);
-            %             bwStruct.Vin = bwVin(i);
-            %             bwStruct.Vout = bwVout(i);
-            %             bwStruct.Vr = bwVr(i);
-            %             bwStruct.Ir =  bwIr(i);
-            %             bwStruct.Ic = bwIc(i);
-            %             bwStruct.Pin = bwPin(i);
-            %             bwStruct.Pr =  bwPr(i);
-            %             bwStruct.Pc = bwPc(i);
-            %             bwStruct.DeltaP = bwDeltaP(i);
-            %             bwStruct.LangInj = bwLangInj(i);
-            %             bwStruct.LangDiss = bwLangDiss(i);
-            %             bwStruct.LangStored = bwLangStored(i);
-            %             bwStruct.LangDeltaP = bwLangDeltaP(i);
-            
-            %[pdfResult.(name), xbins.(name), bandWidth.(name), Parameters.(name)]= pdfEstimator(ts, npoints, kernel, bwStruct );
-            [pdfResult.(name), xbins.(name), bandWidth.(name), Parameters.(name)]= pdfEstimator(ts, npoints, kernel, []);
-            save(newMatFileName,'pdfResult','xbins','Parameters','bandWidth','-v7.3');
-            disp([newMatFileName,' saved sucessfully']);
+        else
+            disp([newMatFileName,' already exists']);
+            continue;
+        end
+            dateIndexes = strfind(matfiles, currentDataDate);
+            emptyCells = cellfun ('isempty', dateIndexes);
+            dateIndexes(emptyCells) = {0};
+            dateIndexes = logical(cell2mat(dateIndexes));
+            filesWithDate = strcat(currFreqFolder,'/', matfiles(dateIndexes));
+            for j = 1 : length(filesWithDate)
+                loadMyFile = filesWithDate{j};
+                S = load(loadMyFile);
+                name = fieldnames(S);
+                name = name{1}; %only raw timeserie
+                if strfind(name, 'filtered')
+                    continue
+                end
+                ts = S.(name);
+                %             bwStruct.Vin = bwVin(i);
+                %             bwStruct.Vout = bwVout(i);
+                %             bwStruct.Vr = bwVr(i);
+                %             bwStruct.Ir =  bwIr(i);
+                %             bwStruct.Ic = bwIc(i);
+                %             bwStruct.Pin = bwPin(i);
+                %             bwStruct.Pr =  bwPr(i);
+                %             bwStruct.Pc = bwPc(i);
+                %             bwStruct.DeltaP = bwDeltaP(i);
+                %             bwStruct.LangInj = bwLangInj(i);
+                %             bwStruct.LangDiss = bwLangDiss(i);
+                %             bwStruct.LangStored = bwLangStored(i);
+                %             bwStruct.LangDeltaP = bwLangDeltaP(i);
+                
+                %[pdfResult.(name), xbins.(name), bandWidth.(name), Parameters.(name)]= pdfEstimator(ts, npoints, kernel, bwStruct );
+                [pdfResult.(name), xbins.(name), bandWidth.(name), Parameters.(name)]= pdfEstimator(ts, npoints, kernel, []);
+                if overwrite
+                    save(newMatFileName,'pdfResult','xbins','Parameters','bandWidth','-v7.3');
+                    disp([newMatFileName,' saved sucessfully']);
+                end
+            end
         end
     end
-end
