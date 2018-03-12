@@ -1,1 +1,0 @@
-adcPeriod 4
