@@ -10,6 +10,22 @@ C = 1 / (freqCircuitHz * 2 * pi * R);
 dampingRate = 1/ (R*C);
 
 switch varargin{1}
+     case 'tektronix'
+        TektronixVin = varargin{2};
+        TektronixVout = varargin{3};
+        TektronixTime = varargin{4};
+        TektronixMath = varargin{5};
+        R = varargin{6};
+        C = varargin{7};
+        
+        tsCollection = makeTektronixSeries(TektronixVin, TektronixVout,...
+            TektronixTime, TektronixMath, R, C, freqSignalHz);
+        maxVin = max(tsCollection.Vin.Data);
+        dacBits = Inf;
+        adcBits = Inf;
+     
+        tsCollection.Name = strcat( 'tektronix_D_', num2str(maxVin));
+
     case 'raw'
         S = load(varargin{2});
         Input = S.InputCounts;
