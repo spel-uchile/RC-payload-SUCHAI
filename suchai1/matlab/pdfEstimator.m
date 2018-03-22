@@ -22,6 +22,7 @@ if nargin > 2
     end
 end
 
+
 vin = tsCollection.Vin.Data;
 vout = tsCollection.Vout.Data;
 vR = tsCollection.Vr.Data;
@@ -36,6 +37,8 @@ langInj = tsCollection.langevinInjected.Data;
 langStored = tsCollection.langevinStored.Data;
 langDeltaP = tsCollection.langevinDeltaPower.Data;
 
+
+
 ptsVin = linspace(-1.25, 1.25, npoints);
 ptsVout = ptsVin;
 ptsVr = ptsVin;
@@ -43,6 +46,7 @@ ptsPin = linspace(-0.2, 1.2, npoints); %in mW
 ptsPr = linspace(-0.2, 2.5, npoints);
 ptsPc = ptsPin;
 ptsDeltaP = ptsPin;
+
 
 if isempty(bwStruct)
     [fVin, ptsVin, bwVin] = ksdensity(vin,ptsVin, 'kernel',kernel);
@@ -58,6 +62,7 @@ if isempty(bwStruct)
     [fLangDiss, ptsLangDiss, bwLangDiss] = ksdensity(langDiss, 'kernel',kernel);
     [fLangStored, ptsLangStored, bwLangStored] = ksdensity(langStored, 'kernel',kernel);
     [fLangDelta, ptsLangDeltaP, bwLangDeltaP] = ksdensity(langDeltaP, 'kernel',kernel);
+    
 else
     [fVin, ptsVin, bwVin] = ksdensity(vin,ptsVin, 'kernel',kernel, 'bandwidth', bwStruct.Vin);
     [fVout, ptsVout, bwVout] = ksdensity(vout,ptsVout, 'kernel',kernel, 'bandwidth', bwStruct.Vout);
@@ -73,6 +78,8 @@ else
     [fLangStored, ptsLangStored, bwLangStored] = ksdensity(langStored, 'kernel',kernel, 'bandwidth', bwStruct.LangStored);
     [fLangDelta, ptsLangDeltaP, bwLangDeltaP] = ksdensity(langDeltaP, 'kernel',kernel, 'bandwidth', bwStruct.LangDeltaP);
 end
+
+
 
 pdfValue.Vin = normalize(ptsVin, fVin);
 pdfValue.Vout = normalize(ptsVout, fVout);
@@ -115,6 +122,15 @@ bandWidth.LangInj = bwLangInj;
 bandWidth.LangDiss = bwLangDiss;
 bandWidth.LangStored = bwLangStored;
 bandWidth.LangDeltaP = bwLangDeltaP;
+
+if ~isempty(strfind(fieldnames(tsCollection), 'Math'))  %only true for tektronix
+    math =  tsCollection.Math.Data;
+    ptsMath = (ptsVin.*1000)./2; %math esta en mV^2
+    [fMath, ptsMath, bwMath] = ksdensity(math,ptsMath, 'kernel',kernel);
+    pdfValue.Math = normalize(ptsMath, fMath);
+    xbins.Math = ptsMath;
+    bandWidth.Math = bwMath;
+end
 
 OtherParameters.kernel = kernel;
 OtherParameters.npoints = npoints;

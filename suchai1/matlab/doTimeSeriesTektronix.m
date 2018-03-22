@@ -1,3 +1,5 @@
+dataset = 'tektronix';
+overwrite = 'yes';
 fsignal = 20*1e6; %20 MHz
 R = 1207; %ohms medidos
 C = 1.454*(1e-6); %farads medidos
