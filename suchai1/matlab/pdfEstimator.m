@@ -123,7 +123,7 @@ bandWidth.LangDiss = bwLangDiss;
 bandWidth.LangStored = bwLangStored;
 bandWidth.LangDeltaP = bwLangDeltaP;
 
-if ~isempty(strfind(fieldnames(tsCollection), 'Math'))  %only true for tektronix
+if ~isempty(cell2mat(strfind(fieldnames(tsCollection), 'Math')))  %only true for tektronix
     math =  tsCollection.Math.Data;
     ptsMath = (ptsVin.*1000)./2; %math esta en mV^2
     [fMath, ptsMath, bwMath] = ksdensity(math,ptsMath, 'kernel',kernel);
