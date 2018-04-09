@@ -1,9 +1,9 @@
-databases = {'lab'};
+databases = {'suchai','tektronix','lab'};
 
 for i = 1 : length(databases)
     database = databases{i};
     npoints = 100;  %numbins
-    seedFolder = ['./mat/ts/',database];
+    seedFolder = ['./mat/ts-raw/',database];
     freqsDir = dir(seedFolder);
     freqsDir = {freqsDir.name};
     freqsDir = freqsDir(3:end);

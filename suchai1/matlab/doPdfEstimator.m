@@ -1,3 +1,7 @@
+normalization  = 'diffByMeanDivByStd';
+dataset = 'suchai';
+overwrite = 'yes';
+
 %% KDE parameters manual
 % bandwidth
 bwVin = [0.0886    0.0589    0.0584    0.0646    0.1032    0.1180    0.0974    0.0589];
@@ -17,8 +21,11 @@ npoints = 100;  %numbins
 kernel = 'normal';
 % kernel = 'epanechnikov';
 %% Loop
-seedFolder = ['./mat/ts/',dataset];
-freqsDir = dir(['./mat/ts/',dataset]);  %pair only with suchai frequencies
+if ~exist('normalization','var')
+    normalization = 'raw';
+end
+seedFolder = ['./mat/ts-',normalization,'/',dataset];
+freqsDir = dir(['./mat/ts-',normalization,'/',dataset]);  %pair only with suchai frequencies
 freqsDir = {freqsDir.name};
 freqsDir = freqsDir(3:end);
 freqsDir = sortn(freqsDir);
@@ -26,7 +33,7 @@ freqsDir = lower(freqsDir);
 
 for i = 1 : length(freqsDir)
     freq = freqsDir{i};
-    saveFolder = ['./mat/pdf/',dataset,'/',freq];
+    saveFolder = ['./mat/pdf-',normalization,'/',dataset,'/',freq];
     if ~isdir(saveFolder)
         mkdir(saveFolder)
     end
@@ -50,13 +57,15 @@ for i = 1 : length(freqsDir)
         dateIndexes(emptyCells) = {0};
         dateIndexes = logical(cell2mat(dateIndexes));
         filesWithDate = strcat(currFreqFolder,'/', matfiles(dateIndexes));
-
+        filesWithDateShort = matfiles(dateIndexes);
+        
         for j = 1 : length(filesWithDate)
-            newMatFileName = strcat(saveFolder,'/', 'pdfEstimator_',matfiles{j});
+            newMatFileName = strcat(saveFolder,'/', 'pdfEstimator_',...
+                filesWithDateShort{j});
             if ~exist(fullfile(newMatFileName))
                 disp([newMatFileName,' is being created']);
-            elseif exist(fullfile(newMatFileName)) && exist('overwrite') && exist('prefix');
-                tmpPrefix = [prefix(1:4), prefix(6:7), prefix(9:end)];
+            elseif exist(fullfile(newMatFileName)) && exist('overwrite') %&& exist('prefix');
+                tmpPrefix = currentDataDate;
                 if strfind(currentDataDate,tmpPrefix)
                     disp([newMatFileName,' is being created']);
                 else
@@ -71,12 +80,13 @@ for i = 1 : length(freqsDir)
             loadMyFile = filesWithDate{j};
             S = load(loadMyFile);
             name = fieldnames(S);
-            name = name{1}; %only raw timeserie
-            if strfind(name, 'filtered')
+            name = name{1}; %raw, simulation, theoretical, divByMean, etc.
+            if strfind(name, 'filtered') %never use this timeserie
                 continue
             end
             ts = S.(name);
-            [pdfResult.(name), xbins.(name), bandWidth.(name), Parameters.(name)]= pdfEstimator(ts, npoints, kernel, []);
+            [pdfResult.(name), xbins.(name), bandWidth.(name), ...
+                Parameters.(name)]= pdfEstimator(ts, npoints, kernel, normalization, []);
             if overwrite
                 save(newMatFileName,'pdfResult','xbins','Parameters','bandWidth','-v7.3');
                 disp([newMatFileName,' saved sucessfully']);

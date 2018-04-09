@@ -4,6 +4,7 @@
 
 % 'prefix' is an important variable that is a string with the date of the
 % telemtry to be processed e.g: '2018_03_07_150000'
+
 prefixjoin = [prefix(1:4), prefix(6:7), prefix(9:end)];
 parserFolder = ['./parser/', dataset];
 fixtureFolder = strcat(parserFolder,'/', prefix);
@@ -28,7 +29,10 @@ for i = 1 : length(parserFiles)
         adcPeriod = S.(name{1}).adcPeriod;
         sampCoeff = S.(name{1}).oversamplingCoeff;
         fsignal = computeFreqSignalHz(adcPeriod, sampCoeff);
-        saveFolder = strcat(['./mat/ts/',dataset,'/'], num2str(fsignal));
+        if ~exist('normalization','var')
+            normalization = 'raw';
+        end
+        saveFolder = strcat(['./mat/ts-',normalization,'/',dataset,'/'], num2str(fsignal));
         
         if ~isdir(saveFolder)
             mkdir(saveFolder)
