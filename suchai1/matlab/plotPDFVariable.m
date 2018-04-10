@@ -11,6 +11,7 @@ global freqsLegendTM;
 global tmPerFreqSuchai;
 global freqsLegendLab;
 global tmPerFreqLab;
+global normalization;
 ks = 1;
 kl = 1;
 % subFolderName = 'LangDiss';
@@ -25,7 +26,7 @@ for i = 1 : numel(suchaiFoldersName)
         xbins = matfileTM{ks}.xbins;
         pdfResult = matfileTM{ks}.pdfResult;
         hold on;
-        plot(xbins.raw.(subFolderName), log10(pdfResult.raw.(subFolderName)),'*','MarkerSize', mkrsize);
+        plot(xbins.(normalization).(subFolderName), log10(pdfResult.(normalization).(subFolderName)),'*','MarkerSize', mkrsize);
         hold off;
         ks = ks +1;
     end
@@ -34,13 +35,13 @@ for i = 1 : numel(suchaiFoldersName)
         xbins = matfileLab{kl}.xbins;
         pdfResult = matfileLab{kl}.pdfResult;
         hold on;
-        plot(xbins.raw.(subFolderName), log10(pdfResult.raw.(subFolderName)),'o','MarkerSize', mkrsize);
+        plot(xbins.(normalization).(subFolderName), log10(pdfResult.(normalization).(subFolderName)),'o','MarkerSize', mkrsize);
         hold off;
         kl = kl + 1;
     end
     grid on;
-    ylim(givenYLims);
-    xlim(givenXLims);
+%     ylim(givenYLims);
+%     xlim(givenXLims);
     yt = get(gca, 'YTick');
     myylabels = cellstr(num2str(yt(:), '10^{%.1f}'));
     set(gca,'YTickLabel', myylabels);

@@ -8,9 +8,12 @@ global freqsLegendTM;
 global tmPerFreqSuchai;
 global freqsLegendLab;
 global tmPerFreqLab;
+global normalization;
 
-rootDir= './mat/pdf';
-saveFolder =['./img/suchaiPDFs/SeparatedByFrequency/',date];
+normalization = 'raw';
+rootDir= ['./mat/pdf-',normalization];
+saveFolder =['./img/suchaiPDFs/SeparatedByFrequency/pdf-',...
+    normalization,'/',date];
 mkrsize = 6;
 myLegendFontSize = 10;
 if ~isdir(saveFolder)
@@ -37,15 +40,21 @@ for i = 1 : numel(suchaiFoldersName)
     tmFile = {tmFile.name};
     tmFile = tmFile(3:end)';
     tmFile = sortn(tmFile);
+    indexC = strfind(tmFile,'raw');
+    indexRaw = find(not(cellfun('isempty', indexC)));
     freqInHz = suchaiFoldersName{i};
-    tmPerFreqSuchai(i) = length(tmFile);
+    tmFile = tmFile(indexRaw);
     for j = 1 : length(tmFile)
-        telemetryCounter = telemetryCounter + 1;
-        pathMatTelemetry{telemetryCounter} = strcat(tmFolder,'/',tmFile{j});
-        str = tmFile{j};
-        freqsLegendTM{telemetryCounter} = strcat('SUCHAI_',str(1:15));
-        freqsTelemetry{telemetryCounter} = freqInHz;
-        matfileTM{telemetryCounter} = load(pathMatTelemetry{telemetryCounter});
+        if strfind (tmFile{j}, normalization)
+            tmPerFreqSuchai(i) = tmPerFreqSuchai(i) + 1;
+            telemetryCounter = telemetryCounter + 1;
+            pathMatTelemetry{telemetryCounter} = strcat(tmFolder,'/',tmFile{j});
+            str = tmFile{j};
+            idx = strfind(str, '_');
+            freqsLegendTM{telemetryCounter} = strcat('SUCHAI_',str(idx(1)+1:idx(4)-1));
+            freqsTelemetry{telemetryCounter} = freqInHz;
+            matfileTM{telemetryCounter} = load(pathMatTelemetry{telemetryCounter});
+        end
     end
 end
 freqsLab = {};
@@ -61,15 +70,19 @@ for i = 1 : numel(suchaiFoldersName)
     tmFile = {tmFile.name};
     tmFile = tmFile(3:end)';
     tmFile = sortn(tmFile);
+    indexC = strfind(tmFile,'raw');
+    indexRaw = find(not(cellfun('isempty', indexC)));
+    tmFile = tmFile(indexRaw);
     freqInHz = suchaiFoldersName{i};
     tmPerFreqLab(i) = 0;
     for j = 1 : length(tmFile)
-        if strfind (tmFile{j}, 'raw')
+        if strfind (tmFile{j}, normalization)
             labCounter = labCounter + 1;
             tmPerFreqLab(i) = tmPerFreqLab(i) + 1;
             pathMatLab{labCounter} = strcat(tmFolder,'/',tmFile{j});
             str = tmFile{j};
-            freqsLegendLab{labCounter} = strcat('LAB_',str(1:15));
+            idx = strfind(str, '_');
+            freqsLegendLab{labCounter} = strcat('LAB_',str(idx(1)+1:idx(4)-1));
             freqsLab{labCounter} = freqInHz;
             matfileLab{labCounter} = load(pathMatLab{labCounter});
         end
@@ -77,16 +90,44 @@ for i = 1 : numel(suchaiFoldersName)
 end
 plotLegendCell = [freqsLegendTM, freqsLegendLab]';
 
-plotPDFVariable('Vin', [-1.2 1.2],[-3 1],'V');
-plotPDFVariable('Vout', [-1.2 1.2],[-3 1],'V');
-plotPDFVariable('Vr', [-1.6 1.6],[-3 1],'V');
-plotPDFVariable('Ir', [-1.6 1.6],[-3 1],'mA');
-plotPDFVariable('Ic', [-0.3 0.3],[-3 2],'mA');
-plotPDFVariable('Pin', [-0.4 1.5],[-3 1],'mW');
-plotPDFVariable('Pr', [-0.5 3],[-5 1],'mW');
-plotPDFVariable('Pc', [-0.25 1.25],[-5 2],'mW');
-plotPDFVariable('DeltaP', [-0.25 1.25],[-5 2],'mW');
-plotPDFVariable('LangInj', [-350 550],[-4 -1],'V^2 \cdot Hz');
-plotPDFVariable('LangDiss',[-150 650],[-4 -1],'V^2 \cdot Hz')
-plotPDFVariable('LangStored', [-300 300],[-4 -0.5],'V^2 \cdot Hz');
-plotPDFVariable('LangDeltaP',[-200 650],[-4 -0.5],'V^2 \cdot Hz')
+switch normalization
+    case 'raw'
+        plotPDFVariable('Vin', [-0.5 3],[-3 1],'V');
+        plotPDFVariable('Vout', [-0.5 3],[-3 1],'V');
+        % plotPDFVariable('Vr', [-1.6 1.6],[-3 1],'V');
+        % plotPDFVariable('Ir', [-1.6 1.6],[-3 1],'mA');
+        % plotPDFVariable('Ic', [-0.3 0.3],[-3 2],'mA');
+        % plotPDFVariable('Pin', [-0.4 1.5],[-3 1],'mW');
+        % plotPDFVariable('Pr', [-0.5 3],[-5 1],'mW');
+        % plotPDFVariable('Pc', [-0.25 1.25],[-5 2],'mW');
+        % plotPDFVariable('DeltaP', [-0.25 1.25],[-5 2],'mW');
+        plotPDFVariable('LangInj', [-1000 3000],[-8 -2],'V^2 \cdot Hz');
+        plotPDFVariable('LangDiss',[-1000 3000],[-8 2],'V^2 \cdot Hz');
+        % plotPDFVariable('LangStored', [-300 300],[-4 -0.5],'V^2 \cdot Hz');
+    case 'divByMean'
+        plotPDFVariable('Vin', [-0.5 3],[-3 1],'V');
+        plotPDFVariable('Vout', [-0.5 3],[-3 1],'V');
+        % plotPDFVariable('Vr', [-1.6 1.6],[-3 1],'V');
+        % plotPDFVariable('Ir', [-1.6 1.6],[-3 1],'mA');
+        % plotPDFVariable('Ic', [-0.3 0.3],[-3 2],'mA');
+        % plotPDFVariable('Pin', [-0.4 1.5],[-3 1],'mW');
+        % plotPDFVariable('Pr', [-0.5 3],[-5 1],'mW');
+        % plotPDFVariable('Pc', [-0.25 1.25],[-5 2],'mW');
+        % plotPDFVariable('DeltaP', [-0.25 1.25],[-5 2],'mW');
+        plotPDFVariable('LangInj', [-1000 3000],[-8 -2],'V^2 \cdot Hz');
+        % plotPDFVariable('LangDiss',[-1000 3000],[-8 2],'V^2 \cdot Hz');
+        % plotPDFVariable('LangStored', [-300 300],[-4 -0.5],'V^2 \cdot Hz');
+    case 'diffByMeanDivByStd'
+        plotPDFVariable('Vin', [-0.5 3],[-3 1],'V');
+        plotPDFVariable('Vout', [-0.5 3],[-3 1],'V');
+        % plotPDFVariable('Vr', [-1.6 1.6],[-3 1],'V');
+        % plotPDFVariable('Ir', [-1.6 1.6],[-3 1],'mA');
+        % plotPDFVariable('Ic', [-0.3 0.3],[-3 2],'mA');
+        % plotPDFVariable('Pin', [-0.4 1.5],[-3 1],'mW');
+        % plotPDFVariable('Pr', [-0.5 3],[-5 1],'mW');
+        % plotPDFVariable('Pc', [-0.25 1.25],[-5 2],'mW');
+        % plotPDFVariable('DeltaP', [-0.25 1.25],[-5 2],'mW');
+        plotPDFVariable('LangInj', [-1000 3000],[-8 -2],'V^2 \cdot Hz');
+        plotPDFVariable('LangDiss',[-1000 3000],[-8 2],'V^2 \cdot Hz');
+        % plotPDFVariable('LangStored', [-300 300],[-4 -0.5],'V^2 \cdot Hz');
+end
