@@ -1,5 +1,5 @@
 normalization  = 'diffByMeanDivByStd';
-dataset = 'suchai';
+dataset = 'tektronix';
 overwrite = 'yes';
 
 %% KDE parameters manual
@@ -50,7 +50,7 @@ for i = 1 : length(freqsDir)
     end
     
     dates = unique(strcat(splittedStrings(:,1),'_',splittedStrings(:,2)));
-    for kl = 1: length(dates)
+    for kl = 1 : length(dates)
         currentDataDate = dates{kl};
         dateIndexes = strfind(matfiles, currentDataDate);
         emptyCells = cellfun ('isempty', dateIndexes);

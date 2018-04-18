@@ -10,7 +10,9 @@ global freqsLegendLab;
 global tmPerFreqLab;
 global normalization;
 
-normalization = 'raw';
+% normalization = 'raw';
+% normalization = 'divByMean';
+normalization = 'diffByMeanDivByStd';
 rootDir= ['./mat/pdf-',normalization];
 saveFolder =['./img/suchaiPDFs/SeparatedByFrequency/pdf-',...
     normalization,'/',date];
@@ -92,42 +94,18 @@ plotLegendCell = [freqsLegendTM, freqsLegendLab]';
 
 switch normalization
     case 'raw'
-        plotPDFVariable('Vin', [-0.5 3],[-3 1],'V');
-        plotPDFVariable('Vout', [-0.5 3],[-3 1],'V');
-        % plotPDFVariable('Vr', [-1.6 1.6],[-3 1],'V');
-        % plotPDFVariable('Ir', [-1.6 1.6],[-3 1],'mA');
-        % plotPDFVariable('Ic', [-0.3 0.3],[-3 2],'mA');
-        % plotPDFVariable('Pin', [-0.4 1.5],[-3 1],'mW');
-        % plotPDFVariable('Pr', [-0.5 3],[-5 1],'mW');
-        % plotPDFVariable('Pc', [-0.25 1.25],[-5 2],'mW');
-        % plotPDFVariable('DeltaP', [-0.25 1.25],[-5 2],'mW');
-        plotPDFVariable('LangInj', [-1000 3000],[-8 -2],'V^2 \cdot Hz');
-        plotPDFVariable('LangDiss',[-1000 3000],[-8 2],'V^2 \cdot Hz');
-        % plotPDFVariable('LangStored', [-300 300],[-4 -0.5],'V^2 \cdot Hz');
+        plotPDFVariable('Vin', [],[],'V'); close all;
+        plotPDFVariable('Vout', [],[],'V'); close all;
+        plotPDFVariable('LangInj', [],[],'V^2 \cdot Hz'); close all;
+        plotPDFVariable('LangDiss',[],[],'V^2 \cdot Hz'); close all;
     case 'divByMean'
-        plotPDFVariable('Vin', [-0.5 3],[-3 1],'V');
-        plotPDFVariable('Vout', [-0.5 3],[-3 1],'V');
-        % plotPDFVariable('Vr', [-1.6 1.6],[-3 1],'V');
-        % plotPDFVariable('Ir', [-1.6 1.6],[-3 1],'mA');
-        % plotPDFVariable('Ic', [-0.3 0.3],[-3 2],'mA');
-        % plotPDFVariable('Pin', [-0.4 1.5],[-3 1],'mW');
-        % plotPDFVariable('Pr', [-0.5 3],[-5 1],'mW');
-        % plotPDFVariable('Pc', [-0.25 1.25],[-5 2],'mW');
-        % plotPDFVariable('DeltaP', [-0.25 1.25],[-5 2],'mW');
-        plotPDFVariable('LangInj', [-1000 3000],[-8 -2],'V^2 \cdot Hz');
-        % plotPDFVariable('LangDiss',[-1000 3000],[-8 2],'V^2 \cdot Hz');
-        % plotPDFVariable('LangStored', [-300 300],[-4 -0.5],'V^2 \cdot Hz');
+        plotPDFVariable('Vin', [],[],'Vin / <Vin>'); close all;
+        plotPDFVariable('Vout', [],[],'Vout / <Vout>'); close all;
+        plotPDFVariable('LangInj', [],[],'I / <I>'); close all;
+        plotPDFVariable('LangDiss',[],[],'Idiss / <Idiss>'); close all;
     case 'diffByMeanDivByStd'
-        plotPDFVariable('Vin', [-0.5 3],[-3 1],'V');
-        plotPDFVariable('Vout', [-0.5 3],[-3 1],'V');
-        % plotPDFVariable('Vr', [-1.6 1.6],[-3 1],'V');
-        % plotPDFVariable('Ir', [-1.6 1.6],[-3 1],'mA');
-        % plotPDFVariable('Ic', [-0.3 0.3],[-3 2],'mA');
-        % plotPDFVariable('Pin', [-0.4 1.5],[-3 1],'mW');
-        % plotPDFVariable('Pr', [-0.5 3],[-5 1],'mW');
-        % plotPDFVariable('Pc', [-0.25 1.25],[-5 2],'mW');
-        % plotPDFVariable('DeltaP', [-0.25 1.25],[-5 2],'mW');
-        plotPDFVariable('LangInj', [-1000 3000],[-8 -2],'V^2 \cdot Hz');
-        plotPDFVariable('LangDiss',[-1000 3000],[-8 2],'V^2 \cdot Hz');
-        % plotPDFVariable('LangStored', [-300 300],[-4 -0.5],'V^2 \cdot Hz');
+        plotPDFVariable('Vin', [],[],'(Vin- <Vin>)/rms(Vin)'); close all;
+        plotPDFVariable('Vout', [],[],'(Vout- <Vout>)/rms(Vout)'); close all;
+        plotPDFVariable('LangInj', [],[],'(I- <I>)/rms(I)'); close all;
+        plotPDFVariable('LangDiss',[],[],'(Idiss- <Idiss>)/rms(Idiss)'); close all;
 end

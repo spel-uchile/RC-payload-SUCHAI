@@ -1,15 +1,15 @@
 close all;
 % clear all;
-filename = '20180320_000003';
+filename = '20180409_000001';
 pdfRootDir= './mat/pdf/tektronix/14628.6768';
 tsRootDir = './mat/ts/tektronix/14628.6768';
-tspathfile = [tsRootDir, '/', filename,'_tektronix_D_1.0202.mat'];
+tspathfile = [tsRootDir, '/', filename,'_tektronix_D_6.2483.mat'];
 pdfpathfile = [pdfRootDir, '/', filename,'_pdfEstimator_14628.6768Hz.mat'];
 
 %% FFT
 load(tspathfile);
 figure;
-for names = {'Vin','Vout','Math'}
+for names = {'Vin','Vout','Math'}   %Math es computada como VinxVout por Matlab
     variableName = names{1};
     X = raw.tsc.(variableName).Data;
     t =  raw.tsc.Time;
@@ -21,7 +21,7 @@ for names = {'Vin','Vout','Math'}
     P1 = P2(1:L/2+1);
     P1(2:end-1) = 2*P1(2:end-1);
     if strfind(variableName, 'Vin')
-        D = rms(P1)*1000    %m V^2_{rms} / Hz
+        D = rms(P1)*1000;    %m V^2_{rms} / Hz
     end
     f = Fs*(0:(L/2))/L;
     plot((f./1e6),P1) 

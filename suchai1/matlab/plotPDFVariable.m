@@ -40,13 +40,17 @@ for i = 1 : numel(suchaiFoldersName)
         kl = kl + 1;
     end
     grid on;
-%     ylim(givenYLims);
-%     xlim(givenXLims);
+    if ~isempty(givenYLims)
+        ylim(givenYLims);
+    end
+    if ~isempty(givenXLims)
+        xlim(givenXLims);
+    end
     yt = get(gca, 'YTick');
     myylabels = cellstr(num2str(yt(:), '10^{%.1f}'));
     set(gca,'YTickLabel', myylabels);
     set(gca, 'YMinorTick','on', 'YMinorGrid','on');
-    title([subFolderName,' PDF ', num2str(str2double(freqsLab(i))/91.5), ' f_{RC}']);
+    title([subFolderName,' PDF ', num2str(str2double(suchaiFoldersName{i})/91.5), ' f_{RC}']);
     xlabel(XUnits);
     currLegend = [currLegendSuchai, currLegendLab]';
     hleg = legend(currLegend,'Location','eastoutside','Orientation','vertical');
@@ -54,6 +58,5 @@ for i = 1 : numel(suchaiFoldersName)
     figSaveName = [saveFolderFig, '/',suchaiFoldersName{i},'_',subFolderName,'_',date,'.png'];
     saveas(gcf, figSaveName);
 end
-close all;
 end
 
