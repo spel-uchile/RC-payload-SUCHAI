@@ -9,7 +9,7 @@ dirNames = {dirStruct.name};
 dirNames = dirNames(3:end);
 dirNames = sortn(dirNames);
 
-for i = 1: length(dirNames)
+for i = 13   : length(dirNames)
     currDir = [logsDirName,'/',dirNames{i}];
     files = dir(currDir);
     files = {files.name};
@@ -28,12 +28,6 @@ for i = 1: length(dirNames)
     
     
     [t, ch1, ch2, math] = importTektronixTraces(filename);
-    ch1 = ch1-voffCh1;
-    ch2 = ch2-voffCh1;
-    math = math-voffMath;
-    ch1 = (ch1.*vsCh1)./attCh1;   %amplify by the Scale and adjust attenuation
-    ch2 = (ch2.*vsCh2)./attCh2;
-    math = (math.*vsMath)./attMath;
 
     TektronixConfig.Names = {'CH1', 'CH2', 'MATH'};
     TektronixConfig.VerticalOffset = [voffCh1, voffCh2, voffMath];
@@ -48,8 +42,8 @@ for i = 1: length(dirNames)
     raw = timeSeriesFactory(fsignal, 'tektronix', ch1, ch2, t, math, R, C, ...
         TektronixConfig);
     
-    saveFolder = [pwd,'/mat/ts/tektronix'];
-    saveFolder = strcat(saveFolder, '/', raw.maxVin);
+    saveFolder = [pwd,'/mat/ts-raw/tektronix'];
+    saveFolder = strcat(saveFolder, '/','14628.6768');
     prefix = dirNames{i};
     prefixjoin = [prefix(1:4), prefix(6:7), prefix(9:end)];
     if ~isdir(saveFolder)
