@@ -64,4 +64,4 @@ end
 
 %% Aleluya sound
 Data = load('handel.mat');
-sound(Data.y, Data.Fs)
+sound(Data.y, Data.Fs);
