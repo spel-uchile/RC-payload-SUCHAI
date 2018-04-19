@@ -1,0 +1,4645 @@
+Fail
+    * External MemEEPROM .. ===============================
+MemEEPROM_Vars content: 
+===============================
+  MEM_USE_MEMSD_nMEMEEPROM = 0 
+  mem_EEPROM_isAlive() is alive, memEEPROM is responding 
+    * mem_getVar(0 = mem_MemEEPROM_testVal) = 0x138E = 5006 
+    * mem_getVar(1 = mem_ppc_opMode) = 0x0 = 0 
+    * mem_getVar(2 = mem_ppc_hoursAlive) = 0x0 = 0 
+    * mem_getVar(3 = mem_ppc_resetCounter) = 0x4 = 4 
+    * mem_getVar(4 = mem_dep_ant_deployed) = 0x0 = 0 
+    * mem_getVar(5 = mem_dep_ant_tries) = 0x0 = 0 
+    * mem_getVar(6 = mem_dep_year) = 0x0 = 0 
+    * mem_getVar(7 = mem_dep_month) = 0x0 = 0 
+    * mem_getVar(8 = mem_dep_week_day) = 0x0 = 0 
+    * mem_getVar(9 = mem_dep_day_number) = 0x0 = 0 
+    * mem_getVar(10 = mem_dep_hours) = 0x0 = 0 
+    * mem_getVar(11 = mem_dep_minutes) = 0x0 = 0 
+    * mem_getVar(12 = mem_dep_seconds) = 0x0 = 0 
+    * mem_getVar(13 = mem_fpl_index) = 0x0 = 0 
+    * mem_getVar(14 = mem_pay_langmuirProbe_state) = 0x0 = 0 
+    * mem_getVar(15 = mem_pay_sensTemp_state) = 0x0 = 0 
+    * mem_getVar(16 = mem_pay_gps_state) = 0x0 = 0 
+    * mem_getVar(17 = mem_pay_expFis_state) = 0x0 = 0 
+    * mem_getVar(18 = mem_pay_camera_state) = 0x0 = 0 
+    * mem_getVar(19 = mem_pay_gyro_state) = 0x0 = 0 
+    * mem_getVar(20 = mem_pay_tmEstado_state) = 0x0 = 0 
+    * mem_getVar(21 = mem_pay_battery_state) = 0x0 = 0 
+    * mem_getVar(22 = mem_pay_debug_state) = 0x0 = 0 
+    * mem_getVar(23 = mem_trx_count_tm) = 0x0 = 0 
+    * mem_getVar(24 = mem_trx_count_tc) = 0x0 = 0 
+    * mem_getVar(25 = mem_trx_day_last_tc) = 0x0 = 0 
+    * mem_getVar(26 = mem_trx_beacon_period) = 0x3C = 60 
+    * mem_getVar(27 = mem_trx_beacon_bat_lvl) = 0x1F4 = 500 
+    * mem_getVar(28 = mem_trx_rx_baud) = 0xC = 12 
+    * mem_getVar(29 = mem_trx_tx_baud) = 0xC = 12 
+===============================
+Ok
+    * External RTC .. Ok
+    * External TRX ..       * trx_initialize, first time on => TRX_CONFIG.morse_pospone = 300 
+Uploading TRX configuration
+FEC: rs 1, random 1, viterbi 0
+RADIO: rx 12, tx 12, preamble 150, max temp: 60
+MORSE: enable: 1, mode: 0,  delay 60, pospone 300, wpm 20, batt level 500, text 00SUCHAI00
+MORSE: cycle: 1, volt:1 rxc:0 txc:0 tempa:0 tempb:0 rssi:0 rferr:1
+HK: interval 5
+Fail
+    * External EPS .. Ok
+    * External Antenna .. Ok (Deployed)
+Antenna Deployment is carried out (if pending) by Task Housekeeping
+
+[suchaiDeployment] dep_init_suchai_repos()..
+
+[dep_init_stateRepo] Initializing state repository..
+    * sta_onReset_BusStateRepo()..
+    [sta_onResetStatRepo] Important STA_StateVar variables:
+        * ppc_get_resetCounter: 5
+            * NOT the First time on, resetCounter = 5
+        * ppc_get_lastResetSource: EXTERNAL_Reset
+        * ppc_get_hoursAlive: 0
+        * ppc_get_hoursWithoutReset: 0
+        * ppc_get_wdt_state: 1
+        * ppc_get_osc: Oscillator is PRIMARY_OSC_WITH_PLL
+        * thk_get_AntSwitch_isOpen: 1
+            * Antenna Deployment rely on this var AND others
+        * thk_get_dep_ant_deployed: 0
+            * Antenna Deployment is pending
+    * sta_onReset_PayStateRepo()..
+
+[dep_init_cmdRepo] Initializing command repository..
+    * Attaching cmdPPC..
+        ppc_onResetCmdPPC
+    * Attaching cmdCON..
+        con_onResetCmdCON
+    * Attaching cmdTRX..
+        trx_onResetCmdTRX
+    * Attaching cmdEPS..
+        eps_onResetCmdEPS
+    * Attaching cmdSRP..
+        srp_onResetCmdSRP
+    * Attaching cmdDRP..
+        drp_onResetCmdDRP
+    * Attaching cmdPAY..
+        pay_onResetCmdPAY
+    * Attaching cmdRTC..
+        rtc_onResetCmdRTC
+    * Attaching cmdTCM..
+        tcm_onResetCmdTCM
+    * Attaching cmdTHK..
+        thk_onResetCmdTHK
+
+[dep_init_Repos] Initializing data repositories..
+    * onReset data Repository..
+        DAT_TeleCmd_Buff starting block <=> 1024
+        DAT_FlightPlan starting block <=> 1280
+        DAT_nextIndx starting block <=> 1536
+        DAT_maxIndx starting block <=> 1792
+        DAT_Payload_Buff[0] starting block <=> 2048 | number of Payloads = 9
+        DAT_AuxBuff[0] starting block <=> 4352 | number of Auxs = 13
+        * onReset Fligh Plan..
+        * onReset Payloads..
+
+[dep_init_GnrlStruct] Initializing other structures...
+
+[main] Starting base tasks...
+
+[dep_launch_tasks] Starting all tasks...
+    * Creating taskConsole
+    * Creating taskHousekeeping
+    * Creating taskCommunications
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+
+Starting FreeRTOS [->]
+[Dispatcher] Started
+>>[Console] Started>>[Housekeeping] Started
+[Dispatcher] Orig: 0x1102 | Cmd: 0xA003 | Param: 31
+[thk_suchai_deployment] Starting antenna deployment ..
+    AntSwitch can NOT be trusted 
+Requesting EPS HK data
+Error requesting HK
+        * eps_print_hk: 0
+
+[thk_deploy_antenna] Starting TRX silence .. 
+trx_set_beacon_level ..
+Current TRX configuration
+FEC: rs 1, random 1, viterbi 0
+RADIO: rx 12, tx 12, preamble 38400, max temp: 15360
+MORSE: enable: 1, mode: 0,  delay 15360, pospone 11265, wpm 20, batt level 62465, text 00SUCHAI00
+MORSE: cycle: 1, volt:1 rxc:0 txc:0 tempa:0 tempb:0 rssi:0 rferr:1
+HK: interval 1280
+[thk_suchai_deployment] delay_min = 31
+[thk_suchai_deployment] initial_tick_10ms = 318 | final_tick_10ms = 186318 
+>> 45/25/165 45:129:35
+pay_takePhoto_camera ..
+pay_init_camera ..
+  PPC_CAM_SWITCH = 0
+  PPC_CAM_SWITCH = 1
+  PPC_CAM_HOLD_CHECK = 1
+[cam_wait_hold_wtimeout] initial state PPC_CAM_HOLD_CHECK = 1 
+[cam_wait_hold_wtimeout] final state PPC_CAM_HOLD_CHECK = 1 
+[cam_wait_hold_wtimeout] max_msec_hold_wait = 10000 
+  PPC_CAM_HOLD_CHECK = 1
+  sta_pay_camera_isAlive = 0 
+pay_take_camera ..
+camera is not alive!..
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+pay_stop_camera ..
+  PPC_CAM_SWITCH = 1
+  PPC_CAM_SWITCH = 0
+SingBlockRead !=0xFE
+[pay_get_savedPhoto_camera]: NextPayIndx = 18 
+>> 45/25/165 45:129:59
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+1274SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+1274SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+1274SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+1274SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+1274SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+1274SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+1274SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+1274SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+1274SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+1274SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+1274SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+1274SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+1274SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+1274SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+1274SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+1274SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+1274SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+1274
+>> 45/25/165 45:130:0
+>> 45/25/165 45:130:0
+[thk_suchai_deployment] Waiting for timeout, cu_tick_10ms = 2793, elapsed_mins = 0
+[thk_suchai_deployment] Waiting for timeout, cu_tick_10ms = 8814, elapsed_mins = 1
+[thk_suchai_deployment] Waiting for timeout, cu_tick_10ms = 14835, elapsed_mins = 2
+[thk_suchai_deployment] Waiting for timeout, cu_tick_10ms = 20856, elapsed_mins = 3
+[thk_suchai_deployment] Waiting for timeout, cu_tick_10ms = 26877, elapsed_mins = 4
+[thk_suchai_deployment] Waiting for timeout, cu_tick_10ms = 32898, elapsed_mins = 5
+[thk_suchai_deployment] Waiting for timeout, cu_tick_10ms = 38919, elapsed_mins = 6
+[thk_suchai_deployment] Waiting for timeout, cu_tick_10ms = 44940, elapsed_mins = 7
+[thk_suchai_deployment] Waiting for timeout, cu_tick_10ms = 50961, elapsed_mins = 8
+[thk_suchai_deployment] Waiting for timeout, cu_tick_10ms = 56982, elapsed_mins = 9
+[thk_suchai_deployment] Waiting for timeout, cu_tick_10ms = 63003, elapsed_mins = 10
+[thk_suchai_deployment] Waiting for timeout, cu_tick_10ms = 3488, elapsed_mins = 11
+[thk_suchai_deployment] Waiting for timeout, cu_tick_10ms = 9509, elapsed_mins = 12
+[thk_suchai_deployment] Waiting for timeout, cu_tick_10ms = 15530, elapsed_mins = 13
+[thk_suchai_deployment] Waiting for timeout, cu_tick_10ms = 21551, elapsed_mins = 14
+[thk_suchai_deployment] Waiting for timeout, cu_tick_10ms = 27572, elapsed_mins = 15
+[thk_suchai_deployment] Waiting for timeout, cu_tick_10ms = 33593, elapsed_mins = 16
+[thk_suchai_deployment] Waiting for timeout, cu_tick_10ms = 39614, elapsed_mins = 17
+[thk_suchai_deployment] Waiting for timeout, cu_tick_10ms = 45635, elapsed_mins = 18
+[thk_suchai_deployment] Waiting for timeout, cu_tick_10ms = 51656, elapsed_mins = 19
+[thk_suchai_deployment] Waiting for timeout, cu_tick_10ms = 57677, elapsed_mins = 20
+[thk_suchai_deployment] Waiting for timeout, cu_tick_10ms = 63698, elapsed_mins = 21
+[thk_suchai_deployment] Waiting for timeout, cu_tick_10ms = 4183, elapsed_mins = 22
+[thk_suchai_deployment] Waiting for timeout, cu_tick_10ms = 10204, elapsed_mins = 23
+[thk_suchai_deployment] Waiting for timeout, cu_tick_10ms = 16225, elapsed_mins = 24
+[thk_suchai_deployment] Waiting for timeout, cu_tick_10ms = 22246, elapsed_mins = 25
+[thk_suchai_deployment] Waiting for timeout, cu_tick_10ms = 28267, elapsed_mins = 26
+[thk_suchai_deployment] Waiting for timeout, cu_tick_10ms = 34288, elapsed_mins = 27
+[thk_suchai_deployment] Waiting for timeout, cu_tick_10ms = 40309, elapsed_mins = 28
+[thk_suchai_deployment] Waiting for timeout, cu_tick_10ms = 46330, elapsed_mins = 29
+[thk_suchai_deployment] Waiting for timeout, cu_tick_10ms = 52351, elapsed_mins = 30
+[thk_suchai_deployment] Waiting for timeout, cu_tick_10ms = 58372, elapsed_mins = 31
+[thk_suchai_deployment] Waiting for timeout, cu_tick_10ms = 64393, elapsed_mins = 32
+[thk_suchai_deployment] Waiting for timeout, cu_tick_10ms = 4878, elapsed_mins = 33
+[thk_suchai_deployment] Waiting for timeout, cu_tick_10ms = 10899, elapsed_mins = 34
+[thk_suchai_deployment] Waiting for timeout, cu_tick_10ms = 16920, elapsed_mins = 35
+[thk_suchai_deployment] Waiting timeout, cu_tick_10ms = 22941, elapsed_mins = 36
+>> 45/25/165 38:106:7
+
+[thk_deploy_antenna] Deploying TRX Antenna... 
+    AntSwitch can NOT be trusted 
+    [Deploying] Attempt #1
+      Burning ANT1 .. 
+          Taking a rest .. 
+      Burning ANT2 .. 
+          Taking a rest .. 
+    [Deploying] Attempt #2
+      Burning ANT1 .. 
+          Taking a rest .. 
+      Burning ANT2 .. 
+          Taking a rest .. 
+    [Deploying] Attempt #3
+      Burning ANT1 .. 
+          Taking a rest .. 
+      Burning ANT2 .. 
+          Taking a rest .. 
+    [Deploying] Attempt #4
+      Burning ANT1 .. 
+          Taking a rest .. 
+      Burning ANT2 .. 
+          Taking a rest .. 
+    [Deploying] Attempt #5
+      Burning ANT1 .. 
+          Taking a rest .. 
+      Burning ANT2 .. 
+          Taking a rest .. 
+    [Deploying] Attempt #6
+      Burning ANT1 .. 
+          Taking a rest .. 
+      Burning ANT2 .. 
+          Taking a rest .. 
+    [Deploying] Attempt #7
+      Burning ANT1 .. 
+          Taking a rest .. 
+      Burning ANT2 .. 
+          Taking a rest .. 
+    [Deploying] Attempt #8
+      Burning ANT1 .. 
+          Taking a rest .. 
+      Burning ANT2 .. 
+          Taking a rest .. 
+    [Deploying] Attempt #9
+      Burning ANT1 .. 
+          Taking a rest .. 
+      Burning ANT2 .. 
+          Taking a rest .. 
+    [Deploying] Attempt #10
+      Burning ANT1 .. 
+          Taking a rest .. 
+      Burning ANT2 .. 
+          Taking a rest .. 
+    [Deploying] Attempt #11
+      Burning ANT1 .. 
+          Taking a rest .. 
+      Burning ANT2 .. 
+          Taking a rest .. 
+    [Deploying] Attempt #12
+      Burning ANT1 .. 
+          Taking a rest .. 
+      Burning ANT2 .. 
+          Taking a rest .. 
+    [Deploying] Attempt #13
+      Burning ANT1 .. 
+          Taking a rest .. 
+      Burning ANT2 .. 
+          Taking a rest .. 
+    [Deploying] Attempt #14
+      Burning ANT1 .. 
+          Taking a rest .. 
+      Burning ANT2 .. 
+          Taking a rest .. 
+    [Deploying] Attempt #15
+      Burning ANT1 .. 
+          Taking a rest .. 
+      Burning ANT2 .. 
+          Taking a rest .. 
+    ANTENNA DEPLOY FAIL [15 TRIES]
+>> 45/25/165 39:94:38
+>> 45/25/165 39:94:38
+
+[thk_deploy_antenna] Ending TRX silence .. 
+trx_set_beacon_level ..
+Current TRX configuration
+FEC: rs 1, random 1, viterbi 0
+RADIO: rx 12, tx 12, preamble 38400, max temp: 15360
+MORSE: enable: 1, mode: 0,  delay 15360, pospone 11265, wpm 20, batt level 62465, text 00SUCHAI00
+MORSE: cycle: 1, volt:1 rxc:0 txc:0 tempa:0 tempb:0 rssi:0 rferr:1
+HK: interval 1280
+[Dispatcher] CMD Result: 1
+[Dispatcher] *******************************************************************
+
+>>[Comunications] Started
+______________________________________________________________________________
+                     ___ _   _  ___ _  _   _   ___ 
+                    / __| | | |/ __| || | /_\ |_ _|
+                    \__ \ |_| | (__| __ |/ _ \ | | 
+                    |___/\___/ \___|_||_/_/ \_\___|
+______________________________________________________________________________
+
+[Houskeeping] 5[min] actions ..
+[Communications] seconds_cnt = 570, type_cnt = 0 
+[Dispatcher] Orig: 0x1103 | Cmd: 0x8002 | Param: 0
+Current TRX configuration
+FEC: rs 1, random 1, viterbi 0
+RADIO: rx 12, tx 12, preamble 38400, max temp: 15360
+MORSE: enable: 1, mode: 0,  delay 15360, pospone 11265, wpm 20, batt level 62465, text 00SUCHAI00
+MORSE: cycle: 1, volt:1 rxc:0 txc:0 tempa:0 tempb:0 rssi:0 rferr:1
+HK: interval 1280
+>>Beacon: 00SUCHAI00  (10)
+Unable to read TRX config! 
+[Dispatcher] CMD Result: 0
+[Dispatcher] *******************************************************************
+[Houskeeping] 5[min] actions ..
+hk_EBF 0
+[Console] Se genera comando: 0x2004 
+[Dispatcher] Orig: 0x1101 | Cmd: 0x2004 | Param: 0
+[Console Error] Unknown command
+[Dispatcher] CMD Result: 1
+[Dispatcher] *******************************************************************
+thk_EBF 0
+[Console] Se genera comando: 0xA002 
+[Dispatcher] Orig: 0x1101 | Cmd: 0xA002 | Param: 0
+thk_executeBeforeFlight()..
+  drp_executeBeforeFlight()..
+    Setting FligthPlan in launch configuration..
+    Setting initial commands in FligthPlan..
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+    Setting Payload_Buff in launch configuration..
+SingBlockRead !=0xFE
+      dat_reset_Payload_Buff(pay_i = dat_pay_tmEstado)
+SingBlockRead !=0xFE
+      pay_i = dat_pay_tmEstado, pay_i_state = 0, nextIndx = 1 
+SingBlockRead !=0xFE
+      dat_reset_Payload_Buff(pay_i = dat_pay_battery)
+SingBlockRead !=0xFE
+      pay_i = dat_pay_battery, pay_i_state = 0, nextIndx = 1 
+SingBlockRead !=0xFE
+      dat_reset_Payload_Buff(pay_i = dat_pay_debug)
+SingBlockRead !=0xFE
+      pay_i = dat_pay_debug, pay_i_state = 0, nextIndx = 1 
+SingBlockRead !=0xFE
+      dat_reset_Payload_Buff(pay_i = dat_pay_lagmuirProbe)
+SingBlockRead !=0xFE
+      pay_i = dat_pay_lagmuirProbe, pay_i_state = 0, nextIndx = 1 
+SingBlockRead !=0xFE
+      dat_reset_Payload_Buff(pay_i = dat_pay_gps)
+SingBlockRead !=0xFE
+      pay_i = dat_pay_gps, pay_i_state = 0, nextIndx = 1 
+SingBlockRead !=0xFE
+      dat_reset_Payload_Buff(pay_i = dat_pay_camera)
+SingBlockRead !=0xFE
+      pay_i = dat_pay_camera, pay_i_state = 0, nextIndx = 1 
+SingBlockRead !=0xFE
+      dat_reset_Payload_Buff(pay_i = dat_pay_sensTemp)
+SingBlockRead !=0xFE
+      pay_i = dat_pay_sensTemp, pay_i_state = 0, nextIndx = 1 
+SingBlockRead !=0xFE
+      dat_reset_Payload_Buff(pay_i = dat_pay_gyro)
+SingBlockRead !=0xFE
+      pay_i = dat_pay_gyro, pay_i_state = 0, nextIndx = 1 
+SingBlockRead !=0xFE
+      dat_reset_Payload_Buff(pay_i = dat_pay_expFis)
+SingBlockRead !=0xFE
+      pay_i = dat_pay_expFis, pay_i_state = 0, nextIndx = 1 
+  srp_executeBeforeFlight()..
+[srp_memEEPROM_initial_state] ..
+Current TRX configuration
+FEC: rs 1, random 1, viterbi 0
+RADIO: rx 12, tx 12, preamble 38400, max temp: 15360
+MORSE: enable: 1, mode: 0,  delay 15360, pospone 11265, wpm 20, batt level 62465, text 00SUCHAI00
+MORSE: cycle: 1, volt:1 rxc:0 txc:0 tempa:0 tempb:0 rssi:0 rferr:1
+HK: interval 1280
+trx_set_beacon_level ..
+Current TRX configuration
+FEC: rs 1, random 1, viterbi 0
+RADIO: rx 12, tx 12, preamble 38400, max temp: 15360
+MORSE: enable: 1, mode: 0,  delay 15360, pospone 11265, wpm 20, batt level 62465, text 00SUCHAI00
+MORSE: cycle: 1, volt:1 rxc:0 txc:0 tempa:0 tempb:0 rssi:0 rferr:1
+HK: interval 1280
+Current TRX configuration
+FEC: rs 1, random 1, viterbi 0
+RADIO: rx 12, tx 12, preamble 38400, max temp: 15360
+MORSE: enable: 1, mode: 0,  delay 15360, pospone 11265, wpm 20, batt level 62465, text 00SUCHAI00
+MORSE: cycle: 1, volt:1 rxc:0 txc:0 tempa:0 tempb:0 rssi:0 rferr:1
+HK: interval 1280
+Current TRX configuration
+FEC: rs 1, random 1, viterbi 0
+RADIO: rx 12, tx 12, preamble 38400, max temp: 15360
+MORSE: enable: 1, mode: 0,  delay 15360, pospone 11265, wpm 20, batt level 62465, text 00SUCHAI00
+MORSE: cycle: 1, volt:1 rxc:0 txc:0 tempa:0 tempb:0 rssi:0 rferr:1
+HK: interval 1280
+      * trx_initialize, first time on => TRX_CONFIG.morse_pospone = 300 
+Uploading TRX configuration
+FEC: rs 1, random 1, viterbi 0
+RADIO: rx 12, tx 12, preamble 150, max temp: 60
+MORSE: enable: 1, mode: 0,  delay 60, pospone 300, wpm 20, batt level 500, text 00SUCHAI00
+MORSE: cycle: 1, volt:1 rxc:0 txc:0 tempa:0 tempb:0 rssi:0 rferr:1
+HK: interval 5
+[srp_memEEPROM_initial_state] All MemEEPROM_Vars variables:
+===============================
+MemEEPROM_Vars content: 
+===============================
+    * mem_getVar(0 = mem_MemEEPROM_testVal) = 0x138E = 5006 
+    * mem_getVar(1 = mem_ppc_opMode) = 0x0 = 0 
+    * mem_getVar(2 = mem_ppc_hoursAlive) = 0x0 = 0 
+    * mem_getVar(3 = mem_ppc_resetCounter) = 0xFFFF = -1 
+    * mem_getVar(4 = mem_dep_ant_deployed) = 0x0 = 0 
+    * mem_getVar(5 = mem_dep_ant_tries) = 0x0 = 0 
+    * mem_getVar(6 = mem_dep_year) = 0x0 = 0 
+    * mem_getVar(7 = mem_dep_month) = 0x0 = 0 
+    * mem_getVar(8 = mem_dep_week_day) = 0x0 = 0 
+    * mem_getVar(9 = mem_dep_day_number) = 0x0 = 0 
+    * mem_getVar(10 = mem_dep_hours) = 0x0 = 0 
+    * mem_getVar(11 = mem_dep_minutes) = 0x0 = 0 
+    * mem_getVar(12 = mem_dep_seconds) = 0x0 = 0 
+    * mem_getVar(13 = mem_fpl_index) = 0x0 = 0 
+    * mem_getVar(14 = mem_pay_langmuirProbe_state) = 0x0 = 0 
+    * mem_getVar(15 = mem_pay_sensTemp_state) = 0x0 = 0 
+    * mem_getVar(16 = mem_pay_gps_state) = 0x0 = 0 
+    * mem_getVar(17 = mem_pay_expFis_state) = 0x0 = 0 
+    * mem_getVar(18 = mem_pay_camera_state) = 0x0 = 0 
+    * mem_getVar(19 = mem_pay_gyro_state) = 0x0 = 0 
+    * mem_getVar(20 = mem_pay_tmEstado_state) = 0x0 = 0 
+    * mem_getVar(21 = mem_pay_battery_state) = 0x0 = 0 
+    * mem_getVar(22 = mem_pay_debug_state) = 0x0 = 0 
+    * mem_getVar(23 = mem_trx_count_tm) = 0x0 = 0 
+    * mem_getVar(24 = mem_trx_count_tc) = 0x0 = 0 
+    * mem_getVar(25 = mem_trx_day_last_tc) = 0x0 = 0 
+    * mem_getVar(26 = mem_trx_beacon_period) = 0x3C = 60 
+    * mem_getVar(27 = mem_trx_beacon_bat_lvl) = 0x1F4 = 500 
+    * mem_getVar(28 = mem_trx_rx_baud) = 0xC = 12 
+    * mem_getVar(29 = mem_trx_tx_baud) = 0xC = 12 
+===============================
+[srp_memEEPROM_initial_state] All STA_StateVar variables:
+===============================
+StateVar content: 
+===============================
+    * sta_get_stateVar(0 = sta_RTC_isAlive) = 0x1 = 1 
+trx_isAlive .. 
+Sending test frame to node 5...
+Ping to 5 of size 10, took -1 ms
+    * sta_get_stateVar(1 = sta_TRX_isAlive) = 0x0 = 0 
+eps_isAlive .. 
+Sending test frame to node 2...
+Ping to 2 of size 10, took -1 ms
+    * sta_get_stateVar(2 = sta_EPS_isAlive) = 0x0 = 0 
+    * sta_get_stateVar(3 = sta_MemEEPROM_isAlive) = 0x1 = 1 
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+SingBlockRead !=0xFE
+    * sta_get_stateVar(4 = sta_MemSD_isAlive) = 0x0 = 0 
+    * sta_get_stateVar(5 = sta_AntSwitch_isOpen) = 0x1 = 1 
+    * sta_get_stateVar(6 = sta_fpl_index) = 0x0 = 0 
+    * sta_get_stateVar(7 = sta_ppc_opMode) = 0x0 = 0 
+    * sta_get_stateVar(8 = sta_ppc_lastResetSource) = 0x4 = 4 
+    * sta_get_stateVar(9 = sta_ppc_hoursAlive) = 0x0 = 0 
+    * sta_get_stateVar(10 = sta_ppc_hoursWithoutReset) = 0x0 = 0 
+    * sta_get_stateVar(11 = sta_ppc_resetCounter) = 0xFFFF = -1 
+    * sta_get_stateVar(12 = sta_ppc_wdt) = 0x1 = 1 
+    * sta_get_stateVar(13 = sta_ppc_osc) = 0x4 = 4 
+    * sta_get_stateVar(14 = sta_ppc_MB_nOE_USB_nINT_stat) = 0x0 = 0 
+    * sta_get_stateVar(15 = sta_ppc_MB_nOE_MHX_stat) = 0x1 = 1 
+    * sta_get_stateVar(16 = sta_ppc_MB_nON_MHX_stat) = 0x0 = 0 
+    * sta_get_stateVar(17 = sta_ppc_MB_nON_SD_stat) = 0x0 = 0 
+    * sta_get_stateVar(18 = sta_dep_ant_deployed) = 0x0 = 0 
+    * sta_get_stateVar(19 = sta_dep_ant_tries) = 0x0 = 0 
+    * sta_get_stateVar(20 = sta_dep_year) = 0x0 = 0 
+    * sta_get_stateVar(21 = sta_dep_month) = 0x0 = 0 
+    * sta_get_stateVar(22 = sta_dep_week_day) = 0x0 = 0 
+    * sta_get_stateVar(23 = sta_dep_day_number) = 0x0 = 0 
+    * sta_get_stateVar(24 = sta_dep_hours) = 0x0 = 0 
+    * sta_get_stateVar(25 = sta_dep_minutes) = 0x0 = 0 
+    * sta_get_stateVar(26 = sta_dep_seconds) = 0x0 = 0 
+    * sta_get_stateVar(27 = sta_rtc_year) = 0xA5 = 165 
+    * sta_get_stateVar(28 = sta_rtc_month) = 0x19 = 25 
+    * sta_get_stateVar(29 = sta_rtc_week_day) = 0x7 = 7 
+    * sta_get_stateVar(30 = sta_rtc_day_number) = 0x2D = 45 
+    * sta_get_stateVar(31 = sta_rtc_hours) = 0x27 = 39 
+    * sta_get_stateVar(32 = sta_rtc_minutes) = 0x6B = 107 
+    * sta_get_stateVar(33 = sta_rtc_seconds) = 0x26 = 38 
+Error requesting HK
+    * sta_get_stateVar(34 = sta_eps_batt_temp_0) = 0x0 = 0 
+Error requesting HK
+    * sta_get_stateVar(35 = sta_eps_batt_temp_1) = 0x0 = 0 
+Error requesting HK
+    * sta_get_stateVar(36 = sta_eps_battery_voltage) = 0x0 = 0 
+Error requesting HK
+    * sta_get_stateVar(37 = sta_eps_panel_current) = 0x0 = 0 
+Error requesting HK
+    * sta_get_stateVar(38 = sta_eps_panel_voltage_1) = 0x0 = 0 
+Error requesting HK
+    * sta_get_stateVar(39 = sta_eps_panel_voltage_2) = 0x0 = 0 
+Error requesting HK
+    * sta_get_stateVar(40 = sta_eps_panel_voltage_3) = 0x0 = 0 
+Error requesting HK
+    * sta_get_stateVar(41 = sta_eps_system_current) = 0x0 = 0 
+    * sta_get_stateVar(42 = sta_trx_opmode) = 0x1 = 1 
+    * sta_get_stateVar(43 = sta_trx_count_tm) = 0x0 = 0 
+    * sta_get_stateVar(44 = sta_trx_count_tc) = 0x0 = 0 
+    * sta_get_stateVar(45 = sta_trx_day_last_tc) = 0x0 = 0 
+    * sta_get_stateVar(46 = sta_trx_beacon_period) = 0x3C00 = 15360 
+    * sta_get_stateVar(47 = sta_trx_beacon_bat_lvl) = 0xF401 = -3071 
+    * sta_get_stateVar(48 = sta_trx_rx_baud) = 0xC = 12 
+    * sta_get_stateVar(49 = sta_trx_tx_baud) = 0xC = 12 
+===============================
+****************************************************
+thk_executeBeforeFlight finalizo
+Para quedar en config de vuelo, se
+DEBE apagar el SUCHAI, hagalo ANTES de:
+****************************************************
+10 segundos..
+9 segundos..
+8 segundos..
+7 segundos..
+6 segundos..
+5 segundos..
+4 segundos..
+3 segundos..
+2 segundos..
+1 segundos..
+[Dispatcher] CMD Result: 1
+[Dispatcher] *******************************************************************
+[Housekeeping] xLastWakeTime + xDelay_ticks < xTickCount, update xLastWakeTime to xTickCount ..
+exe_cmd 0x6024 0
+[Console] Se genera comando: 0x6024 
+[Dispatcher] Orig: 0x1101 | Cmd: 0x6024 | Param: 0
+[Dispatcher] CMD Result: 1
+[Dispatcher] *******************************************************************
+exe_cmd 0x6024
+[Console] Se genera comando: 0x2006 
+[Dispatcher] Orig: 0x1101 | Cmd: 0x2006 | Param: 0
+[Console Error] Arguments quantity dismatch
+[Dispatcher] CMD Result: 1
+[Dispatcher] *******************************************************************
+[Houskeeping] 5[min] actions ..
+exe_cmd 0x602b 0
+[Console] Se genera comando: 0x602B 
+[Dispatcher] Orig: 0x1101 | Cmd: 0x602B | Param: 0
+pay_testDAC_expFis ...
+     parameter value = 0
+[Dispatcher] CMD Result: 1
+[Dispatcher] *******************************************************************
+exe_cmd 0x602b 0
+[Console] Se genera comando: 0x602B 
+[Dispatcher] Orig: 0x1101 | Cmd: 0x602B | Param: 0
+pay_testDAC_expFis ...
+     parameter value = 0
+[Dispatcher] CMD Result: 1
+[Dispatcher] *******************************************************************
+exe_cmd 0x602b 0
+[Console] Se genera comando: 0x602B 
+[Dispatcher] Orig: 0x1101 | Cmd: 0x602B | Param: 0
+pay_testDAC_expFis ...
+     parameter value = 0
+[Dispatcher] CMD Result: 1
+[Dispatcher] *******************************************************************
+exe_cmd 0x602b 0
+[Console] Se genera comando: 0x602B 
+[Dispatcher] Orig: 0x1101 | Cmd: 0x602B | Param: 0
+pay_testDAC_expFis ...
+     parameter value = 0
+[Dispatcher] CMD Result: 1
+[Dispatcher] *******************************************************************
+exe_cmd 0x602b 0
+[Console] Se genera comando: 0x602B 
+[Dispatcher] Orig: 0x1101 | Cmd: 0x602B | Param: 0
+pay_testDAC_expFis ...
+     parameter value = 0
+[Dispatcher] CMD Result: 1
+[Dispatcher] *******************************************************************
+exe_cmd 0x602b 0
+[Console] Se genera comando: 0x602B 
+[Dispatcher] Orig: 0x1101 | Cmd: 0x602B | Param: 0
+pay_testDAC_expFis ...
+     parameter value = 0
+[Dispatcher] CMD Result: 1
+[Dispatcher] *******************************************************************
+exe_cmd 0x602b 65535
+[Console] Se genera comando: 0x602B 
+[Dispatcher] Orig: 0x1101 | Cmd: 0x602B | Param: -1
+pay_testDAC_expFis ...
+     parameter value = 65535
+[Dispatcher] CMD Result: 1
+[Dispatcher] *******************************************************************
+exe_cmd 0x602b 65535
+[Console] Se genera comando: 0x602B 
+[Dispatcher] Orig: 0x1101 | Cmd: 0x602B | Param: -1
+pay_testDAC_expFis ...
+     parameter value = 65535
+[Dispatcher] CMD Result: 1
+[Dispatcher] *******************************************************************
+exe_cmd 0x602b 65535
+[Console] Se genera comando: 0x602B 
+[Dispatcher] Orig: 0x1101 | Cmd: 0x602B | Param: -1
+pay_testDAC_expFis ...
+     parameter value = 65535
+[Dispatcher] CMD Result: 1
+[Dispatcher] *******************************************************************
+exe_cmd 0x602b 65535
+[Console] Se genera comando: 0x602B 
+[Dispatcher] Orig: 0x1101 | Cmd: 0x602B | Param: -1
+pay_testDAC_expFis ...
+     parameter value = 65535
+[Dispatcher] CMD Result: 1
+[Dispatcher] *******************************************************************
+exe_cmd 0x602b 65535
+[Console] Se genera comando: 0x602B 
+[Dispatcher] Orig: 0x1101 | Cmd: 0x602B | Param: -1
+pay_testDAC_expFis ...
+     parameter value = 65535
+[Dispatcher] CMD Result: 1
+[Dispatcher] *******************************************************************
+exe_cmd 0x602b 65535
+[Console] Se genera comando: 0x602B 
+[Dispatcher] Orig: 0x1101 | Cmd: 0x602B | Param: -1
+pay_testDAC_expFis ...
+     parameter value = 65535
+[Dispatcher] CMD Result: 1
+[Dispatcher] *******************************************************************
+[Communications] seconds_cnt = 570, type_cnt = 1 
+[Dispatcher] Orig: 0x1103 | Cmd: 0x8002 | Param: 1
+Current TRX configuration
+FEC: rs 1, random 1, viterbi 0
+RADIO: rx 12, tx 12, preamble 38400, max temp: 15360
+MORSE: enable: 1, mode: 0,  delay 15360, pospone 11265, wpm 20, batt level 62465, text 00SUCHAI00
+MORSE: cycle: 1, volt:1 rxc:0 txc:0 tempa:0 tempb:0 rssi:0 rferr:1
+HK: interval 1280
+>>Beacon: 00SUCHAI01000-40041  (19)
+Unable to read TRX config! 
+[Dispatcher] CMD Result: 0
+[Dispatcher] *******************************************************************
+exe_cmd 0x602b 65535
+[Console] Se genera comando: 0x602B 
+[Dispatcher] Orig: 0x1101 | Cmd: 0x602B | Param: -1
+pay_testDAC_expFis ...
+     parameter value = 65535
+[Dispatcher] CMD Result: 1
+[Dispatcher] *******************************************************************
+exe_cmd 0x602b 65535
+[Console] Se genera comando: 0x602B 
+[Dispatcher] Orig: 0x1101 | Cmd: 0x602B | Param: -1
+pay_testDAC_expFis ...
+     parameter value = 65535
+[Dispatcher] CMD Result: 1
+[Dispatcher] *******************************************************************
+exe_cmd 0x602b 65535
+[Console] Se genera comando: 0x602B 
+[Dispatcher] Orig: 0x1101 | Cmd: 0x602B | Param: -1
+pay_testDAC_expFis ...
+     parameter value = 65535
+[Dispatcher] CMD Result: 1
+[Dispatcher] *******************************************************************
+[Houskeeping] 5[min] actions ..
+exe_cmd 0x602b 65535
+[Console] Se genera comando: 0x602B 
+[Dispatcher] Orig: 0x1101 | Cmd: 0x602B | Param: -1
+pay_testDAC_expFis ...
+     parameter value = 65535
+[Dispatcher] CMD Result: 1
+[Dispatcher] *******************************************************************
+exe_cmd 0x602b 0
+[Console] Se genera comando: 0x602B 
+[Dispatcher] Orig: 0x1101 | Cmd: 0x602B | Param: 0
+pay_testDAC_expFis ...
+     parameter value = 0
+[Dispatcher] CMD Result: 1
+[Dispatcher] *******************************************************************
+exe_cmd 0x602b 0
+[Console] Se genera comando: 0x602B 
+[Dispatcher] Orig: 0x1101 | Cmd: 0x602B | Param: 0
+pay_testDAC_expFis ...
+     parameter value = 0
+[Dispatcher] CMD Result: 1
+[Dispatcher] *******************************************************************
+exe_cmd 0x602b 65535
+[Console] Se genera comando: 0x602B 
+[Dispatcher] Orig: 0x1101 | Cmd: 0x602B | Param: -1
+pay_testDAC_expFis ...
+     parameter value = 65535
+[Dispatcher] CMD Result: 1
+[Dispatcher] *******************************************************************
+exe_cmd 0x602b 65535
+[Console] Se genera comando: 0x602B 
+[Dispatcher] Orig: 0x1101 | Cmd: 0x602B | Param: -1
+pay_testDAC_expFis ...
+     parameter value = 65535
+[Dispatcher] CMD Result: 1
+[Dispatcher] *******************************************************************
+exe_cmd 0x602b 65535
+[Console] Se genera comando: 0x602B 
+[Dispatcher] Orig: 0x1101 | Cmd: 0x602B | Param: -1
+pay_testDAC_expFis ...
+     parameter value = 65535
+[Dispatcher] CMD Result: 1
+[Dispatcher] *******************************************************************
+exe_cmd 0x602b 65535
+[Console] Se genera comando: 0x602B 
+[Dispatcher] Orig: 0x1101 | Cmd: 0x602B | Param: -1
+pay_testDAC_expFis ...
+     parameter value = 65535
+[Dispatcher] CMD Result: 1
+[Dispatcher] *******************************************************************
+exe_cmd 0x602b 65535
+[Console] Se genera comando: 0x602B 
+[Dispatcher] Orig: 0x1101 | Cmd: 0x602B | Param: -1
+pay_testDAC_expFis ...
+     parameter value = 65535
+[Dispatcher] CMD Result: 1
+[Dispatcher] *******************************************************************
+exe_cmd 0x602b 65535
+[Console] Se genera comando: 0x602B 
+[Dispatcher] Orig: 0x1101 | Cmd: 0x602B | Param: -1
+pay_testDAC_expFis ...
+     parameter value = 65535
+[Dispatcher] CMD Result: 1
+[Dispatcher] *******************************************************************
+exe_cmd 0x602c
+[Console] Se genera comando: 0x2006 
+[Dispatcher] Orig: 0x1101 | Cmd: 0x2006 | Param: 0
+[Console Error] Arguments quantity dismatch
+[Dispatcher] CMD Result: 1
+[Dispatcher] *******************************************************************
+exe_cmd 0x602c 0
+[Console] Se genera comando: 0x602C 
+[Dispatcher] Orig: 0x1101 | Cmd: 0x602C | Param: 0
+pay_print_seed ...
+    fis_payload_print_seed ...
+    srand is set, printing random values ...
+    rand() = 28322 
+    rand() = 7943 
+    rand() = 4653 
+    rand() = 8133 
+    rand() = 31660 
+    rand() = 22230 
+    rand() = 1785 
+    rand() = 18381 
+    rand() = 6181 
+    rand() = 10155 
+    rand() = 2974 
+    rand() = 29089 
+    rand() = 22236 
+    rand() = 18241 
+    rand() = 18024 
+    rand() = 17456 
+    rand() = 28128 
+    rand() = 23031 
+    rand() = 11336 
+    rand() = 25469 
+    rand() = 2750 
+    rand() = 6237 
+    rand() = 9587 
+    rand() = 3850 
+    rand() = 11895 
+    rand() = 16770 
+    rand() = 24505 
+    rand() = 15107 
+    rand() = 19779 
+    rand() = 26107 
+    rand() = 27302 
+    rand() = 4139 
+    rand() = 11785 
+    rand() = 22452 
+    rand() = 31066 
+    rand() = 32391 
+    rand() = 17817 
+    rand() = 19062 
+    rand() = 26152 
+    rand() = 20172 
+    rand() = 2479 
+    rand() = 28988 
+    rand() = 21489 
+    rand() = 24202 
+    rand() = 30632 
+    rand() = 9269 
+    rand() = 2367 
+    rand() = 29461 
+    rand() = 19202 
+    rand() = 23449 
+    rand() = 24864 
+    rand() = 20278 
+    rand() = 8085 
+    rand() = 2860 
+    rand() = 28104 
+    rand() = 30614 
+    rand() = 31635 
+    rand() = 10899 
+    rand() = 10470 
+    rand() = 20966 
+    rand() = 32065 
+    rand() = 30298 
+    rand() = 19906 
+    rand() = 2767 
+    rand() = 10354 
+    rand() = 13761 
+    rand() = 14619 
+    rand() = 28317 
+    rand() = 4040 
+    rand() = 4425 
+    rand() = 27331 
+    rand() = 8363 
+    rand() = 21930 
+    rand() = 17923 
+    rand() = 1270 
+    rand() = 23948 
+    rand() = 16644 
+    rand() = 16787 
+    rand() = 25983 
+    rand() = 13310 
+    rand() = 25025 
+    rand() = 29447 
+    rand() = 13449 
+    rand() = 24719 
+    rand() = 266 
+    rand() = 23642 
+    rand() = 1350 
+    rand() = 14349 
+    rand() = 22843 
+    rand() = 12486 
+    rand() = 25665 
+    rand() = 19631 
+    rand() = 20906 
+    rand() = 3021 
+    rand() = 28548 
+    rand() = 14852 
+    rand() = 14871 
+    rand() = 3334 
+    rand() = 21609 
+    rand() = 17311 
+    rand() = 16881 
+    rand() = 25768 
+    rand() = 20288 
+    rand() = 12927 
+    rand() = 10062 
+    rand() = 7384 
+    rand() = 2214 
+    rand() = 7489 
+    rand() = 22952 
+    rand() = 11186 
+    rand() = 27808 
+    rand() = 1797 
+    rand() = 3160 
+    rand() = 6681 
+    rand() = 22394 
+    rand() = 288 
+    rand() = 29908 
+    rand() = 19263 
+    rand() = 13410 
+    rand() = 15238 
+    rand() = 12457 
+    rand() = 12531 
+    rand() = 27075 
+    rand() = 12277 
+    rand() = 3894 
+    rand() = 30893 
+    rand() = 12131 
+    rand() = 21474 
+    rand() = 15150 
+    rand() = 32091 
+    rand() = 10811 
+    rand() = 32036 
+    rand() = 32715 
+    rand() = 2537 
+    rand() = 27162 
+    rand() = 25955 
+    rand() = 9683 
+    rand() = 14483 
+    rand() = 9464 
+    rand() = 30783 
+    rand() = 9292 
+    rand() = 31466 
+    rand() = 19483 
+    rand() = 22592 
+    rand() = 8446 
+    rand() = 5799 
+    rand() = 22252 
+    rand() = 18048 
+    rand() = 31917 
+    rand() = 9011 
+    rand() = 24470 
+    rand() = 22810 
+    rand() = 26387 
+    rand() = 21490 
+    rand() = 28004 
+    rand() = 11345 
+    rand() = 13983 
+    rand() = 6995 
+    rand() = 2263 
+    rand() = 31360 
+    rand() = 32752 
+    rand() = 29337 
+    rand() = 30090 
+    rand() = 18118 
+    rand() = 10512 
+    rand() = 21094 
+    rand() = 11718 
+    rand() = 1645 
+    rand() = 29809 
+    rand() = 10252 
+    rand() = 31717 
+    rand() = 29982 
+    rand() = 16296 
+    rand() = 21395 
+    rand() = 19815 
+    rand() = 32711 
+    rand() = 29163 
+    rand() = 31370 
+    rand() = 7126 
+    rand() = 29256 
+    rand() = 22092 
+    rand() = 15246 
+    rand() = 1882 
+    rand() = 21472 
+    rand() = 23986 
+    rand() = 3740 
+    rand() = 32539 
+    rand() = 7770 
+    rand() = 1180 
+    rand() = 24086 
+    rand() = 4953 
+    rand() = 15351 
+    rand() = 22678 
+    rand() = 9366 
+    rand() = 19789 
+    rand() = 30746 
+    rand() = 22903 
+    rand() = 7030 
+    rand() = 10431 
+    rand() = 20150 
+    rand() = 12895 
+    rand() = 17948 
+    rand() = 2916 
+    rand() = 18040 
+    rand() = 1652 
+    rand() = 26118 
+    rand() = 22013 
+    rand() = 16820 
+    rand() = 19799 
+    rand() = 9113 
+    rand() = 27440 
+    rand() = 29200 
+    rand() = 31592 
+    rand() = 30633 
+    rand() = 18469 
+    rand() = 23282 
+    rand() = 29119 
+    rand() = 8647 
+    rand() = 2784 
+    rand() = 3754 
+    rand() = 29157 
+    rand() = 14158 
+    rand() = 609 
+    rand() = 4703 
+    rand() = 4438 
+    rand() = 5932 
+    rand() = 9341 
+    rand() = 5307 
+    rand() = 26807 
+    rand() = 20081 
+    rand() = 1402 
+    rand() = 25430 
+    rand() = 31447 
+    rand() = 14745 
+    rand() = 11629 
+    rand() = 19171 
+    rand() = 3943 
+    rand() = 28314 
+    rand() = 26452 
+    rand() = 19997 
+    rand() = 32121 
+    rand() = 15276 
+    rand() = 26099 
+    rand() = 24431 
+    rand() = 8635 
+    rand() = 18138 
+    rand() = 23151 
+    rand() = 2406 
+    rand() = 31856 
+    rand() = 6733 
+    rand() = 22699 
+    rand() = 12759 
+    rand() = 13106 
+    rand() = 10579 
+    rand() = 9574 
+    rand() = 25551 
+    rand() = 29289 
+    rand() = 6706 
+    rand() = 18961 
+    rand() = 19519 
+    rand() = 27274 
+    rand() = 24751 
+    rand() = 2673 
+    rand() = 21860 
+    rand() = 25872 
+    rand() = 30045 
+    rand() = 6137 
+    rand() = 3320 
+    rand() = 11579 
+    rand() = 13734 
+    rand() = 7909 
+    rand() = 16666 
+    rand() = 18571 
+    rand() = 14491 
+    rand() = 2326 
+    rand() = 32766 
+    rand() = 15099 
+    rand() = 9339 
+    rand() = 4785 
+    rand() = 26196 
+    rand() = 21246 
+    rand() = 20741 
+    rand() = 3190 
+    rand() = 26745 
+    rand() = 14650 
+    rand() = 17022 
+    rand() = 26592 
+    rand() = 608 
+    rand() = 16391 
+    rand() = 18817 
+    rand() = 26881 
+    rand() = 31295 
+    rand() = 11942 
+    rand() = 21385 
+    rand() = 6684 
+    rand() = 8697 
+    rand() = 1089 
+    rand() = 14399 
+    rand() = 23808 
+    rand() = 17230 
+    rand() = 28327 
+    rand() = 3972 
+    rand() = 13863 
+    rand() = 8901 
+    rand() = 28868 
+    rand() = 23614 
+    rand() = 11666 
+    rand() = 17749 
+    rand() = 29921 
+    rand() = 6115 
+    rand() = 24930 
+    rand() = 25814 
+    rand() = 18081 
+    rand() = 27335 
+    rand() = 9782 
+    rand() = 16170 
+    rand() = 12471 
+    rand() = 7461 
+    rand() = 20808 
+    rand() = 11306 
+    rand() = 14952 
+    rand() = 3311 
+    rand() = 2118 
+    rand() = 9810 
+    rand() = 16580 
+    rand() = 13398 
+    rand() = 13042 
+    rand() = 12845 
+    rand() = 26532 
+    rand() = 3352 
+    rand() = 27256 
+    rand() = 20607 
+    rand() = 7778 
+    rand() = 23692 
+    rand() = 659 
+    rand() = 26420 
+    rand() = 13403 
+    rand() = 13422 
+    rand() = 2142 
+    rand() = 19723 
+    rand() = 14630 
+    rand() = 13419 
+    rand() = 21242 
+    rand() = 25602 
+    rand() = 9361 
+    rand() = 22635 
+    rand() = 485 
+    rand() = 28288 
+    rand() = 607 
+    rand() = 24482 
+    rand() = 1301 
+    rand() = 2885 
+    rand() = 7620 
+    rand() = 6230 
+    rand() = 2776 
+    rand() = 1042 
+    rand() = 26780 
+    rand() = 7278 
+    rand() = 28523 
+    rand() = 23319 
+    rand() = 6767 
+    rand() = 19134 
+    rand() = 2652 
+    rand() = 17185 
+    rand() = 17190 
+    rand() = 2324 
+    rand() = 30112 
+    rand() = 28288 
+    rand() = 19849 
+    rand() = 6914 
+    rand() = 10867 
+    rand() = 24761 
+    rand() = 11648 
+    rand() = 6505 
+    rand() = 4083 
+    rand() = 12016 
+    rand() = 13830 
+    rand() = 22218 
+    rand() = 22395 
+    rand() = 23316 
+    rand() = 21228 
+    rand() = 15436 
+    rand() = 17088 
+    rand() = 13768 
+    rand() = 8787 
+    rand() = 27533 
+    rand() = 12206 
+    rand() = 29460 
+    rand() = 10727 
+    rand() = 12585 
+    rand() = 1536 
+    rand() = 24016 
+    rand() = 9180 
+    rand() = 5131 
+    rand() = 25249 
+    rand() = 21964 
+    rand() = 8105 
+    rand() = 3446 
+    rand() = 7366 
+    rand() = 1216 
+    rand() = 29319 
+    rand() = 13778 
+    rand() = 200 
+    rand() = 30199 
+    rand() = 13224 
+    rand() = 29239 
+    rand() = 23746 
+    rand() = 31930 
+    rand() = 16440 
+    rand() = 28347 
+    rand() = 15087 
+    rand() = 5501 
+    rand() = 788 
+    rand() = 29051 
+    rand() = 26048 
+    rand() = 11724 
+    rand() = 31821 
+    rand() = 21100 
+    rand() = 4544 
+    rand() = 32499 
+    rand() = 17499 
+    rand() = 9183 
+    rand() = 18728 
+    rand() = 26480 
+    rand() = 1825 
+    rand() = 22485 
+    rand() = 30017 
+    rand() = 28441 
+    rand() = 12964 
+    rand() = 28168 
+    rand() = 8574 
+    rand() = 25101 
+    rand() = 21899 
+    rand() = 30390 
+    rand() = 21589 
+    rand() = 11868 
+    rand() = 26966 
+    rand() = 30252 
+    rand() = 6625 
+    rand() = 28790 
+    rand() = 1118 
+    rand() = 29974 
+    rand() = 7225 
+    rand() = 23124 
+    rand() = 12177 
+    rand() = 18824 
+    rand() = 25998 
+    rand() = 24936 
+    rand() = 23529 
+    rand() = 25803 
+    rand() = 10246 
+    rand() = 24389 
+    rand() = 13233 
+    rand() = 12776 
+    rand() = 10076 
+    rand() = 4366 
+    rand() = 17271 
+    rand() = 20726 
+    rand() = 8244 
+    rand() = 8608 
+    rand() = 14032 
+    rand() = 15140 
+    rand() = 18751 
+    rand() = 10879 
+    rand() = 9422 
+    rand() = 7046 
+    rand() = 18963 
+    rand() = 22401 
+    rand() = 10306 
+    rand() = 26784 
+    rand() = 17351 
+    rand() = 6461 
+    rand() = 16306 
+    rand() = 2739 
+    rand() = 18258 
+    rand() = 4657 
+    rand() = 12569 
+    rand() = 6857 
+    rand() = 21921 
+    rand() = 10933 
+    rand() = 28001 
+    rand() = 1666 
+    rand() = 17786 
+    rand() = 30627 
+    rand() = 12193 
+    rand() = 9373 
+    rand() = 11027 
+    rand() = 24515 
+    rand() = 21526 
+    rand() = 1606 
+    rand() = 7537 
+    rand() = 11257 
+    rand() = 8931 
+    rand() = 4386 
+    rand() = 30082 
+    rand() = 28206 
+    rand() = 2697 
+    rand() = 11803 
+    rand() = 25337 
+    rand() = 27390 
+    rand() = 1572 
+    rand() = 6379 
+    rand() = 29421 
+    rand() = 29222 
+    rand() = 11115 
+    rand() = 7274 
+    rand() = 25649 
+    rand() = 20907 
+    rand() = 7269 
+    rand() = 18328 
+    rand() = 25969 
+    rand() = 20427 
+    rand() = 22764 
+    rand() = 26474 
+    rand() = 6417 
+    rand() = 22437 
+    rand() = 11235 
+    rand() = 20821 
+    rand() = 31429 
+    rand() = 17575 
+    rand() = 12342 
+    rand() = 19099 
+    rand() = 752 
+    rand() = 30907 
+    rand() = 10646 
+    rand() = 6232 
+    rand() = 9150 
+    rand() = 10545 
+    rand() = 11506 
+    rand() = 1099 
+    rand() = 31744 
+    rand() = 3691 
+    rand() = 21684 
+    rand() = 25189 
+    rand() = 23498 
+    rand() = 25162 
+    rand() = 31936 
+    rand() = 25364 
+    rand() = 30414 
+    rand() = 22876 
+    rand() = 16941 
+    rand() = 15948 
+    rand() = 24695 
+    rand() = 706 
+    rand() = 17089 
+    rand() = 858 
+    rand() = 11717 
+    rand() = 15074 
+    rand() = 22575 
+    rand() = 6504 
+    rand() = 22763 
+    rand() = 7378 
+    rand() = 19215 
+    rand() = 15567 
+    rand() = 17066 
+    rand() = 7807 
+    rand() = 14753 
+    rand() = 1312 
+    rand() = 28012 
+    rand() = 17313 
+    rand() = 11842 
+    rand() = 16368 
+    rand() = 19999 
+    rand() = 4959 
+    rand() = 8618 
+    rand() = 11367 
+    rand() = 20183 
+    rand() = 15553 
+    rand() = 25835 
+    rand() = 25479 
+    rand() = 24354 
+    rand() = 5593 
+    rand() = 12073 
+    rand() = 31037 
+    rand() = 11818 
+    rand() = 25009 
+    rand() = 19226 
+    rand() = 8746 
+    rand() = 27278 
+    rand() = 2291 
+    rand() = 8253 
+    rand() = 27182 
+    rand() = 9213 
+    rand() = 12635 
+    rand() = 5081 
+    rand() = 18360 
+    rand() = 10902 
+    rand() = 24541 
+    rand() = 32188 
+    rand() = 6096 
+    rand() = 2051 
+    rand() = 4501 
+    rand() = 11441 
+    rand() = 20193 
+    rand() = 28239 
+    rand() = 30579 
+    rand() = 14014 
+    rand() = 27208 
+    rand() = 14475 
+    rand() = 16547 
+    rand() = 4386 
+    rand() = 28317 
+    rand() = 22821 
+    rand() = 8125 
+    rand() = 11281 
+    rand() = 32452 
+    rand() = 20995 
+    rand() = 30385 
+    rand() = 3629 
+    rand() = 22450 
+    rand() = 4706 
+    rand() = 21872 
+    rand() = 11204 
+    rand() = 15615 
+    rand() = 22130 
+    rand() = 14171 
+    rand() = 30156 
+    rand() = 8752 
+    rand() = 25773 
+    rand() = 11116 
+    rand() = 23711 
+    rand() = 7362 
+    rand() = 17659 
+    rand() = 21287 
+    rand() = 17015 
+    rand() = 27382 
+    rand() = 19847 
+    rand() = 25662 
+    rand() = 6567 
+    rand() = 7008 
+    rand() = 8543 
+    rand() = 6407 
+    rand() = 10911 
+    rand() = 8493 
+    rand() = 31950 
+    rand() = 15262 
+    rand() = 15773 
+    rand() = 24887 
+    rand() = 27513 
+    rand() = 14298 
+    rand() = 9268 
+    rand() = 970 
+    rand() = 17468 
+    rand() = 24560 
+    rand() = 24190 
+    rand() = 5940 
+    rand() = 1730 
+    rand() = 20457 
+    rand() = 22560 
+    rand() = 20239 
+    rand() = 30438 
+    rand() = 7109 
+    rand() = 30978 
+    rand() = 27725 
+    rand() = 4557 
+    rand() = 13421 
+    rand() = 1483 
+    rand() = 6664 
+    rand() = 14528 
+    rand() = 12122 
+    rand() = 3103 
+    rand() = 19207 
+    rand() = 11722 
+    rand() = 23814 
+    rand() = 22168 
+    rand() = 25615 
+    rand() = 15893 
+    rand() = 23061 
+    rand() = 9349 
+    rand() = 16112 
+    rand() = 13829 
+    rand() = 1859 
+    rand() = 8549 
+    rand() = 21067 
+    rand() = 31505 
+    rand() = 5133 
+    rand() = 22562 
+    rand() = 2596 
+    rand() = 26470 
+    rand() = 2079 
+    rand() = 7693 
+    rand() = 7467 
+    rand() = 17210 
+    rand() = 30592 
+    rand() = 12701 
+    rand() = 27338 
+    rand() = 30704 
+    rand() = 19839 
+    rand() = 2279 
+    rand() = 11757 
+    rand() = 22769 
+    rand() = 23133 
+    rand() = 3037 
+    rand() = 4245 
+    rand() = 7748 
+    rand() = 4023 
+    rand() = 13894 
+    rand() = 27676 
+    rand() = 27891 
+    rand() = 6074 
+    rand() = 23937 
+    rand() = 16966 
+    rand() = 2334 
+    rand() = 13061 
+    rand() = 5625 
+    rand() = 15115 
+    rand() = 3548 
+    rand() = 2396 
+    rand() = 29799 
+    rand() = 13095 
+    rand() = 18133 
+    rand() = 22803 
+    rand() = 9931 
+    rand() = 10077 
+    rand() = 1952 
+    rand() = 12597 
+    rand() = 8488 
+    rand() = 2191 
+    rand() = 7389 
+    rand() = 8823 
+    rand() = 23042 
+    rand() = 17535 
+    rand() = 13074 
+    rand() = 4831 
+    rand() = 21144 
+    rand() = 3939 
+    rand() = 20294 
+    rand() = 8244 
+    rand() = 26338 
+    rand() = 14890 
+    rand() = 13663 
+    rand() = 15652 
+    rand() = 8521 
+    rand() = 8593 
+    rand() = 22588 
+    rand() = 30008 
+    rand() = 3624 
+    rand() = 484 
+    rand() = 12178 
+    rand() = 888 
+    rand() = 19207 
+    rand() = 15253 
+    rand() = 3975 
+    rand() = 10205 
+    rand() = 19857 
+    rand() = 21630 
+    rand() = 24080 
+    rand() = 26491 
+    rand() = 7771 
+    rand() = 16886 
+    rand() = 16907 
+    rand() = 9067 
+    rand() = 852 
+    rand() = 18325 
+    rand() = 10268 
+    rand() = 12921 
+    rand() = 22026 
+    rand() = 30407 
+    rand() = 14664 
+    rand() = 27027 
+    rand() = 418 
+    rand() = 6931 
+    rand() = 8018 
+    rand() = 16108 
+    rand() = 25748 
+    rand() = 7977 
+    rand() = 13016 
+    rand() = 29683 
+    rand() = 4651 
+    rand() = 13997 
+    rand() = 28461 
+    rand() = 29175 
+    rand() = 12216 
+    rand() = 22726 
+    rand() = 18422 
+    rand() = 17815 
+    rand() = 27033 
+    rand() = 22373 
+    rand() = 15491 
+    rand() = 25835 
+    rand() = 15341 
+    rand() = 8022 
+    rand() = 17651 
+    rand() = 11379 
+    rand() = 2836 
+    rand() = 27912 
+    rand() = 29958 
+    rand() = 16067 
+    rand() = 18409 
+    rand() = 539 
+    rand() = 28864 
+    rand() = 13036 
+    rand() = 7103 
+    rand() = 10158 
+    rand() = 3779 
+    rand() = 15786 
+    rand() = 22556 
+    rand() = 2406 
+    rand() = 17514 
+    rand() = 16719 
+    rand() = 9784 
+    rand() = 13631 
+    rand() = 14245 
+    rand() = 28786 
+    rand() = 12851 
+    rand() = 19474 
+    rand() = 4759 
+    rand() = 28502 
+    rand() = 19994 
+    rand() = 12010 
+    rand() = 29937 
+    rand() = 8220 
+    rand() = 18584 
+    rand() = 13575 
+    rand() = 7948 
+    rand() = 1449 
+    rand() = 29564 
+    rand() = 13998 
+    rand() = 13001 
+    rand() = 26965 
+    rand() = 5614 
+    rand() = 30902 
+    rand() = 9769 
+    rand() = 12121 
+    rand() = 18033 
+    rand() = 17619 
+    rand() = 17323 
+    rand() = 1525 
+    rand() = 26776 
+    rand() = 15009 
+    rand() = 21609 
+    rand() = 23396 
+    rand() = 19080 
+    rand() = 9584 
+    rand() = 20465 
+    rand() = 18048 
+    rand() = 7729 
+    rand() = 25298 
+    rand() = 11748 
+    rand() = 20021 
+    rand() = 19019 
+    rand() = 9701 
+    rand() = 13649 
+    rand() = 15271 
+    rand() = 20242 
+    rand() = 9057 
+    rand() = 26063 
+    rand() = 25379 
+    rand() = 15042 
+    rand() = 29280 
+    rand() = 22108 
+    rand() = 4039 
+    rand() = 27090 
+    rand() = 11761 
+    rand() = 9720 
+    rand() = 32240 
+    rand() = 3824 
+    rand() = 9051 
+    rand() = 23041 
+    rand() = 4198 
+    rand() = 16063 
+    rand() = 6449 
+    rand() = 17997 
+    rand() = 11337 
+    rand() = 31571 
+    rand() = 31514 
+    rand() = 23305 
+    rand() = 26555 
+    rand() = 31592 
+    rand() = 30301 
+    rand() = 29780 
+    rand() = 30539 
+    rand() = 10598 
+    rand() = 21295 
+    rand() = 1947 
+    rand() = 1572 
+    rand() = 5653 
+    rand() = 5820 
+    rand() = 19122 
+    rand() = 25850 
+    rand() = 23328 
+    rand() = 14839 
+    rand() = 12471 
+    rand() = 15280 
+    rand() = 10571 
+    rand() = 290 
+    rand() = 22695 
+    rand() = 10697 
+    rand() = 32372 
+    rand() = 16412 
+    rand() = 18877 
+    rand() = 405 
+    rand() = 16203 
+    rand() = 5998 
+    rand() = 6543 
+    rand() = 2583 
+    rand() = 12496 
+    rand() = 30228 
+    rand() = 22502 
+    rand() = 29625 
+    rand() = 3473 
+    rand() = 27659 
+    rand() = 23648 
+    rand() = 27567 
+    rand() = 12961 
+    rand() = 6558 
+    rand() = 20935 
+    rand() = 31275 
+    rand() = 8279 
+    rand() = 18289 
+    rand() = 6960 
+    rand() = 5957 
+    rand() = 19148 
+    rand() = 29514 
+    rand() = 28372 
+    rand() = 8872 
+    rand() = 30226 
+    rand() = 23971 
+    rand() = 17070 
+    rand() = 10750 
+    rand() = 6709 
+    rand() = 25584 
+    rand() = 26328 
+    rand() = 10777 
+    rand() = 2802 
+    rand() = 13232 
+    rand() = 27046 
+    rand() = 14054 
+    rand() = 24377 
+    rand() = 8758 
+    rand() = 8575 
+    rand() = 13842 
+    rand() = 21604 
+    rand() = 13620 
+    rand() = 30847 
+    rand() = 6265 
+    rand() = 10549 
+    rand() = 10252 
+    rand() = 21966 
+    rand() = 15955 
+    rand() = 11410 
+    rand() = 31191 
+    rand() = 16575 
+    rand() = 29213 
+    rand() = 31743 
+    rand() = 20529 
+    rand() = 6568 
+    rand() = 9801 
+    rand() = 11743 
+    rand() = 15051 
+    rand() = 1156 
+    rand() = 24997 
+    rand() = 25450 
+    rand() = 9134 
+    rand() = 24905 
+    rand() = 1675 
+    rand() = 32365 
+    rand() = 30800 
+    rand() = 28170 
+    rand() = 24782 
+    rand() = 30405 
+    rand() = 22360 
+    rand() = 28365 
+    rand() = 9823 
+    rand() = 2969 
+    rand() = 20273 
+    rand() = 30506 
+    rand() = 22211 
+    rand() = 19547 
+    rand() = 31056 
+    rand() = 12712 
+    rand() = 9525 
+    rand() = 13692 
+    rand() = 32326 
+    rand() = 16599 
+    rand() = 22938 
+    rand() = 23794 
+    rand() = 20101 
+    rand() = 5677 
+    rand() = 21545 
+    rand() = 27242 
+    rand() = 7154 
+    rand() = 23201 
+    rand() = 8151 
+    rand() = 22349 
+    rand() = 24622 
+    rand() = 17673 
+    rand() = 16259 
+    rand() = 12917 
+    rand() = 31652 
+    rand() = 31284 
+    rand() = 8678 
+    rand() = 25516 
+    rand() = 14674 
+    rand() = 21191 
+    rand() = 26680 
+    rand() = 10984 
+    rand() = 17240 
+    rand() = 8920 
+    rand() = 27555 
+pay_print_seed ... finished 
+[Dispatcher] CMD Result: 1
+[Dispatcher] *******************************************************************
