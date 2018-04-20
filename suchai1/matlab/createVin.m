@@ -1,7 +1,11 @@
 function tsInput = createVin(inputStruct, varargin)
 
-freqSignalHz = varargin{1};
-oversamplingCoeff = varargin{2};
+if nargin >= 4
+    freqSignalHz = varargin{1};
+    oversamplingCoeff = varargin{2};
+    removeDC = varargin{3};
+end
+
 freqSamplingHz = freqSignalHz * oversamplingCoeff;
 deltaTSampling = 1 / freqSamplingHz;
 
@@ -23,7 +27,9 @@ vin = timeseries(countsDAC.Data, countsDAC.Time, 'name', 'Vin');
 dacMaxVoltage = inputStruct.maxVoltage;
 dacMinVoltage = inputStruct.minVoltage;
 vin.Data = count2voltage(vin.Data, dacMaxVoltage, dacMinVoltage, bitsDAC);
-% vin.Data = vin.Data - mean(vin.Data);
+if strfind(removeDC, 'yes')
+    vin.Data = vin.Data - mean(vin.Data);
+end
 vin.DataInfo.Units = 'V';
 vin.DataInfo.Interpolation = tsdata.interpolation('zoh');
 vin.TimeInfo.Units = 'seconds';
