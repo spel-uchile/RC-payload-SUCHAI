@@ -38,36 +38,26 @@ for i = 1 : length(parserFiles)
             mkdir(saveFolder)
         end
         
-        %raw timeserie
-        disp(['raw timeseries ', num2str(fsignal), 'Hz']);
-        raw = timeSeriesFactory(fsignal, 'raw', inputFixture, ...
+        tsProducedName = strcat( normalization ,'_', num2str(fsignal),'Hz');
+        newFile = strcat(saveFolder, '/',prefixjoin,'_', tsProducedName,'.mat');
+        if ~exist(fullfile(newFile))
+            disp([newFile,' is being created']);
+        elseif exist(fullfile(newFile)) && exist('overwrite')
+            if strfind(overwrite,'yes')
+                disp([newFile,' is being created']);
+            else
+                disp([newFile,' already exists']);
+                continue;
+            end
+        else
+            disp([newFile,' already exists']);
+            continue;
+        end
+        tsProduced = timeSeriesFactory(fsignal, normalization, inputFixture, ...
             outputFixture{fixtureIndexForOutputFiles}, sampCoeff);
-        newRawFile = strcat(saveFolder, '/',prefixjoin,'_', raw.Name,'.mat');
-        save(newRawFile,'raw','-v7.3');
+        tsProduced.Name = tsProducedName;
+        save(newFile, 'tsProduced','-v7.3');
         
-        %simulation timeserie
-        disp(['simulink timeseries ', num2str(fsignal), 'Hz']);
-        simulation = timeSeriesFactory(fsignal, 'simulink', inputFixture, ...
-            sampCoeff);
-        newSimFile = strcat(saveFolder, '/',prefixjoin,'_', simulation.Name,'.mat');
-        save(newSimFile,'simulation','-v7.3');
-        
-        %theoretical timeserie
-        disp(['theoretical simulation timeseries', num2str(fsignal), 'Hz']);
-        Parameters.numberOfRandomValues = 1e5;
-        Parameters.dacBits = 16;
-        Parameters.adcBits = 10;
-        Parameters.dacMaxVoltage = 3.3;
-        Parameters.dacMinvoltage = 0;
-        Parameters.oversamplingCoeff = 4;
-        Parameters.buffLen = 200;
-        Parameters.sampledValuesPerRound = floor(Parameters.buffLen / Parameters.oversamplingCoeff); %NOT USED REALLY
-        Parameters.rounds = 3;%NOT USED REALLY
-        Parameters.nWaitingUnits = 350; %NOT USED REALLY
-        Parameters.nonSampledValuesPerRound = 500;%NOT USED REALLY
-        theoretical = timeSeriesFactory(fsignal, 'theoretical', Parameters);
-        newTheoreticalFile = strcat(saveFolder, '/',prefixjoin,'_', theoretical.Name,'.mat');
-        save(newTheoreticalFile,'theoretical','-v7.3');
     end
     
 end

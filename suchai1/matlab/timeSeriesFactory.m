@@ -8,7 +8,6 @@ freqCircuitHz = 91.5;
 R = 1210;
 C = 1 / (freqCircuitHz * 2 * pi * R);
 dampingRate = 1/ (R*C);
-D = 4.7983;    %Vin power spectrum in [mV^2_{rms}/Hz] of PIC24F and Simulink
 
 switch varargin{1}
     case 'tektronix'
@@ -86,11 +85,9 @@ switch varargin{1}
         
         oversamplingCoeff = varargin{4};
         tsCollection = makeExperimentalSeries(Input, Output, freqSignalHz, ...
-            oversamplingCoeff, R, C);
+            oversamplingCoeff, R, C, 'removeDC');
         dacBits = Input.nbits;
         adcBits = Output.nbits;
-        maxVin = Input.maxVoltage;
-        maxVout = Output.maxVoltage;
         X = tsCollection.Vin.Data;
         L = length(X);
         Y = fft(X);
@@ -101,6 +98,27 @@ switch varargin{1}
         
         tsCollection.Name = strcat( 'raw_', num2str(freqSignalHz),'Hz');
         
+    case 'rawWithDC'
+        S = load(varargin{2});
+        Input = S.InputCounts;
+        S = load(varargin{3});
+        Output = S.OutputCounts;
+        
+        oversamplingCoeff = varargin{4};
+        tsCollection = makeExperimentalSeries(Input, Output, freqSignalHz, ...
+            oversamplingCoeff, R, C);
+        dacBits = Input.nbits;
+        adcBits = Output.nbits;
+        X = tsCollection.Vin.Data;
+        L = length(X);
+        Y = fft(X);
+        P2 = abs(Y/L);
+        P1 = P2(1:L/2+1);
+        P1(2:end-1) = 2*P1(2:end-1);
+        D = rms(P1)*1000;
+        
+        tsCollection.Name = strcat( 'rawWithDC_', num2str(freqSignalHz),'Hz');
+        
     case 'filtered'
         S = load(varargin{2});
         Input = S.InputCounts;
@@ -108,7 +126,6 @@ switch varargin{1}
         Output = S.OutputCounts;
         dacBits = Input.nbits;
         adcBits = Output.nbits;
-        D = 146.5910;
         
         oversamplingCoeff = varargin{4};
         rawCollection = makeExperimentalSeries(Input, Output, freqSignalHz, ...
@@ -130,9 +147,6 @@ switch varargin{1}
         Input = S.InputCounts;
         dacBits = Input.nbits;
         adcBits = 10;
-        maxVin = Input.maxVoltage;
-        maxVout = Input.maxVoltage;
-        D = 4.8080;
         oversamplingCoeff = varargin{3};
         rawCollection = makeSimulationSeries(Input, freqSignalHz, oversamplingCoeff, R, C);
         buffLen = length(rawCollection.Vin.Data);
@@ -145,7 +159,7 @@ switch varargin{1}
         P1 = P2(1:L/2+1);
         P1(2:end-1) = 2*P1(2:end-1);
         D = rms(P1)*1000;
-        tsCollection.Name = strcat( 'simulink_', num2str(freqSignalHz),'Hz');
+        tsCollection.Name = strcat( varargin{1} ,'_', num2str(freqSignalHz),'Hz');
         
     case 'theoretical'
         Parameters = varargin{2};
@@ -153,8 +167,6 @@ switch varargin{1}
         simResult = simulationFactory(freqSignalHz, 'theoretical', Parameters); % returns a normalized serie
         tsCollection = simResult.tsc;
         tsCollection.Name = strcat( 'theoretical_', num2str(freqSignalHz),'Hz');
-        maxVin = simResult.maxVin;
-        maxVout = simResult.maxVout;
         dacBits = Parameters.dacBits;
         adcBits = Parameters.adcBits;
         X = tsCollection.Vin.Data;
@@ -164,13 +176,14 @@ switch varargin{1}
         P1 = P2(1:L/2+1);
         P1(2:end-1) = 2*P1(2:end-1);
         D = rms(P1)*1000;
+        tsCollection.Name = strcat( varargin{1} ,'_', num2str(freqSignalHz),'Hz');
+        
     otherwise
         error(['The argument' ' "' varargin{1} '" ' 'is not recognized.'])
 end
 
 createdTimeSeries.fsignal = freqSignalHz;
 createdTimeSeries.tsc = tsCollection;
-createdTimeSeries.Name = tsCollection.Name;
 createdTimeSeries.maxVin = max(tsCollection.Vin.Data);
 createdTimeSeries.minVin = min(tsCollection.Vin.Data);
 createdTimeSeries.maxVout = max(tsCollection.Vout.Data);

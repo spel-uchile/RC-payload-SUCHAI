@@ -23,8 +23,7 @@ for i = 1 : length(databases)
                 ~isempty(strfind(matfiles{kl},'theoretical'));
             isTektronix = ~isempty(strfind(lower(database), 'tektronix'));
             if isRawOrTheoretical || isTektronix    
-                %% divByMean
-                saveFolder = ['./mat/ts-divByMean/',database,'/',freq];
+                saveFolder = ['./mat/ts-', normalization, '/',database,'/',freq];
                 if ~isdir(saveFolder)
                     disp(['creating directory ', saveFolder]);
                     mkdir(saveFolder)
@@ -37,25 +36,11 @@ for i = 1 : length(databases)
                 tsStruct = S.(name);
                 fsignal = tsStruct.fsignal;
 
-                disp(['Dividing ',loadMyFile,' timeserie by its mean value']);
-                divByMean = timeSeriesFactory(fsignal, 'divByMean', tsStruct);
+                disp(['Making normalization: ', normalization, 'at file ',loadMyFile]);
+                tsNormalized = timeSeriesFactory(fsignal, normalization, tsStruct);
                 newMatFileName = strcat(saveFolder,'/',...
-                    currentFile(1:(end-4)),'_divByMean.mat');
-                save(newMatFileName,'divByMean','-v7.3');
-                disp([newMatFileName,' saved sucessfully']);
-                
-                %% diffByMeanDivByStd
-                saveFolder = ['./mat/ts-diffByMeanDivByStd/',database,'/',freq];
-                if ~isdir(saveFolder)
-                    disp(['creating directory ', saveFolder]);
-                    mkdir(saveFolder)
-                end
-                
-                disp(['Normalization ',loadMyFile,' timeserie by its mean and std value']);
-                diffByMeanDivByStd = timeSeriesFactory(fsignal, 'diffByMeanDivByStd', tsStruct);
-                newMatFileName = strcat(saveFolder,'/',...
-                    currentFile(1:(end-4)),'_diffByMeanDivByStd.mat');
-                save(newMatFileName,'diffByMeanDivByStd','-v7.3');
+                    currentFile(1:(end-4)),'_', normalization,'.mat');
+                save(newMatFileName,'tsNormalized','-v7.3');
                 disp([newMatFileName,' saved sucessfully']);
             end
         end

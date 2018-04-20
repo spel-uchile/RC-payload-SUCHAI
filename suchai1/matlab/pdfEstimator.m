@@ -42,37 +42,7 @@ langInj = tsCollection.langevinInjected.Data;
 langStored = tsCollection.langevinStored.Data;
 langDeltaP = tsCollection.langevinDeltaPower.Data;
 
-% switch kindOfNorm
-%     case 'raw'
-%         ptsVin = linspace(-0.25, 2.25, npoints);
-%         ptsVout = ptsVin;
-%         ptsVr = linspace(-6, 6, npoints);
-%     case 'divByMean'
-%
-%     case 'diffByMeanDivByStd'
-%         ptsVin = linspace(-1.25, 1.25, npoints);
-%         ptsVout = ptsVin;
-%         ptsVr = linspace(-6, 6, npoints);
-%         ptsPin = linspace(-0.2, 1.2, npoints);
-%         ptsPr = linspace(-0.2, 2.5, npoints);
-%         ptsPc = ptsPin;
-%         ptsDeltaP = ptsPin;
-% end
-
 if isempty(bwStruct)
-    %     [fVin, ptsVin, bwVin] = ksdensity(vin,ptsVin, 'kernel',kernel);
-    %     [fVout, ptsVout, bwVout] = ksdensity(vout,ptsVout, 'kernel',kernel);
-    %     [fVr, ptsVr, bwVr] = ksdensity(vR, ptsVr, 'kernel',kernel);
-    %     [fIr, ptsIr, bwIr] = ksdensity(iR, 'kernel',kernel);
-    %     [fIc, ptsIc, bwIc] = ksdensity(iC, 'kernel',kernel);
-    %     [fPin, ptsPin, bwPin] = ksdensity(pIn, ptsPin,'kernel',kernel);
-    %     [fPr, ptsPr, bwPr] = ksdensity(pR, ptsPr, 'kernel',kernel);
-    %     [fPc, ptsPc, bwPc] = ksdensity(pC, ptsPc, 'kernel',kernel);
-    %     [fDeltaP, ptsDeltaP, bwDeltaP] = ksdensity(deltaP, ptsDeltaP, 'kernel',kernel);
-    %     [fLangInj, ptsLangInj, bwLangInj] = ksdensity(langInj, 'kernel',kernel);
-    %     [fLangDiss, ptsLangDiss, bwLangDiss] = ksdensity(langDiss, 'kernel',kernel);
-    %     [fLangStored, ptsLangStored, bwLangStored] = ksdensity(langStored, 'kernel',kernel);
-    %     [fLangDelta, ptsLangDeltaP, bwLangDeltaP] = ksdensity(langDeltaP, 'kernel',kernel);
     [fVin, ptsVin, bwVin] = ksdensity(vin, 'kernel',kernel);
     [fVout, ptsVout, bwVout] = ksdensity(vout, 'kernel',kernel);
     [fVr, ptsVr, bwVr] = ksdensity(vR,  'kernel',kernel);
@@ -155,7 +125,7 @@ if ~isempty(cell2mat(strfind(fieldnames(tsCollection), 'Math')))  %only true for
 end
 
 OtherParameters.kernel = kernel;
-OtherParameters.npoints = npoints;
+% OtherParameters.npoints = npoints;
 OtherParameters.function = typeOfFunction;
 OtherParameters.fsignal = frequency;
 

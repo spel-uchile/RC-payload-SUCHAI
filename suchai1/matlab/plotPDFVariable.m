@@ -6,12 +6,10 @@ global matfileLab;
 global suchaiFoldersName;
 global saveFolder;
 global mkrsize,
-global freqsLab;
 global freqsLegendTM;
 global tmPerFreqSuchai;
 global freqsLegendLab;
 global tmPerFreqLab;
-global normalization;
 ks = 1;
 kl = 1;
 % subFolderName = 'LangDiss';
@@ -26,7 +24,9 @@ for i = 1 : numel(suchaiFoldersName)
         xbins = matfileTM{ks}.xbins;
         pdfResult = matfileTM{ks}.pdfResult;
         hold on;
-        plot(xbins.(normalization).(subFolderName), log10(pdfResult.(normalization).(subFolderName)),'*','MarkerSize', mkrsize);
+        theName = fieldnames(xbins);
+        theName = theName{1};
+        plot(xbins.(theName).(subFolderName), log10(pdfResult.(theName).(subFolderName)),'*','MarkerSize', mkrsize);
         hold off;
         ks = ks +1;
     end
@@ -35,7 +35,9 @@ for i = 1 : numel(suchaiFoldersName)
         xbins = matfileLab{kl}.xbins;
         pdfResult = matfileLab{kl}.pdfResult;
         hold on;
-        plot(xbins.(normalization).(subFolderName), log10(pdfResult.(normalization).(subFolderName)),'o','MarkerSize', mkrsize);
+        theName = fieldnames(xbins);
+        theName = theName{1};
+        plot(xbins.(theName).(subFolderName), log10(pdfResult.(theName).(subFolderName)),'o','MarkerSize', mkrsize);
         hold off;
         kl = kl + 1;
     end
@@ -59,4 +61,3 @@ for i = 1 : numel(suchaiFoldersName)
     saveas(gcf, figSaveName);
 end
 end
-

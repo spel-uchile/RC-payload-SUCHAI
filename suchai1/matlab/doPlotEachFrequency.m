@@ -10,9 +10,11 @@ global freqsLegendLab;
 global tmPerFreqLab;
 global normalization;
 
-% normalization = 'raw';
+normalization = 'raw';
 % normalization = 'divByMean';
-normalization = 'diffByMeanDivByStd';
+% normalization = 'diffByMeanDivByStd';
+% normalization = 'withoutDC';
+
 rootDir= ['./mat/pdf-',normalization];
 saveFolder =['./img/suchaiPDFs/SeparatedByFrequency/pdf-',...
     normalization,'/',date];
@@ -42,7 +44,8 @@ for i = 1 : numel(suchaiFoldersName)
     tmFile = {tmFile.name};
     tmFile = tmFile(3:end)';
     tmFile = sortn(tmFile);
-    indexC = strfind(tmFile,'raw');
+    indexC = strfind(tmFile,normalization);
+    
     indexRaw = find(not(cellfun('isempty', indexC)));
     freqInHz = suchaiFoldersName{i};
     tmFile = tmFile(indexRaw);
@@ -72,7 +75,8 @@ for i = 1 : numel(suchaiFoldersName)
     tmFile = {tmFile.name};
     tmFile = tmFile(3:end)';
     tmFile = sortn(tmFile);
-    indexC = strfind(tmFile,'raw');
+    indexC = strfind(tmFile, normalization);
+    
     indexRaw = find(not(cellfun('isempty', indexC)));
     tmFile = tmFile(indexRaw);
     freqInHz = suchaiFoldersName{i};
@@ -94,6 +98,20 @@ plotLegendCell = [freqsLegendTM, freqsLegendLab]';
 
 switch normalization
     case 'raw'
+%         plotPDFVariable('Vin', [],[],'V'); close all;
+%         plotPDFVariable('Vout', [],[],'V'); close all;
+%         plotPDFVariable('Vr', [],[],'V'); close all;
+%         plotPDFVariable('Ir', [],[],'A'); close all;
+%         plotPDFVariable('Ic', [],[],'V'); close all;
+%         plotPDFVariable('Pin', [],[],'V'); close all;
+%         plotPDFVariable('Pr', [],[],'V'); close all;
+%         plotPDFVariable('Pc', [],[],'V'); close all;
+%         plotPDFVariable('DeltaP', [],[],'V'); close all;
+        plotPDFVariable('LangInj', [],[],'V^2 \cdot Hz'); close all;
+%         plotPDFVariable('LangDiss', [],[],'V^2 \cdot Hz'); close all;
+%         plotPDFVariable('LangStored', [],[],'V^2 \cdot Hz'); close all;
+%         plotPDFVariable('LangDeltaP', [],[],'V^2 \cdot Hz'); close all;
+    case 'rawWithDC'
         plotPDFVariable('Vin', [],[],'V'); close all;
         plotPDFVariable('Vout', [],[],'V'); close all;
         plotPDFVariable('LangInj', [],[],'V^2 \cdot Hz'); close all;

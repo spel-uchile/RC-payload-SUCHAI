@@ -1,7 +1,3 @@
-normalization  = 'diffByMeanDivByStd';
-dataset = 'tektronix';
-overwrite = 'yes';
-
 %% KDE parameters manual
 % bandwidth
 bwVin = [0.0886    0.0589    0.0584    0.0646    0.1032    0.1180    0.0974    0.0589];
@@ -64,9 +60,8 @@ for i = 1 : length(freqsDir)
                 filesWithDateShort{j});
             if ~exist(fullfile(newMatFileName))
                 disp([newMatFileName,' is being created']);
-            elseif exist(fullfile(newMatFileName)) && exist('overwrite') %&& exist('prefix');
-                tmpPrefix = currentDataDate;
-                if strfind(currentDataDate,tmpPrefix)
+            elseif exist(fullfile(newMatFileName)) && exist('overwrite')
+                if strfind(overwrite,'yes')
                     disp([newMatFileName,' is being created']);
                 else
                     disp([newMatFileName,' already exists']);
