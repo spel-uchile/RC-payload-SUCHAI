@@ -1,5 +1,6 @@
 databases = {'suchai','tektronix','lab'};
-
+overwrite = 'yes';
+normalization = 'divByMean';
 for i = 1 : length(databases)
     database = databases{i};
     npoints = 100;  %numbins
@@ -22,7 +23,7 @@ for i = 1 : length(databases)
             isRawOrTheoretical = ~isempty(strfind(matfiles{kl},'raw')) ||...
                 ~isempty(strfind(matfiles{kl},'theoretical'));
             isTektronix = ~isempty(strfind(lower(database), 'tektronix'));
-            if isRawOrTheoretical || isTektronix    
+            if isRawOrTheoretical || isTektronix
                 saveFolder = ['./mat/ts-', normalization, '/',database,'/',freq];
                 if ~isdir(saveFolder)
                     disp(['creating directory ', saveFolder]);
@@ -35,9 +36,11 @@ for i = 1 : length(databases)
                 name = name{1}; %only raw timeserie
                 tsStruct = S.(name);
                 fsignal = tsStruct.fsignal;
-
+                
                 disp(['Making normalization: ', normalization, 'at file ',loadMyFile]);
+                oldDigits = digits(64);
                 tsNormalized = timeSeriesFactory(fsignal, normalization, tsStruct);
+                digits(oldDigits);
                 newMatFileName = strcat(saveFolder,'/',...
                     currentFile(1:(end-4)),'_', normalization,'.mat');
                 save(newMatFileName,'tsNormalized','-v7.3');
