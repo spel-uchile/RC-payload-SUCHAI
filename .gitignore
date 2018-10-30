@@ -32,3 +32,7 @@
 #doc
 *.log
 *.aux
+
+*.png
+*.jpg
+*.jpeg
