@@ -34,5 +34,7 @@
 *.aux
 
 *.png
+*.pdf
+*.fig
 *.jpg
 *.jpeg
